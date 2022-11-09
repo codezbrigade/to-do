@@ -1,0 +1,82 @@
+import React, { useState } from 'react';
+import { Image, LayoutAnimation, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { asserts, COLORS, FONTS } from '../constants';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen';
+
+const HomeModal = ({ setIsModalVisible }) => {
+
+  const pressHandler = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
+    setIsModalVisible(false);
+  }
+
+  return (
+    <Pressable onPress={pressHandler} style={styles.container}>
+      <View style={styles.popup}>
+        <View style={styles.top}>
+          <Text style={styles.text}>Organise yourself</Text>
+        </View>
+        <View style={styles.bottom}>
+          <Text style={styles.text}>Click</Text>
+          <View style={styles.imgContainer}>
+            <Image
+              resizeMode='contain'
+              style={{ height: 6, width: 6 }}
+              source={asserts.addTask}
+            />
+          </View>
+          <Text style={styles.text}>to add your tasks</Text>
+        </View>
+      </View>
+    </Pressable>
+  );
+};
+
+export default HomeModal;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.25)',
+  },
+  popup: {
+    height: hp(16.2),
+    width: wp(75),
+    backgroundColor: '#ffff',
+    borderRadius: 16,
+    padding: 12
+  },
+  top: {
+    flex: 2,
+    borderBottomWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  bottom: {
+    flex: 3,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingBottom: 5
+  },
+  text: {
+    color: COLORS.modalText,
+    fontFamily: FONTS.LatoRegular,
+    fontWeight: '600',
+    fontSize: 16
+  },
+  imgContainer: {
+    height: 17,
+    width: 17,
+    backgroundColor: COLORS.main,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    marginHorizontal: 5
+  }
+})

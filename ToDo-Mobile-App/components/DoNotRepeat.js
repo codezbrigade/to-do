@@ -21,7 +21,7 @@ const DoNotRepeat = ({ handleToggle, switchBool }) => {
       <Image
         source={asserts.repeat}
         resizeMode='contain'
-        style={{ height: 20, width: 20, marginLeft: 5, marginRight: 15 }}
+        style={styles.image}
       />
       <Text style={styles.text}>{strings.doNotRepeat}</Text>
       <Switch
@@ -46,6 +46,12 @@ const styles = StyleSheet.create({
     width: '100%',
     marginVertical: 5
   },
+  image: {
+    height: 20,
+    width: 20,
+    marginLeft: 5,
+    marginRight: 15
+  },
   text: {
     fontSize: 16,
     fontFamily: FONTS.LatoRegular,
@@ -57,3 +63,4 @@ const styles = StyleSheet.create({
     borderColor: '#E9F8FF'
   }
 })
+

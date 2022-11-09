@@ -15,6 +15,7 @@ const ROOT = () => {
     InterRegular: require('./asserts/fonts/Inter-Regular.otf'),
     LatoRegular: require('./asserts/fonts/Lato-Regular.ttf'),
     SignikaLight: require('./asserts/fonts/Signika-Light.otf'),
+    LeelawadeeUI: require('./asserts/fonts/LeelawUI.ttf')
   });
 
   if (!loaded) return null;

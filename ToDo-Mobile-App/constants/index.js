@@ -40,15 +40,15 @@ const categoryLogoMap = {
 
 const HEADERS = [{
   title: strings.today,
-  imageUrl: asserts.down
-},
-{
-  title: strings.others,
-  imageUrl: asserts.down
 },
 {
   title: strings.completed,
-  imageUrl: asserts.down
+},
+{
+  title: strings.tomorrow,
+},
+{
+  title: strings.upcoming,
 }
 ]
 

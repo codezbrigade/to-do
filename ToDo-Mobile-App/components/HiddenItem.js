@@ -14,7 +14,7 @@ const HiddenItem = ({ data, rowMap, state: { timeOut, settimeout }, setToDoList 
   useEffect(() => {
     setTimeout(() => {
       settimeout(true)
-    }, 1000)
+    }, 500)
   }, [])
 
   const closeRow = (rowMap, rowKey) => {

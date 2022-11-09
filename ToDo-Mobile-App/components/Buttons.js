@@ -21,7 +21,7 @@ export const CircularButton = ({ handlePress, imageUrl, height, width, borderWid
         isCompleted && !imageUrl ?
           <Image source={checked} resizeMode='contain' style={{ height: 20, width: 20, opacity: 0.9 }} />
           :
-          <Image source={imageUrl} resizeMode='cover' style={{ height: '100%', width: '100%' }} />
+          <Image source={imageUrl} resizeMode='cover' style={{ height: 27, width: 27 }} />
       }
     </TouchableOpacity>
 
@@ -36,11 +36,10 @@ export const RectButton = ({ handlePress, ...props }) => {
   )
 }
 
-
 const styles = StyleSheet.create({
   container: {
     borderColor: 'rgba(0,0,0,0.2)',
-    borderRadius: 20,
+    borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
   },

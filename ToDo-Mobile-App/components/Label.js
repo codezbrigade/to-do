@@ -5,12 +5,10 @@ import { FONTS, categoryLogoMap } from '../constants';
 const Label = ({ label }) => {
   const { label_category, label_color } = label;
 
-  // console.log(label_color, "component");
-
   return (
     <View style={[styles.container, { backgroundColor: label_color }]}>
       <Image
-        style={{ height: 15, width: 15, marginRight: 4 }}
+        style={styles.image}
         resizeMode='contain'
         source={categoryLogoMap[label_category]}
       />
@@ -39,5 +37,10 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: 10,
     color: '#fff'
+  },
+  image: {
+    height: 15,
+    width: 15,
+    marginRight: 4
   }
 })

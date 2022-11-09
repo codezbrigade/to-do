@@ -109,12 +109,7 @@ const Form = ({ route, ...props }) => {
           defaultValue={todo.title}
         />
 
-        <Pressable style={{
-          ...styles.textInput2,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center'
-        }} onPress={showDatePicker}>
+        <Pressable style={styles.dateInput} onPress={showDatePicker}>
           <TextInput
             style={{
               fontSize: 16,
@@ -133,7 +128,7 @@ const Form = ({ route, ...props }) => {
         </Pressable>
 
         <TextInput
-          style={styles.textInput2}
+          style={styles.subTitleInput}
           placeholder={strings.description}
           defaultValue={todo.sub_title}
           onChangeText={(text) => handlChange('subTitle', text)}

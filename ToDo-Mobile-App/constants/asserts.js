@@ -15,9 +15,13 @@ import down from '../asserts/images/down.png';
 import calender from '../asserts/images/calender.png';
 import deleteIcon from '../asserts/images/delete.png';
 import edit from '../asserts/images/edit.png';
+import bgimg from '../asserts/images/background.jpg';
+import plus from '../asserts/images/plus.png';
 
 export const asserts = {
+  plus,
   home_top,
+  bgimg,
   home_bottom,
   addTask,
   new_task_top,

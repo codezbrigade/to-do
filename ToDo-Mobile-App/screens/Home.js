@@ -1,187 +1,98 @@
+import React, { useState } from 'react';
+import { View, StyleSheet, Text, Modal } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react';
 
-import { Image, StatusBar, StyleSheet, Text, View } from 'react-native';
 import {
-  asserts,
-  COLORS,
-  FONTS,
-  TODOLIST,
-  strings,
-  todoKey,
-  HEADERS,
-  MONTHS,
-  ROUTES
-} from '../constants';
+  AddYourTask,
+  BackgroundView,
+  CircularButton,
+  ClearAll,
+  Fact,
+  Greetings,
+  Headers,
+  Heading,
+  HomeModal
+} from '../components';
 
-import { CircularButton } from '../components';
-import { Section } from '../components';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen';
 
-import { useAsyncStorage } from '@react-native-async-storage/async-storage';
-import { getAllKeys, removeData } from '../utils/asyncStorage';
+import { asserts, COLORS, HEADERS, strings, ROUTES } from '../constants';
 
-const Home = ({ route }) => {
-
-  let temp = null;
-  if (route.params) temp = route.params;
-
-  const { getItem, setItem } = useAsyncStorage(todoKey);
-
-  const [toDoList, setToDoList] = useState([]);
-  const [toDos, setToDos] = useState([]);
+const Home = () => {
+  const [isModalVisible, setIsModalVisible] = useState(true);  //change it to true
+  const [selectedHeader, setSelectedHeader] = useState('Today');
 
   const navigation = useNavigation();
 
-  useEffect(() => {
-    (async () => {
-      // let jsonValue = JSON.stringify(TODOLIST);  //* upload sample data to ASYNC storage
-      // await setItem(jsonValue);
-      // console.log('done')
-
-      // let keys = await getAllKeys(); 
-      // console.log(keys)
-
-      // await removeData(todoKey);
-
-      let data = await getItem() || '[]';
-      // console.log(typeof (data));
-      setToDoList(JSON.parse(data))
-    })()
-  }, [])
-
-  useEffect(() => {
-    if (temp) {
-      setToDoList([...temp])
-    }
-  }, [route])
-
-  useEffect(() => {
-    if (!toDoList) return;
-    let now = new Date();
-
-    const completedToDos = [];
-    const todayToDos = [];
-    const others = [];
-    // const missed = [];
-
-    toDoList.forEach(element => {
-      const { isCompleted, time } = element;
-      let timeArr = time.split(' ');
-
-      if (!isCompleted) {
-        if (timeArr[2] > now.getFullYear()) {
-          others.push(element);
-        } else if (MONTHS.indexOf(timeArr[0]) > now.getMonth()) {
-          others.push(element);
-        } else if (timeArr[1] > now.getDate()) {
-          others.push(element);
-        } else if (timeArr[1] == now.getDate()) {
-          todayToDos.push(element);
-        } else {
-          others.push(element);
-        }
-      } else completedToDos.push(element)
-    });
-
-    let mapped = [todayToDos, others, completedToDos];
-    // setToDos(mapped)
-
-    let finalOutput = HEADERS.map((obj, idx) => ({ ...obj, toDoData: mapped[idx] }))
-    // console.log(finalOutput);
-    setToDos(finalOutput)
-  }, [toDoList])
+  const navigationHandler = () => navigation.navigate(ROUTES.new_task_screen);
 
   return (
-    <View style={styles.container}>
+    <BackgroundView>
+      <View style={styles.homeContainer}>
+        <View style={styles.subHomeContainer}>
+          <Heading />
+          <Greetings />
+          <Headers selectedHeader={selectedHeader} setSelectedHeader={setSelectedHeader} />
+          <Fact />
+          <View style={styles.todos}>
 
-      <StatusBar
-        barStyle={'dark-content'}
-        backgroundColor={COLORS.statusBar}
-        animated={true}
-      />
+            {selectedHeader === strings.completed && <ClearAll />}
+            { // if completed is empty then only you have to show empty msg.                  --- not implimented 
+              selectedHeader === strings.today ?
+                <AddYourTask selectedHeader={selectedHeader} handlePress={navigationHandler} />
+                : selectedHeader === strings.completed ? <AddYourTask selectedHeader={selectedHeader} /> : null
+            }
 
-      {/*<View style={styles.top}>
-        <Image
-          source={asserts.home_top}
-          style={{ width: '100%', height: '100%' }}
-          resizeMode={'cover'}
-        />
-  </View>*/}
-
-      <View style={{
-        justifyContent: 'flex-start',
-        flex: 1,
-        paddingHorizontal: 20,
-        paddingBottom: 50
-      }}>
-
-        <Text style={styles.heading}>{strings.your_task}</Text>
-
-        {
-          toDos.map((toDo, i) =>
-            <Section toDoList={toDoList} key={i}
-              section={toDo}
-              setToDoList={setToDoList}
-            />
-          )
-        }
+          </View>
+        </View>
 
       </View>
-
-      <View style={styles.bottom}>
-        <Image
-          source={asserts.home_bottom}
-          resizeMode={'contain'}
-          style={{ height: '100%', width: '100%' }}
-        />
+      <View style={styles.buttonContainer}>
         <CircularButton
           position={'absolute'}
-          bottom={45}
-          zIndex={1}
+          top={0}
+          right={0}
+          backgroundColor={COLORS.main}
           width={70}
           height={70}
           borderWidth={0}
           imageUrl={asserts.addTask}
-          handlePress={() => navigation.navigate(ROUTES.new_task_screen)}
+          handlePress={navigationHandler}
         />
       </View>
-
-    </View >
+      <Modal visible={isModalVisible} transparent={true}>
+        <HomeModal setIsModalVisible={setIsModalVisible} />
+      </Modal>
+    </BackgroundView>
   );
 };
 
 export default Home;
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'space-between',
+  homeContainer: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  subHomeContainer: {
+    height: '99%',
+    width: '90%',
+    // borderWidth: 1,
+  },
+  buttonContainer: {
+    height: hp(15),
+    width: '90%',
+    alignSelf: 'center'
   },
 
-  top: {
-    height: 160,
-    // flex: 1,
-    width: '100%'
-  },
 
-
-  bottom: {
-    height: 83,
-    // flex: 1,
-    width: '100%',
-    alignItems: 'center'
+  todos: {
+    marginTop: 22,
+    flex: 1,
+    paddingVertical: hp(2)
   },
-  heading: {
-    fontFamily: FONTS.LatoRegular,
-    fontWeight: '500',
-    fontSize: 24,
-    height: 29,
-    marginVertical: 8,
-  },
-  flatListContainer: {
-    height: '50%',  //200px
-    // zIndex: 1,
-    marginBottom: 5
-  },
-
-})
+});

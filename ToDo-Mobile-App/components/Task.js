@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
-import { Animated, LayoutAnimation, StyleSheet, Text, View } from 'react-native';
+import { LayoutAnimation, StyleSheet, Text, View } from 'react-native';
 
 import { FONTS, COLORS, todoKey } from '../constants';
 
@@ -20,6 +20,7 @@ const Task = ({ item, setToDoList, settimeout }) => {
 
   const changeIsCompleted = async () => {
     settimeout(false);
+
     let data = await getItem();
     let jsonValue = JSON.parse(data);
 
@@ -34,24 +35,26 @@ const Task = ({ item, setToDoList, settimeout }) => {
   }
 
   return (
-    <View style={styles.container}>
-      <Animated.View style={[styles.taskContainer]}>
-        <View style={styles.details}>
-          <DateTime time={time} />
-          <Text style={{ ...styles.title, textDecorationLine: isCompleted ? 'line-through' : '' }}>{newTitle}</Text>
-          <Text style={{ ...styles.subTitle, textDecorationLine: isCompleted ? 'line-through' : '' }}>{subTitle}</Text>
-        </View>
+    <View style={[styles.taskContainer]}>
+      <View style={styles.details}>
+        <DateTime time={time} />
+        <Text style={{ ...styles.title, textDecorationLine: isCompleted ? 'line-through' : '' }}>
+          {newTitle}
+        </Text>
+        <Text style={{ ...styles.subTitle, textDecorationLine: isCompleted ? 'line-through' : '' }}>
+          {subTitle}
+        </Text>
+      </View>
 
-        <View style={styles.isCompleted}>
-          <CircularButton
-            borderWidth={1}
-            handlePress={changeIsCompleted}
-            isCompleted={isCompleted}
-          />
-        </View>
+      <View style={styles.isCompleted}>
+        <CircularButton
+          borderWidth={1}
+          handlePress={changeIsCompleted}
+          isCompleted={isCompleted}
+        />
+      </View>
 
-        <Label label={{ label_category, label_color }} />
-      </Animated.View>
+      <Label label={{ label_category, label_color }} />
     </View>
   );
 };
@@ -59,18 +62,13 @@ const Task = ({ item, setToDoList, settimeout }) => {
 export default Task;
 
 const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    height: 100,
-    justifyContent: 'center',
-    marginVertical: 10,
-  },
   taskContainer: {
+    height: 100,
+    marginVertical: 10,
+    elevation: 4,
     borderRadius: 16,
-    shadowOffset: 15,
     overflow: 'hidden',
     width: '100%',
-    height: '100%',
     backgroundColor: COLORS.white,
     flexDirection: 'row',
     alignItems: 'center',
@@ -91,5 +89,4 @@ const styles = StyleSheet.create({
   isCompleted: {
     paddingHorizontal: 20
   }
-
 });

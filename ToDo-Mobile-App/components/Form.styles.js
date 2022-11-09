@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 import { FONTS } from "../constants";
 
 export const styles = StyleSheet.create({
+
   form: {
     height: '75%',
     width: '90%',
@@ -26,7 +27,17 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(0,0,0,0.2)'
   },
-  textInput2: {
+  dateInput: {
+    height: '29%',
+    fontSize: 16,
+    fontFamily: FONTS.InterRegular,
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderBottomColor: 'rgba(0,0,0,0.2)'
+  },
+  subTitleInput: {
     height: '29%',
     fontSize: 16,
     fontFamily: FONTS.InterRegular,

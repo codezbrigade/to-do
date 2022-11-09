@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { FlatList, StyleSheet, View, Text, TouchableOpacity, Image, Modal, LayoutAnimation } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
-import { asserts, ROUTES, strings, todoKey } from '../constants';
 
 import SectionHeader from './SectionHeader';
 import Task from './Task';
 
-import { styles } from './Section.styles';
 import HiddenItem from './HiddenItem';
 
 const Section = ({ section, setToDoList }) => {
@@ -56,3 +54,9 @@ const Section = ({ section, setToDoList }) => {
 
 export default Section;
 
+const styles = StyleSheet.create({
+  flatListContainer: {
+    flex: 1,
+    marginBottom: 5,
+  }
+})

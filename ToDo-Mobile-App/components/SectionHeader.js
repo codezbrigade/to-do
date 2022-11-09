@@ -1,45 +1,56 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, LayoutAnimation, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import { COLORS } from '../constants';
+import { COLORS, FONTS } from '../constants';
 
-const SectionHeader = ({ string, imageUrl }) => {
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen';
+
+const SectionHeader = ({ string, value, setSelectedHeader }) => {
+
+  const handlePress = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setSelectedHeader(string);
+  }
   return (
-    <View style={styles.listHeaderContainer}>
-      <View style={styles.listHeader}>
-        <Text style={styles.text}>
-          {string}
-        </Text>
-        {
-          imageUrl && <Image source={imageUrl}
-            style={{ width: 15, height: 15 }}
-            resizeMode='contain'
-          />
-        }
-      </View>
-    </View>
+    <TouchableOpacity
+      onPress={handlePress}
+      style={[styles.listHeader, value === string && { backgroundColor: COLORS.main }]}
+    >
+      <Text style={[styles.text, value === string && { color: COLORS.white }]}>
+        {string}
+      </Text>
+
+    </TouchableOpacity>
   );
 };
 
 export default SectionHeader;
 
 const styles = StyleSheet.create({
-  listHeaderContainer: {
-    width: '100%',
-    backgroundColor: COLORS.settingsBackground,
-    paddingVertical: 5,
-
-  },
   listHeader: {
-    width: 100,
-    backgroundColor: '#fff',
-    paddingVertical: 2,
-    borderRadius: 5,
-    flexDirection: 'row',
+    width: wp(39.7),
+    height: hp(5),
+    backgroundColor: COLORS.white,
+    borderRadius: 6,
     alignItems: 'center',
     justifyContent: 'center'
   },
   text: {
-    padding: 5,
+    fontFamily: FONTS.LatoRegular,
+    fontWeight: '400',
+    fontSize: 18,
+    lineHeight: hp(2.87)
   }
 })
+
+
+
+// {
+//   imageUrl && <Image source={imageUrl}
+//     style={styles.image}
+//     resizeMode='contain'
+//   />
+// }

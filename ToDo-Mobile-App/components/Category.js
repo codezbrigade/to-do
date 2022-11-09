@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { FONTS, categoryLogoMap, asserts, strings } from '../constants';
 
 import { createAlert } from '../utils/Alert';
@@ -19,8 +19,8 @@ const Category = ({ category, handlePress, value }) => {
   }
 
   return (
-    <TouchableOpacity onPress={selectCategory}>
-      <View style={styles.categoryContainer}>
+    <Pressable onPress={selectCategory}>
+      <View style={[styles.categoryContainer, { opacity: value === category.name ? 0.6 : 1 }]}>
         <View style={{ ...styles.categoryLogoContainer, backgroundColor: category.color }}>
           <Image
             source={categoryLogoMap[category.name]}
@@ -36,7 +36,7 @@ const Category = ({ category, handlePress, value }) => {
           /> : null
         }
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

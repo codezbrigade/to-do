@@ -6,7 +6,10 @@ import { CircularButton, Form } from '../components';
 
 import { asserts, COLORS, FONTS } from '../constants';
 
-// import { getAllKeys } from '../utils/asyncStorage';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen';
 
 const NewTask = ({ route }) => {
 
@@ -26,18 +29,8 @@ const NewTask = ({ route }) => {
           resizeMode={'cover'}
           style={{ height: '100%', width: '100%' }}
         />
-        <View
-          style={{
-            position: 'absolute',
-            bottom: 20,
-            left: 40
-          }}
-        >
-          <Text style={{
-            fontFamily: FONTS.InterRegular,
-            color: '#fff',
-            fontSize: 24
-          }}>New Task</Text>
+        <View style={styles.textContainer} >
+          <Text style={styles.text}>New Task</Text>
         </View>
 
         <CircularButton
@@ -68,12 +61,18 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   top: {
-    height: 160,
+    height: hp(21),
     width: '100%',
   },
   text: {
-    fontSize: 30,
-    fontWeight: '600'
+    fontFamily: FONTS.InterRegular,
+    color: '#fff',
+    fontSize: 24
   },
+  textContainer: {
+    position: 'absolute',
+    bottom: 20,
+    left: 40
+  }
 
 })

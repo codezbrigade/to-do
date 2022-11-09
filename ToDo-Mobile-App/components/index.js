@@ -8,8 +8,21 @@ import SectionHeader from './SectionHeader';
 import Task from './Task';
 import Section from './Section';
 import HiddenItem from "./HiddenItem";
+import ClearAll from './ClearAll';
+import HomeModal from './HomeModal';
+import BackgroundView from './BackgroundView';
+import Heading from "./Heading";
+import Greetings from './Greetings';
+import Headers from './Headers';
+import Fact from './Fact';
+import AddYourTask from './AddYourTask';
 
 export {
+  AddYourTask,
+  Fact,
+  Headers,
+  Greetings,
+  Heading,
   CircularButton,
   RectButton,
   Category,
@@ -20,5 +33,8 @@ export {
   SectionHeader,
   Task,
   Section,
-  HiddenItem
+  HiddenItem,
+  ClearAll,
+  HomeModal,
+  BackgroundView
 }
