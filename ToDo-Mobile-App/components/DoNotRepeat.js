@@ -41,6 +41,7 @@ export default DoNotRepeat;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    paddingHorizontal: 37,
     // justifyContent: 'space-evenly',
     alignItems: 'center',
     width: '100%',
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
   },
   toggle: {
     position: 'absolute',
-    right: 0,
+    right: 50,
     borderColor: '#E9F8FF'
   }
 })

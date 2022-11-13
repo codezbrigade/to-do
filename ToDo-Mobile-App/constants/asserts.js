@@ -17,8 +17,10 @@ import deleteIcon from '../asserts/images/delete.png';
 import edit from '../asserts/images/edit.png';
 import bgimg from '../asserts/images/background.jpg';
 import plus from '../asserts/images/plus.png';
+import search from '../asserts/images/search.png';
 
 export const asserts = {
+  search,
   plus,
   home_top,
   bgimg,

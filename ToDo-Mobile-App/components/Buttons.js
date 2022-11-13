@@ -2,26 +2,31 @@ import React, { useState } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import checked from '../asserts/images/checked.png';
-import { FONTS, strings } from '../constants';
+import { FONTS, strings, COLORS } from '../constants';
 
-export const CircularButton = ({ handlePress, imageUrl, height, width, borderWidth, position, isCompleted, ...props }) => {
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen';
 
+export const CircularButton = ({ handlePress, imageUrl, height, width, borderWidth, position, isCompleted, imgSize, ...props }) => {
   return (
     <TouchableOpacity
       onPress={handlePress}
       style={{
         ...styles.container,
-        width: width || 30,
-        height: height || 30,
+        width: width || 20,
+        height: height || 20,
         borderWidth: borderWidth ? borderWidth : 0,
         position: position || 'relative',
+        backgroundColor: isCompleted && COLORS.main,
         ...props
       }}>
       {
         isCompleted && !imageUrl ?
-          <Image source={checked} resizeMode='contain' style={{ height: 20, width: 20, opacity: 0.9 }} />
+          <Image source={checked} resizeMode='contain' style={{ height: 10, width: 14, opacity: 0.9 }} />
           :
-          <Image source={imageUrl} resizeMode='cover' style={{ height: 27, width: 27 }} />
+          <Image source={imageUrl} resizeMode='cover' style={{ height: imgSize || 27, width: imgSize || 27 }} />
       }
     </TouchableOpacity>
 

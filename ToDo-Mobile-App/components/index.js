@@ -16,8 +16,12 @@ import Greetings from './Greetings';
 import Headers from './Headers';
 import Fact from './Fact';
 import AddYourTask from './AddYourTask';
+import Splash from "./Splash";
+import SearchBar from "./SearchBar";
 
 export {
+  SearchBar,
+  Splash,
   AddYourTask,
   Fact,
   Headers,

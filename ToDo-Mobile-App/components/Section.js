@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
 
-import SectionHeader from './SectionHeader';
+// import SectionHeader from './SectionHeader';
 import Task from './Task';
 
 import HiddenItem from './HiddenItem';
 
-const Section = ({ section, setToDoList }) => {
-  const [timeOut, settimeout] = useState(false);
+const Section = ({ toDoData, setToDoList }) => {
+  const [timeUp, setTimeUp] = useState(false);
 
-  const { title, imageUrl, toDoData } = section;
+  // const { title, imageUrl, toDoData } = section;
 
   const renderVisibleItem = (data, rowMap) => {
     return (
       <View style={styles.rowFront}>
-        <Task item={data.item} setToDoList={setToDoList} settimeout={settimeout} />
+        <Task item={data.item} setToDoList={setToDoList} setTimeUp={setTimeUp} />
       </View>
     )
   };
@@ -24,7 +24,7 @@ const Section = ({ section, setToDoList }) => {
     return <HiddenItem
       data={data}
       rowMap={rowMap}
-      state={{ timeOut, settimeout }}
+      state={{ timeUp, setTimeUp }}
       setToDoList={setToDoList}
     />
   };
@@ -44,8 +44,8 @@ const Section = ({ section, setToDoList }) => {
         // leftActionValue={0}
         // rightActionValue={-500}
         keyExtractor={item => item.id}
-        ListHeaderComponent={<SectionHeader string={title} imageUrl={imageUrl} />}
-        stickyHeaderIndices={[0]}
+        // ListHeaderComponent={<SectionHeader string={title} imageUrl={imageUrl} />}
+        // stickyHeaderIndices={[0]}
         showsVerticalScrollIndicator={false}
       />
     </View>

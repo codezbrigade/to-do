@@ -8,18 +8,21 @@ import {
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 
-const SectionHeader = ({ string, value, setSelectedHeader }) => {
+import { RFValue } from 'react-native-responsive-fontsize';
+
+const SectionHeader = ({ string, value, setSelectedHeader, idx }) => {
 
   const handlePress = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    setSelectedHeader(string);
+    setSelectedHeader({ ...value, title: string, id: idx });
   }
   return (
     <TouchableOpacity
       onPress={handlePress}
-      style={[styles.listHeader, value === string && { backgroundColor: COLORS.main }]}
+      // style={[styles.listHeader, value.id === idx && { backgroundColor: COLORS.main }]}
+      style={[value.id === idx ? styles.active : styles.inActive]}
     >
-      <Text style={[styles.text, value === string && { color: COLORS.white }]}>
+      <Text style={[value.id === idx ? styles.activeText : styles.inActiveText]}>
         {string}
       </Text>
 
@@ -30,27 +33,47 @@ const SectionHeader = ({ string, value, setSelectedHeader }) => {
 export default SectionHeader;
 
 const styles = StyleSheet.create({
-  listHeader: {
-    width: wp(39.7),
-    height: hp(5),
-    backgroundColor: COLORS.white,
-    borderRadius: 6,
+  // listHeader: {
+  //   width: wp(39.7),
+  //   height: hp(5),
+  //   backgroundColor: COLORS.white,
+  //   borderRadius: 6,
+  //   alignItems: 'center',
+  //   justifyContent: 'center'
+  // },
+  // text: {
+  //   fontFamily: FONTS.RobotoRegular_400,
+  //   fontSize: 18,
+  //   lineHeight: hp(2.87)
+  // },
+  active: {
+    marginHorizontal: wp(2),
+    height: hp(5.5),
+    backgroundColor: COLORS.main,
+    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center'
   },
-  text: {
-    fontFamily: FONTS.LatoRegular,
-    fontWeight: '400',
-    fontSize: 18,
-    lineHeight: hp(2.87)
+  inActive: {
+    height: hp(4),
+    backgroundColor: COLORS.white,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginHorizontal: wp(2),
+    justifyContent: 'center'
+  },
+  activeText: {
+    paddingHorizontal: wp(2.7),
+    fontFamily: FONTS.RobotoMedium_500,
+    fontSize: 20,
+    lineHeight: hp(3),
+    color: COLORS.white
+  },
+  inActiveText: {
+    paddingHorizontal: wp(4.2),
+    fontFamily: FONTS.RobotoRegular_400,
+    fontSize: 16,
+    lineHeight: hp(2.4),
+    color: COLORS.inActiveHeader
   }
 })
-
-
-
-// {
-//   imageUrl && <Image source={imageUrl}
-//     style={styles.image}
-//     resizeMode='contain'
-//   />
-// }

@@ -2,7 +2,9 @@ import TODOLIST from './ToDoList.json';
 
 import { strings } from './localize';
 
-import { COLORS, FONTS } from './THEMES';
+import { COLORS } from './COLORS';
+import { FONTS } from './FONTS';
+
 import { asserts } from './asserts';
 import { ROUTES } from './ROUTES';
 import { todoKey } from './AsyncStorageKey';
@@ -38,18 +40,10 @@ const categoryLogoMap = {
   [strings.home]: asserts.home,
 };
 
-const HEADERS = [{
-  title: strings.today,
-},
-{
-  title: strings.completed,
-},
-{
-  title: strings.tomorrow,
-},
-{
-  title: strings.upcoming,
-}
+const HEADERS = [{ title: strings.today, },
+{ title: strings.completed },
+{ title: strings.tomorrow },
+{ title: strings.upcoming }
 ]
 
 const MONTHS = [

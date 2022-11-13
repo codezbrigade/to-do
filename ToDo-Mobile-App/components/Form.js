@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Image, Pressable, Text, TextInput, View } from 'react-native';
 
-import { RectButton } from './Buttons';
+import { CircularButton, RectButton } from './Buttons';
 import Category from './Category';
 import DoNotRepeat from './DoNotRepeat';
 
@@ -12,10 +12,17 @@ import moment from 'moment'
 import { useNavigation } from '@react-navigation/native';
 import { getData, storeData } from '../utils/asyncStorage';
 
-import { strings, asserts, categories, FONTS, todoKey, ROUTES } from '../constants';
+import { strings, asserts, categories, FONTS, todoKey, ROUTES, COLORS } from '../constants';
 import { createAlert } from '../utils/Alert';
 
 import { styles } from './Form.styles';
+
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen';
+
+import { RFValue } from 'react-native-responsive-fontsize';
 
 const defaultToDo = {
   id: '',
@@ -94,16 +101,17 @@ const Form = ({ route, ...props }) => {
   };
 
   const handleConfirm = (dateTime) => {
-    const time = moment(dateTime).format('MMM D YYYY hh:mm A');
+    const time = moment(dateTime).format('MMM D YYYY - hh:mm a');
     setTodo({ ...todo, time })
     hideDatePicker();
   };
 
   return (
     <View style={{ ...styles.form, ...props }}>
+      <Text style={styles.title}>{strings.add_task}</Text>
       <View style={styles.textInputContainer}>
         <TextInput
-          style={styles.textInput}
+          style={styles.addTitle}
           placeholder={strings.add_title}
           onChangeText={(text) => handlChange('title', text)}
           defaultValue={todo.title}
@@ -111,28 +119,25 @@ const Form = ({ route, ...props }) => {
 
         <Pressable style={styles.dateInput} onPress={showDatePicker}>
           <TextInput
-            style={{
-              fontSize: 16,
-              fontFamily: FONTS.InterRegular,
-              width: '80%'
-            }}
+            style={styles.date}
             placeholder={strings.dateTime}
             defaultValue={todo.time}
             onChangeText={(text) => handlChange('time', text)}
           />
           <Image
             source={asserts.calenderLogo}
-            style={{ height: 20, width: 20 }}
+            style={{ height: 20, width: 20, marginBottom: 5 }}
             resizeMode='contain'
           />
         </Pressable>
-
-        <TextInput
-          style={styles.subTitleInput}
-          placeholder={strings.description}
-          defaultValue={todo.sub_title}
-          onChangeText={(text) => handlChange('subTitle', text)}
-        />
+        <View style={styles.descriptionContainer}>
+          <TextInput
+            style={styles.subTitleInput}
+            placeholder={strings.description}
+            defaultValue={todo.sub_title}
+            onChangeText={(text) => handlChange('subTitle', text)}
+          />
+        </View>
       </View>
 
       <View style={styles.categoryContainer}>
@@ -156,7 +161,29 @@ const Form = ({ route, ...props }) => {
         onCancel={hideDatePicker}
       />
 
-      <RectButton bottom={20} handlePress={pressHandle} />
+      <CircularButton
+        position={'relative'}
+        top={hp(3.3)}
+        left={wp(28.1)}
+        backgroundColor={COLORS.main}
+        width={70}
+        height={70}
+        borderWidth={0}
+        imageUrl={asserts.addTask}
+        handlePress={pressHandle}
+      />
+
+      <CircularButton
+        borderWidth={0}
+        imageUrl={asserts.close}
+        position={'absolute'}
+        imgSize={10}
+        top={hp(1.57)}
+        backgroundColor={'#767676'}
+        right={wp(6.9)}
+        handlePress={() => navigation.goBack()}
+      />
+
     </View>
   );
 };

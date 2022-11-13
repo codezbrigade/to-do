@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   categoryContainer: {
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginHorizontal: 10,
+    // marginHorizontal: ,
     marginBottom: 2
   },
   categoryLogoContainer: {

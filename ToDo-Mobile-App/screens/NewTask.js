@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import { Image, StatusBar, StyleSheet, Text, View } from 'react-native';
-import { CircularButton, Form } from '../components';
+import { BackgroundView, CircularButton, Form, Heading } from '../components';
 
 import { asserts, COLORS, FONTS } from '../constants';
 
@@ -13,66 +13,27 @@ import {
 
 const NewTask = ({ route }) => {
 
-  const navigation = useNavigation();
-
   return (
-    <View style={styles.container}>
-      <StatusBar
-        barStyle={'dark-content'}
-        backgroundColor={COLORS.statusBar}
-        animated={true}
-      />
-
-      <View style={styles.top}>
-        <Image
-          source={asserts.new_task_top}
-          resizeMode={'cover'}
-          style={{ height: '100%', width: '100%' }}
-        />
-        <View style={styles.textContainer} >
-          <Text style={styles.text}>New Task</Text>
-        </View>
-
-        <CircularButton
-          borderWidth={0}
-          imageUrl={asserts.close}
-          position={'absolute'}
-          height={20}
-          width={20}
-          top={35}
-          left={25}
-          handlePress={() => navigation.goBack()}
-        />
-
+    <BackgroundView>
+      <View style={styles.subHomeContainer}>
+        <Heading />
       </View>
 
       <Form route={route} />
 
-    </View>
+    </BackgroundView>
+
   );
 };
 
 export default NewTask;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center'
+  subHomeContainer: {
+    // height: '99%',
+    alignSelf: 'center',
+    width: '90%',
+    // borderWidth: 1,
   },
-  top: {
-    height: hp(21),
-    width: '100%',
-  },
-  text: {
-    fontFamily: FONTS.InterRegular,
-    color: '#fff',
-    fontSize: 24
-  },
-  textContainer: {
-    position: 'absolute',
-    bottom: 20,
-    left: 40
-  }
 
 })

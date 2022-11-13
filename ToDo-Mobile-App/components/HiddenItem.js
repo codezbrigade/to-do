@@ -7,14 +7,20 @@ import { useNavigation } from "@react-navigation/native";
 
 import { asserts, ROUTES, todoKey } from "../constants";
 
-const HiddenItem = ({ data, rowMap, state: { timeOut, settimeout }, setToDoList }) => {
+
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen';
+
+const HiddenItem = ({ data, rowMap, state: { timeUp, setTimeUp }, setToDoList }) => {
   const navigation = useNavigation();
   const { getItem, setItem } = useAsyncStorage(todoKey);
 
   useEffect(() => {
     setTimeout(() => {
-      settimeout(true)
-    }, 500)
+      setTimeUp(true)
+    }, 1000)
   }, [])
 
   const closeRow = (rowMap, rowKey) => {
@@ -32,6 +38,7 @@ const HiddenItem = ({ data, rowMap, state: { timeOut, settimeout }, setToDoList 
     let filteredList = jsonValue.filter(obj => obj.id !== item.id);
 
     await setItem(JSON.stringify(filteredList));
+
     setToDoList([...filteredList]);
   }
 
@@ -41,7 +48,7 @@ const HiddenItem = ({ data, rowMap, state: { timeOut, settimeout }, setToDoList 
     closeRow(rowMap, item.id);
   }
 
-  return timeOut && (
+  return timeUp && (
     <View style={{
       ...styles.rowBack,
       ...styles.hiddenItem
@@ -64,8 +71,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     position: "absolute",
+    top: hp(0.797),
     width: '100%',
-    height: '100%',
+    height: hp(9.97),
   },
   leftHiddenItem: {
     backgroundColor: 'grey',
@@ -88,12 +96,12 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     height: 20,
     width: 20,
-    marginLeft: 20
+    marginLeft: wp(4.72)
   },
   deleteIcon: {
     resizeMode: 'contain',
     height: 20,
     width: 20,
-    marginRight: 20
+    marginRight: wp(4.72)
   },
 })

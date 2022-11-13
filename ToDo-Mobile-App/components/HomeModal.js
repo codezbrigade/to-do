@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { Image, LayoutAnimation, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
-import { asserts, COLORS, FONTS } from '../constants';
+import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { Image, LayoutAnimation, Pressable, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { asserts, COLORS, FONTS, ROUTES } from '../constants';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
@@ -8,26 +9,33 @@ import {
 
 const HomeModal = ({ setIsModalVisible }) => {
 
+  const navigation = useNavigation();
+
+  const onPress = () => navigation.navigate(ROUTES.new_task_screen);
+
+
   const pressHandler = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setIsModalVisible(false);
   }
 
   return (
     <Pressable onPress={pressHandler} style={styles.container}>
+      <StatusBar animated={true} barStyle={'dark-content'} backgroundColor={COLORS.modalBackground} />
+
       <View style={styles.popup}>
         <View style={styles.top}>
           <Text style={styles.text}>Organise yourself</Text>
         </View>
         <View style={styles.bottom}>
           <Text style={styles.text}>Click</Text>
-          <View style={styles.imgContainer}>
+          <Pressable onPress={onPress} style={styles.imgContainer}>
             <Image
               resizeMode='contain'
               style={{ height: 6, width: 6 }}
               source={asserts.addTask}
             />
-          </View>
+          </Pressable>
           <Text style={styles.text}>to add your tasks</Text>
         </View>
       </View>
@@ -42,12 +50,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.25)',
+    backgroundColor: COLORS.modalBackground,
   },
   popup: {
     height: hp(16.2),
     width: wp(75),
-    backgroundColor: '#ffff',
+    backgroundColor: COLORS.white,
     borderRadius: 16,
     padding: 12
   },

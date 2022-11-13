@@ -1,8 +1,8 @@
 export const COLORS = {
   main: '#2E3192',
   statusBar: 'rgba(0,0,0,0)',
-  university: '#Fdf87a',
-  work: '#809CFF',
+  university: '#0295D5',
+  work: '#FFDC9B',
   grocery: '#CCFF80',
   customize: '#80FFD1',
   home: '#FF9680',
@@ -12,12 +12,9 @@ export const COLORS = {
   api: '#f2f2f2',
   apiFont: '#525252',
   greetings: '#303030',
-
+  time: '#B9B9B9',
+  modalBackground: 'rgba(0,0,0,0.25)',
+  searchBar: '#f1f1f1',
+  inActiveHeader: '#484848'
 };
 
-export const FONTS = {
-  InterRegular: 'InterRegular',
-  LatoRegular: 'LatoRegular',
-  SignikaLight: 'SignikaLight',
-  LeelawadeeUI: 'LeelawadeeUI'
-}

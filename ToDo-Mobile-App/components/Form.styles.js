@@ -1,64 +1,106 @@
 import { StyleSheet } from "react-native";
-import { FONTS } from "../constants";
+import { COLORS, FONTS } from "../constants";
+
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen';
+
+import { RFValue } from 'react-native-responsive-fontsize';
+
+
 
 export const styles = StyleSheet.create({
 
   form: {
-    height: '75%',
-    width: '90%',
-    marginTop: 12,
+    height: '80%',
+    width: '100%',
+    marginTop: hp(1.5), //12
     borderRadius: 16,
-    backgroundColor: '#fff',
-    paddingHorizontal: 16,
-    paddingVertical: 23,
+    backgroundColor: 'rgba(253, 252, 252, 0.95)',
+    paddingVertical: hp(2),//16,
     alignItems: 'center',
-    overflow: 'hidden'
+    position: "absolute",
+    top: hp(13), //100
+  },
+  title: {
+    width: '100%',
+    paddingHorizontal: wp(8.9),
+    fontFamily: FONTS.LatoRegular,
+    fontWeight: '500',
+    fontSize: RFValue(16),
+    color: COLORS.greetings,
   },
   textInputContainer: {
+    paddingHorizontal: wp(9),
+    marginVertical: hp(4),
     width: '100%',
-    height: 150,
     justifyContent: 'flex-start',
-    // borderWidth: 2
+  },
+  addTitle: {
+    height: hp(7.4),
+    padding: 10,
+    borderWidth: 1,
+    borderRadius: 6,
+    borderColor: 'rgba(0,0,0,0.1)',
+    fontFamily: FONTS.LatoRegular,
+    fontWeight: '400',
+    fontSize: RFValue(29),
+    lineHeight: 38.4,
+    color: 'rgba(0,0,0,0.7)'
   },
   textInput: {
     height: '42%',
-    fontSize: 32,
+    fontSize: RFValue(29),
     fontFamily: FONTS.InterRegular,
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(0,0,0,0.2)'
   },
   dateInput: {
-    height: '29%',
-    fontSize: 16,
-    fontFamily: FONTS.InterRegular,
+    height: hp(7.4),
     borderBottomWidth: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-end',
     borderBottomColor: 'rgba(0,0,0,0.2)'
   },
-  subTitleInput: {
-    height: '29%',
-    fontSize: 16,
-    fontFamily: FONTS.InterRegular,
+  date: {
+    fontSize: RFValue(14),
+    lineHeight: hp(2.42),
+    fontWeight: '400',
+    fontFamily: FONTS.LatoRegular,
+    width: '80%',
+    // color: 'rgba(0,0,0,0.5)'
+  },
+  descriptionContainer: {
+    justifyContent: "flex-end",
+    height: hp(9.9),
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(0,0,0,0.2)'
   },
+  subTitleInput: {
+    fontSize: RFValue(14),
+    fontWeight: '400',
+    lineHeight: hp(2.45),
+    fontFamily: FONTS.LatoRegular,
+  },
   categoryContainer: {
-    justifyContent: 'space-around',
-    width: '100%'
+    justifyContent: 'flex-start',
+    width: '100%',
+    paddingHorizontal: wp(10),
   },
   categoryTitle: {
-    fontSize: 16,
+    fontSize: RFValue(14),
+    lineHeight: hp(3.05),
     fontFamily: FONTS.LatoRegular,
     fontWeight: '700',
-    paddingVertical: 25
+    paddingBottom: hp(3),
+    color: 'rgba(0,0,0,0.87)'
   },
   categoryList: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
-    // alignItems: 'center',
+    justifyContent: 'space-between',
+    alignSelf: 'center',
     flexWrap: 'wrap',
-    // width: '90%'
   }
 })

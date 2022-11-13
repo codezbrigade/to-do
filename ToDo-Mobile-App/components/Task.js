@@ -8,10 +8,16 @@ import { FONTS, COLORS, todoKey } from '../constants';
 import { CircularButton } from './Buttons';
 import Label from './Label';
 
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen';
+
 import DateTime from './DateTime';
 
 
-const Task = ({ item, setToDoList, settimeout }) => {
+const Task = ({ item, setToDoList, setTimeUp }) => {
+
   const { title, subTitle, time, isCompleted, label_category, label_color } = item;
 
   const newTitle = title.length > 22 ? title.slice(0, 21) + '...' : title;
@@ -19,14 +25,14 @@ const Task = ({ item, setToDoList, settimeout }) => {
   const { getItem, setItem } = useAsyncStorage(todoKey);
 
   const changeIsCompleted = async () => {
-    settimeout(false);
+    // setTimeUp(false);
 
     let data = await getItem();
     let jsonValue = JSON.parse(data);
 
     let find = jsonValue.find(obj => obj.id === item.id);
     let idx = jsonValue.indexOf(find);
-
+    // console.log(find)
     jsonValue[idx]['isCompleted'] = !isCompleted;
 
     await setItem(JSON.stringify(jsonValue));
@@ -37,13 +43,16 @@ const Task = ({ item, setToDoList, settimeout }) => {
   return (
     <View style={[styles.taskContainer]}>
       <View style={styles.details}>
-        <DateTime time={time} />
-        <Text style={{ ...styles.title, textDecorationLine: isCompleted ? 'line-through' : '' }}>
-          {newTitle}
-        </Text>
-        <Text style={{ ...styles.subTitle, textDecorationLine: isCompleted ? 'line-through' : '' }}>
-          {subTitle}
-        </Text>
+
+        <Label label={{ label_category, label_color }} />
+
+        <View style={styles.sub}>
+          <Text style={{ ...styles.title, textDecorationLine: isCompleted ? 'line-through' : '' }}>
+            {newTitle}
+          </Text>
+          <DateTime time={time} />
+        </View>
+
       </View>
 
       <View style={styles.isCompleted}>
@@ -54,7 +63,6 @@ const Task = ({ item, setToDoList, settimeout }) => {
         />
       </View>
 
-      <Label label={{ label_category, label_color }} />
     </View>
   );
 };
@@ -63,8 +71,9 @@ export default Task;
 
 const styles = StyleSheet.create({
   taskContainer: {
-    height: 100,
-    marginVertical: 10,
+    height: hp(8.64),
+    width: '100%',
+    marginVertical: hp(1.32),
     elevation: 4,
     borderRadius: 16,
     overflow: 'hidden',
@@ -72,14 +81,19 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-around',
   },
   details: {
-    width: '60%',
+    width: '70%',
+  },
+  sub: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   title: {
-    fontFamily: FONTS.SignikaLight,
-    fontSize: 24,
+    fontFamily: FONTS.RobotoLight_300,
+    fontSize: 20,
+    lineHeight: hp(3.27)
   },
   subTitle: {
     fontFamily: FONTS.SignikaLight,
@@ -87,6 +101,7 @@ const styles = StyleSheet.create({
     color: COLORS.sub_title
   },
   isCompleted: {
-    paddingHorizontal: 20
+    paddingHorizontal: wp(4.73),
+    width: '10%'
   }
 });

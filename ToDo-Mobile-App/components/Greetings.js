@@ -7,6 +7,8 @@ import {
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 
+import { RFValue } from 'react-native-responsive-fontsize';
+
 const Greetings = () => {
   const { morning, evening, afternoon } = strings;
   let now = new Date().getHours();
@@ -14,7 +16,7 @@ const Greetings = () => {
 
   return (
     <View style={styles.greetngsContainer}>
-      <Text style={styles.greetings}>{`WOwhoo! Great ${period} ...`}</Text>
+      <Text style={styles.greetings}>{`Hey buddy \nWOwhoo! Great ${period} ...`}</Text>
     </View>
   );
 };
@@ -26,10 +28,9 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   greetings: {
-    fontFamily: FONTS.LatoRegular,
-    lineHeight: hp(2.8),
-    fontWeight: '500',
+    fontFamily: FONTS.RobotoMedium_500,
+    lineHeight: hp(3.1),
     color: COLORS.greetings,
-    fontSize: 18
+    fontSize: RFValue(16)
   },
 })

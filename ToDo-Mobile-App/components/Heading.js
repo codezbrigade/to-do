@@ -7,6 +7,8 @@ import {
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 
+import { RFValue } from 'react-native-responsive-fontsize';
+
 const Heading = () => {
   return (
     <View style={styles.headingContainer}>
@@ -20,13 +22,12 @@ export default Heading;
 const styles = StyleSheet.create({
   headingContainer: {
     width: '100%',
-    marginVertical: hp(3.5),
+    marginVertical: hp(1.8),
   },
   heading: {
-    fontSize: 36,
-    // height: hp(6.3),
+    fontSize: RFValue(32),
     fontFamily: FONTS.LeelawadeeUI,
-    lineHeight: hp(6.3),
+    lineHeight: hp(6),
     fontWeight: '700',
     color: COLORS.main
   }
