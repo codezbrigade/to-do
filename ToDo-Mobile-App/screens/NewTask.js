@@ -15,11 +15,13 @@ const NewTask = ({ route }) => {
 
   return (
     <BackgroundView>
-      <View style={styles.subHomeContainer}>
-        <Heading />
-      </View>
+      <View style={styles.container}>
+        <View style={styles.headingContainer}>
+          <Heading />
+        </View>
 
-      <Form route={route} />
+        <Form route={route} />
+      </View>
 
     </BackgroundView>
 
@@ -29,11 +31,12 @@ const NewTask = ({ route }) => {
 export default NewTask;
 
 const styles = StyleSheet.create({
-  subHomeContainer: {
-    // height: '99%',
+  headingContainer: {
     alignSelf: 'center',
     width: '90%',
-    // borderWidth: 1,
   },
+  container: {
+    flex: 1,
+  }
 
 })

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, LayoutAnimation, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { COLORS, FONTS } from '../constants';
 
@@ -13,7 +13,6 @@ import { RFValue } from 'react-native-responsive-fontsize';
 const SectionHeader = ({ string, value, setSelectedHeader, idx }) => {
 
   const handlePress = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setSelectedHeader({ ...value, title: string, id: idx });
   }
   return (
@@ -50,14 +49,14 @@ const styles = StyleSheet.create({
     marginHorizontal: wp(2),
     height: hp(5.5),
     backgroundColor: COLORS.main,
-    borderRadius: 10,
+    borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center'
   },
   inActive: {
     height: hp(4),
     backgroundColor: COLORS.white,
-    borderRadius: 10,
+    borderRadius: 30,
     alignItems: 'center',
     marginHorizontal: wp(2),
     justifyContent: 'center'

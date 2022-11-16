@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { COLORS, FONTS } from '../constants';
 
@@ -9,7 +9,17 @@ import {
 
 import { RFValue } from 'react-native-responsive-fontsize';
 
+// import { Notification } from "expo-notifications";
+// import { NOTIFICATIONS } from 'expo-permissions';
+
 const Heading = () => {
+
+  // useEffect(() => {
+  // const registerForPushNotificationsAsync = async () => {
+  // const { status } = await NOTIFICATIONS
+  // }
+  // }, [])
+
   return (
     <View style={styles.headingContainer}>
       <Text style={styles.heading}>TO_DO</Text>

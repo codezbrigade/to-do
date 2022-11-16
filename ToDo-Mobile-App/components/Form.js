@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { Image, Pressable, Text, TextInput, View } from 'react-native';
+import { Image, Pressable, Text, TextInput, ToastAndroid, Vibration, View } from 'react-native';
 
 import { CircularButton, RectButton } from './Buttons';
 import Category from './Category';
@@ -24,6 +24,8 @@ import {
 
 import { RFValue } from 'react-native-responsive-fontsize';
 
+import * as Notifications from 'expo-notifications';
+
 const defaultToDo = {
   id: '',
   title: '',
@@ -31,7 +33,7 @@ const defaultToDo = {
   time: '',
   label_category: '',
   label_color: '',
-  do_not_repeat: false,
+  do_not_repeat: true,
   isCompleted: false
 };
 
@@ -41,11 +43,16 @@ const Form = ({ route, ...props }) => {
 
   const [todo, setTodo] = useState(defaultToDo);
 
+  const [date, setDate] = useState('');
+
   const navigation = useNavigation();
 
   useEffect(() => {
     if (route.params) {
       setTodo({ ...todo, ...route.params.item })
+      let time = route.params.item.time.split(' ');
+      let modified = `${time[1]}-${time[0]}-${time[2]} ${time[4]} ${time[5]}`
+      setDate(modified);
     }
   }, [route])
 
@@ -70,26 +77,58 @@ const Form = ({ route, ...props }) => {
 
     let jsonValue = await getData(todoKey) || [];
 
+    const trigger = new Date(date);
+
     if (!todo.id) {
+      const identifier = await Notifications.scheduleNotificationAsync({
+        content: {
+          title: todo.title,
+          body: todo.subTitle,
+          data: { data: todo.label_category },
+        },
+        trigger
+      })
+      // console.log(identifier, "Notification added")
 
       let toDo = todo;
-      toDo.id = parseInt(Math.random() * 1000000000).toString();
+      toDo.id = identifier;
 
       await storeData(todoKey, [...jsonValue, toDo])
       setTodo(defaultToDo);
       navigation.navigate(ROUTES.home_screen, [...jsonValue, toDo]);
 
     } else {
+      await Notifications.cancelScheduledNotificationAsync(todo.id);
+      // console.log(todo.id, "Notification deleted for editing")
+
+      const identifier = await Notifications.scheduleNotificationAsync({
+        content: {
+          title: todo.title,
+          body: todo.subTitle,
+          data: { data: todo.label_category },
+        },
+        trigger
+      })
+      // console.log(identifier, "Notification Edited")
 
       let find = jsonValue.find(e => e.id === todo.id)
       let idx = jsonValue.indexOf(find)
 
       jsonValue[idx] = todo;
+      jsonValue[idx]["id"] = identifier;
 
       await storeData(todoKey, jsonValue)
       setTodo(defaultToDo);
       navigation.navigate(ROUTES.home_screen, jsonValue);
     }
+
+    Vibration.vibrate();
+
+    ToastAndroid.show(
+      "TO_DO added successfully",
+      ToastAndroid.SHORT,
+      ToastAndroid.BOTTOM
+    )
   }
 
   const showDatePicker = () => {
@@ -102,6 +141,8 @@ const Form = ({ route, ...props }) => {
 
   const handleConfirm = (dateTime) => {
     const time = moment(dateTime).format('MMM D YYYY - hh:mm a');
+    const notifi = moment(dateTime).format('D-MMM-YYYY hh:mm a');
+    setDate(notifi);
     setTodo({ ...todo, time })
     hideDatePicker();
   };
@@ -134,7 +175,7 @@ const Form = ({ route, ...props }) => {
           <TextInput
             style={styles.subTitleInput}
             placeholder={strings.description}
-            defaultValue={todo.sub_title}
+            defaultValue={todo.subTitle}
             onChangeText={(text) => handlChange('subTitle', text)}
           />
         </View>
@@ -164,6 +205,7 @@ const Form = ({ route, ...props }) => {
       <CircularButton
         position={'relative'}
         top={hp(3.3)}
+        // bottom={-70}
         left={wp(28.1)}
         backgroundColor={COLORS.main}
         width={70}

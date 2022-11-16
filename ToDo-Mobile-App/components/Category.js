@@ -20,12 +20,16 @@ const Category = ({ category, handlePress, value }) => {
 
   return (
     <Pressable onPress={selectCategory}>
-      <View style={[styles.categoryContainer, { opacity: value === category.name ? 0.6 : 1 }]}>
-        <View style={{ ...styles.categoryLogoContainer, backgroundColor: category.color }}>
+      <View style={[styles.categoryContainer]}>
+        <View style={{
+          ...styles.categoryLogoContainer,
+          backgroundColor: category.color,
+          opacity: value === category.name ? 0.6 : 1
+        }}>
           <Image
             source={categoryLogoMap[category.name]}
             resizeMode='contain'
-            style={{ width: 20, height: 20 }}
+            style={[{ width: 20, height: 20 }]}
           />
         </View>
         <Text style={styles.text}>{category.name}</Text>
@@ -47,7 +51,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     // marginHorizontal: ,
-    marginBottom: 2
+    // marginBottom: 2,
+    padding: 2,
+    // borderWidth: 2
   },
   categoryLogoContainer: {
     height: 64,

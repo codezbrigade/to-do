@@ -7,6 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import { asserts, ROUTES, todoKey } from "../constants";
 
+import * as Notifications from 'expo-notifications';
 
 import {
   widthPercentageToDP as wp,
@@ -19,8 +20,9 @@ const HiddenItem = ({ data, rowMap, state: { timeUp, setTimeUp }, setToDoList })
 
   useEffect(() => {
     setTimeout(() => {
+      // console.log("time out func", timeUp)
       setTimeUp(true)
-    }, 1000)
+    }, 2000)
   }, [])
 
   const closeRow = (rowMap, rowKey) => {
@@ -36,6 +38,9 @@ const HiddenItem = ({ data, rowMap, state: { timeUp, setTimeUp }, setToDoList })
     let jsonValue = JSON.parse(data);
 
     let filteredList = jsonValue.filter(obj => obj.id !== item.id);
+
+    // console.log(item.id, "Notification deleted")
+    await Notifications.cancelScheduledNotificationAsync(item.id);
 
     await setItem(JSON.stringify(filteredList));
 
@@ -74,6 +79,7 @@ const styles = StyleSheet.create({
     top: hp(0.797),
     width: '100%',
     height: hp(9.97),
+    opacity: 0.8
   },
   leftHiddenItem: {
     backgroundColor: 'grey',

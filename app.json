@@ -22,10 +22,19 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/android-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.codezbrigade.todo"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d9b72252-e49e-4bbe-b0d9-edda5fa37acb"
+      }
+    },
+    "notification": {
+      "icon": "./assets/favicon.png"
     }
   }
 }

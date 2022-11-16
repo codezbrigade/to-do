@@ -9,19 +9,18 @@ import {
 import { RFValue } from 'react-native-responsive-fontsize';
 
 
-
 export const styles = StyleSheet.create({
 
   form: {
-    height: '80%',
+    // height: '80%',
     width: '100%',
     marginTop: hp(1.5), //12
     borderRadius: 16,
     backgroundColor: 'rgba(253, 252, 252, 0.95)',
     paddingVertical: hp(2),//16,
     alignItems: 'center',
-    position: "absolute",
-    top: hp(13), //100
+    // position: "absolute",
+    // top: hp(13), //100
   },
   title: {
     width: '100%',
@@ -47,7 +46,9 @@ export const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: RFValue(29),
     lineHeight: 38.4,
-    color: 'rgba(0,0,0,0.7)'
+    color: 'rgba(0,0,0,0.7)',
+    backgroundColor: COLORS.white
+
   },
   textInput: {
     height: '42%',

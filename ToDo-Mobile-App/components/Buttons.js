@@ -19,7 +19,7 @@ export const CircularButton = ({ handlePress, imageUrl, height, width, borderWid
         height: height || 20,
         borderWidth: borderWidth ? borderWidth : 0,
         position: position || 'relative',
-        backgroundColor: isCompleted && COLORS.main,
+        backgroundColor: isCompleted ? COLORS.main : COLORS.white,
         ...props
       }}>
       {

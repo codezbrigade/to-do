@@ -10,6 +10,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import { Splash } from './components';
 import { LayoutAnimation } from 'react-native';
 
+import NotificationComponent from './utils/NotificationComponent';
+
 SplashScreen.preventAutoHideAsync();
 
 const Stack = createNativeStackNavigator();
@@ -60,10 +62,12 @@ const ROOT = () => {
       <Stack.Navigator
         // initialRouteName='NewTask'
         initialRouteName='Home'
+        // initialRouteName='3'
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="NewTask" component={NewTask} />
+        <Stack.Screen name="3" component={NotificationComponent} />
       </Stack.Navigator>
     </NavigationContainer>
   );

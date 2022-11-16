@@ -7,7 +7,7 @@ import {
   BackgroundView,
   CircularButton,
   ClearAll,
-  // Fact,
+  Fact,
   Greetings,
   Headers,
   Heading,
@@ -27,7 +27,7 @@ import { getAllKeys, removeData } from '../utils/asyncStorage';
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 const Home = ({ route }) => {
-  const [isModalVisible, setIsModalVisible] = useState(true);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedHeader, setSelectedHeader] = useState({
     title: strings.today,
     id: 0
@@ -55,13 +55,14 @@ const Home = ({ route }) => {
       // await removeData(todoKey);
 
       let data = await getItem() || '[]';
-      // console.log(typeof (data));
-      setToDoList(JSON.parse(data))
+      if (!JSON.parse(data).length) {
+        setIsModalVisible(true);
+      }
+      setToDoList(JSON.parse(data));
     })()
   }, [])
 
   useEffect(() => {
-    if (!toDoList.length) return;
     let today = [];
     let completed = [];
     let tomorrow = [];
@@ -105,7 +106,10 @@ const Home = ({ route }) => {
   }, [route])
 
   const navigation = useNavigation();
-  const navigationHandler = () => navigation.navigate(ROUTES.new_task_screen);
+
+  const navigationHandler = async () => {
+    navigation.navigate(ROUTES.new_task_screen);
+  }
 
   const filtered = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -127,6 +131,7 @@ const Home = ({ route }) => {
             <Heading />
 
             <Greetings />
+            <Fact />
 
             <SearchBar
               searchInput={searchInput}
@@ -138,15 +143,18 @@ const Home = ({ route }) => {
 
               {selectedHeader === strings.completed && <ClearAll />}
 
-              { // if completed is empty then only you have to show empty msg.                  --- not implimented
+              {
                 !filtered() &&
                   toDos[selectedHeader.id] ?
-                  selectedHeader.title === strings.today && !toDos[selectedHeader.id].length ?
-                    <AddYourTask selectedHeader={selectedHeader.title} handlePress={navigationHandler} />
-                    : selectedHeader.title === strings.completed && !toDos[selectedHeader.id].length ? <AddYourTask selectedHeader={selectedHeader.title} /> : null
+                  (
+                    selectedHeader.title === strings.today && !toDos[selectedHeader.id].length ?
+                      <AddYourTask selectedHeader={selectedHeader.title} handlePress={navigationHandler} />
+                      : selectedHeader.title === strings.completed && !toDos[selectedHeader.id].length ?
+                        <AddYourTask selectedHeader={selectedHeader.title} />
+                        : null
+                  )
                   : null
               }
-
 
               {
                 filtered() ? <Section toDoData={filtered()} setToDoList={setToDoList} /> :
@@ -157,21 +165,19 @@ const Home = ({ route }) => {
           </View>
 
         </View>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.buttonContainer}>
-            <CircularButton
-              position={'absolute'}
-              top={0}
-              right={0}
-              backgroundColor={COLORS.main}
-              width={70}
-              height={70}
-              borderWidth={0}
-              imageUrl={asserts.addTask}
-              handlePress={navigationHandler}
-            />
-          </View>
-        </TouchableWithoutFeedback>
+        <View style={styles.buttonContainer}>
+          <CircularButton
+            position={'absolute'}
+            top={0}
+            right={0}
+            backgroundColor={COLORS.main}
+            width={70}
+            height={70}
+            borderWidth={0}
+            imageUrl={asserts.addTask}
+            handlePress={navigationHandler}
+          />
+        </View>
 
       </BackgroundView>
       <Modal visible={isModalVisible} transparent={true}>
@@ -192,7 +198,6 @@ const styles = StyleSheet.create({
   subHomeContainer: {
     height: '99%',
     width: '90%',
-    // borderWidth: 1,
   },
   buttonContainer: {
     height: hp(15),
@@ -200,10 +205,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     position: 'absolute',
     bottom: 0,
-    // borderWidth: 1
   },
-
-
   todos: {
     marginTop: 38,
     flex: 1,
