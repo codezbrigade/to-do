@@ -1,7 +1,10 @@
 import React from 'react';
-import { StyleSheet, ImageBackground, StatusBar, View } from 'react-native';
+import { StyleSheet, ImageBackground, StatusBar, View, Dimensions } from 'react-native';
 
 import { asserts, COLORS } from '../constants';
+
+const HEIGHT = Dimensions.get('screen').height;
+const WIDTH = Dimensions.get('screen').width;
 
 const BackgroundView = ({ children }) => {
   return (
@@ -18,7 +21,7 @@ export default BackgroundView;
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
+    height: HEIGHT,
     width: '100%'
   },
   image: {

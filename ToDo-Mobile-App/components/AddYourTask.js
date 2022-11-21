@@ -18,9 +18,11 @@ const AddYourTask = ({ handlePress, selectedHeader }) => {
         <Text style={styles.text}>{str}</Text>
       </View>
       <View style={{ width: wp(3.6) }}>
-        {selectedHeader === strings.today && <TouchableOpacity onPress={handlePress}>
-          <Image source={asserts.plus} style={styles.img} />
-        </TouchableOpacity>}
+        {
+          selectedHeader === strings.today && <TouchableOpacity onPress={handlePress}>
+            <Image source={asserts.plus} style={styles.img} />
+          </TouchableOpacity>
+        }
       </View>
     </View>
   );
@@ -34,7 +36,7 @@ const styles = StyleSheet.create({
     height: hp(6.64),
     backgroundColor: COLORS.white,
     borderRadius: 16,
-    elevation: 3,
+    // elevation: 3,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around'

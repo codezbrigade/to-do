@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, LayoutAnimation, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { COLORS, FONTS } from '../constants';
 
@@ -13,6 +13,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 const SectionHeader = ({ string, value, setSelectedHeader, idx }) => {
 
   const handlePress = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setSelectedHeader({ ...value, title: string, id: idx });
   }
   return (

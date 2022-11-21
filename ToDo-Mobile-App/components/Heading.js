@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
   headingContainer: {
     width: '100%',
     marginVertical: hp(1.8),
+    // borderWidth: 1
   },
   heading: {
     fontSize: RFValue(32),

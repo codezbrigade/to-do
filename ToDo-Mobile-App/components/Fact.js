@@ -1,8 +1,7 @@
 import React, { useLayoutEffect, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { COLORS, FONTS } from '../constants';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { asserts, COLORS, FONTS } from '../constants';
 
-import TextTicker from 'react-native-text-ticker';
 import { FACT_API } from '../api/apiNinja';
 
 import {
@@ -11,31 +10,21 @@ import {
 } from 'react-native-responsive-screen';
 
 const Fact = () => {
-  const [facts, setFacts] = useState([]);
-
-  const FACT = facts.join("  |  ");
-  const DURATION = 150 * FACT.length;
+  const [fact, setFacts] = useState('');
 
   useLayoutEffect(() => {
     (async () => {
       const response = await FACT_API();
-      const stringArray = response.map(e => e.fact);
-      setFacts(stringArray)
+      setFacts(response[0]["fact"])
     })()
   }, [])
 
   return (
     <View style={styles.container}>
-      <TextTicker
-        style={styles.text}
-        duration={DURATION}
-        loop
-        bounce
-        repeatSpacer={50}
-        marqueeDelay={1000}
-      >
-        {FACT}
-      </TextTicker>
+      {fact && [
+        <Image key={'12'} source={asserts.water} style={styles.image} />,
+        <Text key={'13'} style={styles.text}> " {fact} "</Text>
+      ]}
     </View>
   );
 };
@@ -43,20 +32,31 @@ const Fact = () => {
 export default Fact;
 const styles = StyleSheet.create({
   container: {
-    marginTop: hp(1.26), //to be deleted
-    height: hp(2.9),
+    minHeight: '7%',
+    marginBottom: hp(3),
     width: '100%',
-    justifyContent: 'center',
-    backgroundColor: COLORS.api,
-    borderRadius: 6,
-    paddingHorizontal: 10
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderRadius: 16,
+    paddingHorizontal: 10,
+    backgroundColor: COLORS.factBg,
+    borderColor: COLORS.factBorder,
+    borderWidth: 1,
+    alignItems: 'center'
+  },
+  image: {
+    height: 25,
+    width: 25,
+    resizeMode: 'contain',
+    // transform: [{ rotate: '-11 deg' }]
   },
   text: {
-    width: '100%',
-    fontSize: 16,
-    fontFamily: FONTS.LatoRegular,
-    fontWeight: '300',
-    lineHeight: hp(2.5),
-    color: COLORS.apiFont
+    color: COLORS.inActiveHeader,
+    width: '90%',
+    fontSize: 14,
+    fontFamily: FONTS.RobotoLightItalic,
+    lineHeight: 16.4, //hp(2.5),
+    paddingVertical: 10,
+    paddingHorizontal: 8
   }
 })

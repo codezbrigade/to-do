@@ -9,12 +9,18 @@ export const COLORS = {
   sub_title: 'rgba(0,0,0,0.5)',
   white: '#fff',
   modalText: '#7F7F7F',
-  api: '#f2f2f2',
-  apiFont: '#525252',
+  // api: '#f2f2f2',
+  // apiFont: '#525252',
+  factBg: '#ffffcc',
+  factBorder: '#ffff00',
   greetings: '#303030',
   time: '#B9B9B9',
   modalBackground: 'rgba(0,0,0,0.25)',
   searchBar: '#f1f1f1',
-  inActiveHeader: '#484848'
+  inActiveHeader: '#484848',
+  previewContainerBorder: '#bfbfbf',
+  previewBg: 'rgba(253, 252, 252, 0.95)',
+  grey_b: '#767676',
+  delete: '#d12f2f'
 };
 
