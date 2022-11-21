@@ -27,7 +27,10 @@ const ROOT = () => {
 
   useEffect(() => {
     if (animate) {
-      setTimeout(() => { setAnimate(false) }, 3000);
+      setTimeout(() => {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
+        setAnimate(false)
+      }, 3000);
     }
   }, [animate])
 
@@ -48,10 +51,9 @@ const ROOT = () => {
   useEffect(() => {
     const prevent = async () => {
       if (fontsLoaded) {
-        console.log(fontsLoaded, "Hide splash screen")
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-        setAnimate(true);
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
         await SplashScreen.hideAsync();
+        setAnimate(true);
       };
     }
     prevent();
@@ -73,14 +75,11 @@ const ROOT = () => {
     <NavigationContainer>
       <SheetProvider>
         <Stack.Navigator
-          // initialRouteName='NewTask'
           initialRouteName='Home'
-          // initialRouteName='Details'
           screenOptions={{ headerShown: false }}
         >
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="NewTask" component={NewTask} />
-          <Stack.Screen name="Details" component={Details} />
         </Stack.Navigator>
       </SheetProvider>
     </NavigationContainer>
