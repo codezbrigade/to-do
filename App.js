@@ -42,8 +42,9 @@ export default function App() {
       Notifications.removeNotificationSubscription(responseListener.current);
     };
   }, []);
-
-  return <ROOT />;
+  return (
+    <ROOT />
+  )
 }
 
 async function registerForPushNotificationsAsync() {

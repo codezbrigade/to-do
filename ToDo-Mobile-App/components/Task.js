@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
-import { LayoutAnimation, StyleSheet, Text, View } from 'react-native';
+import { LayoutAnimation, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { FONTS, COLORS, todoKey } from '../constants';
 
@@ -15,12 +15,13 @@ import {
 
 import DateTime from './DateTime';
 
+import { SheetManager } from 'react-native-actions-sheet';
 
 const Task = ({ item, setToDoList, setTimeUp }) => {
 
   const { title, subTitle, time, isCompleted, label_category, label_color } = item;
 
-  const newTitle = title.length > 22 ? title.slice(0, 21) + '...' : title;
+  const newTitle = title.length > 18 ? title.slice(0, 17) + '...' : title;
 
   const { getItem, setItem } = useAsyncStorage(todoKey);
 
@@ -40,9 +41,11 @@ const Task = ({ item, setToDoList, setTimeUp }) => {
     setToDoList(jsonValue);
   }
 
+  const preview = () => SheetManager.show('preview', { payload: { item, setToDoList } })
+
   return (
     <View style={[styles.taskContainer]}>
-      <View style={styles.details}>
+      <TouchableOpacity onPress={preview} style={styles.details}>
 
         <Label label={{ label_category, label_color }} />
 
@@ -53,7 +56,7 @@ const Task = ({ item, setToDoList, setTimeUp }) => {
           <DateTime time={time} />
         </View>
 
-      </View>
+      </TouchableOpacity>
 
       <View style={styles.isCompleted}>
         <CircularButton
@@ -74,7 +77,7 @@ const styles = StyleSheet.create({
     height: hp(8.64),
     width: '100%',
     marginVertical: hp(1.32),
-    elevation: 4,
+    // elevation: 4,
     borderRadius: 16,
     overflow: 'hidden',
     width: '100%',
@@ -93,7 +96,9 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: FONTS.RobotoLight_300,
     fontSize: 20,
-    lineHeight: hp(3.27)
+    lineHeight: hp(3.27),
+    paddingRight: '2%',
+    width: '80%',
   },
   subTitle: {
     fontFamily: FONTS.SignikaLight,

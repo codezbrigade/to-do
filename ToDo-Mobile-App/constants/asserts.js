@@ -18,8 +18,21 @@ import edit from '../asserts/images/edit.png';
 import bgimg from '../asserts/images/background.jpg';
 import plus from '../asserts/images/plus.png';
 import search from '../asserts/images/search.png';
+import closeBlack from '../asserts/images/closeBlack.png';
+import searchLogo from '../asserts/images/searchLogo.png';
+import closeBtn from '../asserts/images/closeBtn.png';
+import checked from '../asserts/images/checked.png';
+import searchCloseLogo from '../asserts/images/searchCloseLogo.png';
+import water from '../asserts/images/water.png';
+
 
 export const asserts = {
+  searchCloseLogo,
+  water,
+  closeBtn,
+  checked,
+  searchLogo,
+  closeBlack,
   search,
   plus,
   home_top,

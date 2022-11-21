@@ -125,7 +125,7 @@ const Form = ({ route, ...props }) => {
     Vibration.vibrate();
 
     ToastAndroid.show(
-      "TO_DO added successfully",
+      "Task added successfully",
       ToastAndroid.SHORT,
       ToastAndroid.BOTTOM
     )
@@ -211,7 +211,7 @@ const Form = ({ route, ...props }) => {
         width={70}
         height={70}
         borderWidth={0}
-        imageUrl={asserts.addTask}
+        imageUrl={!todo.title || !todo.time ? asserts.addTask : asserts.checked}
         handlePress={pressHandle}
       />
 

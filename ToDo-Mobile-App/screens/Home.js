@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { View, StyleSheet, Text, Modal, TouchableWithoutFeedback, Keyboard, LayoutAnimation } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -12,6 +12,7 @@ import {
   Headers,
   Heading,
   HomeModal,
+  Preview,
   SearchBar,
   Section
 } from '../components';
@@ -28,6 +29,7 @@ import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 const Home = ({ route }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+
   const [selectedHeader, setSelectedHeader] = useState({
     title: strings.today,
     id: 0
@@ -35,25 +37,25 @@ const Home = ({ route }) => {
   const [toDoList, setToDoList] = useState([]);
   const [toDos, setToDos] = useState([]);
   const [searchInput, setSearchInput] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
 
   const { getItem, setItem } = useAsyncStorage(todoKey);
 
-  // useEffect(() => {
-  //   if (!toDos[selectedHeader.id]) return;
-  //   console.log(toDos[selectedHeader.id], "selected")
-  // }, [selectedHeader, toDos])
+  useEffect(() => {
+    let data = [];
+
+    if (searchInput) {
+      data = toDoList.filter(obj =>
+        obj.title.toLocaleLowerCase().includes(searchInput)
+        || obj.subTitle.toLocaleLowerCase().includes(searchInput)
+      )
+    } else data = toDos[selectedHeader.id];
+
+    setFilteredData(data);
+  }, [searchInput, selectedHeader, toDos])
 
   useEffect(() => {
     (async () => {
-      // let jsonValue = JSON.stringify(TODOLIST);  //* upload sample data to ASYNC storage
-      // await setItem(jsonValue);
-      // console.log('done')
-
-      // let keys = await getAllKeys(); 
-      // console.log(keys)
-
-      // await removeData(todoKey);
-
       let data = await getItem() || '[]';
       if (!JSON.parse(data).length) {
         setIsModalVisible(true);
@@ -91,7 +93,7 @@ const Home = ({ route }) => {
       } else completed.push(element)
     });
 
-    let temp = [today, completed, tomorrow, upcoming];
+    let temp = [today, tomorrow, upcoming, completed];
 
     setToDos([...temp]);
 
@@ -111,56 +113,41 @@ const Home = ({ route }) => {
     navigation.navigate(ROUTES.new_task_screen);
   }
 
-  const filtered = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-
-    if (!searchInput) return;
-    return toDoList.filter(obj =>
-      obj.title.toLocaleLowerCase().includes(searchInput)
-      || obj.subTitle.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase())
-    )
-  }
-
-
   return (
     <>
       <BackgroundView>
         <View style={styles.homeContainer}>
           <View style={styles.subHomeContainer}>
-
             <Heading />
 
-            <Greetings />
             <Fact />
+
+            <Headers selectedHeader={selectedHeader} setSelectedHeader={setSelectedHeader} />
 
             <SearchBar
               searchInput={searchInput}
               setSearchInput={setSearchInput}
             />
-            {!filtered() && <Headers selectedHeader={selectedHeader} setSelectedHeader={setSelectedHeader} />}
 
-            <View style={styles.todos}>
+            <View style={[styles.todos]}>
 
-              {selectedHeader === strings.completed && <ClearAll />}
-
-              {
-                !filtered() &&
-                  toDos[selectedHeader.id] ?
-                  (
-                    selectedHeader.title === strings.today && !toDos[selectedHeader.id].length ?
-                      <AddYourTask selectedHeader={selectedHeader.title} handlePress={navigationHandler} />
-                      : selectedHeader.title === strings.completed && !toDos[selectedHeader.id].length ?
-                        <AddYourTask selectedHeader={selectedHeader.title} />
-                        : null
-                  )
-                  : null
+              {!searchInput &&
+                toDos[selectedHeader.id] ?
+                (
+                  selectedHeader.title === strings.today && !toDos[selectedHeader.id].length ?
+                    <AddYourTask selectedHeader={selectedHeader.title} handlePress={navigationHandler} />
+                    : selectedHeader.title === strings.completed && !toDos[selectedHeader.id].length ?
+                      <AddYourTask selectedHeader={selectedHeader.title} />
+                      : null
+                )
+                : null
               }
 
               {
-                filtered() ? <Section toDoData={filtered()} setToDoList={setToDoList} /> :
-                  toDos[selectedHeader.id] &&
-                  <Section toDoData={toDos[selectedHeader.id]} setToDoList={setToDoList} />
+                toDos[selectedHeader.id] &&
+                <Section toDoData={filteredData} setToDoList={setToDoList} />
               }
+
             </View>
           </View>
 
@@ -198,17 +185,16 @@ const styles = StyleSheet.create({
   subHomeContainer: {
     height: '99%',
     width: '90%',
+
   },
   buttonContainer: {
-    height: hp(15),
+    height: hp(24),
     width: '90%',
     alignSelf: 'center',
-    position: 'absolute',
-    bottom: 0,
+
   },
   todos: {
-    marginTop: 38,
     flex: 1,
-    paddingVertical: hp(2)
+    // paddingVertical: hp(2),
   },
 });

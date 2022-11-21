@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
   headers: {
     flexDirection: 'row',
     width: '100%',
-    overflow: 'visible'
-    // zIndex: 1
+    overflow: 'visible',
   },
 })

@@ -9,4 +9,5 @@ export const FONTS = {
   RobotoMedium_500: 'RobotoMedium',
   RobotoBold_700: 'RobotoBold',
   RobotoBlack_900: 'RobotoBlack',
+  RobotoLightItalic: "RobotoLightItalic"
 }

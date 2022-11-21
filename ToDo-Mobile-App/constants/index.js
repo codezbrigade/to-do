@@ -41,9 +41,9 @@ const categoryLogoMap = {
 };
 
 const HEADERS = [{ title: strings.today, },
-{ title: strings.completed },
 { title: strings.tomorrow },
-{ title: strings.upcoming }
+{ title: strings.upcoming },
+{ title: strings.completed }
 ]
 
 const MONTHS = [

@@ -22,7 +22,7 @@ const HiddenItem = ({ data, rowMap, state: { timeUp, setTimeUp }, setToDoList })
     setTimeout(() => {
       // console.log("time out func", timeUp)
       setTimeUp(true)
-    }, 2000)
+    }, 1000)
   }, [])
 
   const closeRow = (rowMap, rowKey) => {
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     top: hp(0.797),
     width: '100%',
     height: hp(9.97),
-    opacity: 0.8
+    opacity: 0.8,
   },
   leftHiddenItem: {
     backgroundColor: 'grey',

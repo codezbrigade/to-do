@@ -1,17 +1,37 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { strings, COLORS, FONTS } from '../constants';
+import { LayoutAnimation, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { strings, COLORS, FONTS, todoKey } from '../constants';
 
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 
-const ClearAll = ({ handlePress }) => {
+import { useAsyncStorage } from '@react-native-async-storage/async-storage';
+
+const ClearAll = ({ setToDoList }) => {
+
+  const { setItem, getItem } = useAsyncStorage(todoKey);
+
+  const handlePress = async () => {
+
+    let data = await getItem();
+    let jsonValue = JSON.parse(data);
+    if (!jsonValue.length) return;
+
+    let filteredList = jsonValue.filter(obj => obj.isCompleted === false);
+
+    await setItem(JSON.stringify(filteredList));
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setToDoList(filteredList);
+  }
+
   return (
-    <TouchableOpacity onPress={handlePress} style={styles.container} >
-      <Text style={styles.text}>{strings.clearAll}</Text>
-    </TouchableOpacity>
+    <View style={styles.container} >
+      <TouchableOpacity onPress={handlePress} >
+        <Text style={styles.text}>{strings.clearAll}</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 

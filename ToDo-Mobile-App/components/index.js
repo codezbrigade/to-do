@@ -18,8 +18,14 @@ import Fact from './Fact';
 import AddYourTask from './AddYourTask';
 import Splash from "./Splash";
 import SearchBar from "./SearchBar";
+import Preview from './Preview';
+import PreviewSheet from './PreviewSheet';
+import Confirmation from './Confirmation';
 
 export {
+  PreviewSheet,
+  Confirmation,
+  Preview,
   SearchBar,
   Splash,
   AddYourTask,
