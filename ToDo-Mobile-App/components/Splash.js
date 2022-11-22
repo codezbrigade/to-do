@@ -1,15 +1,25 @@
 import React, { useEffect, useRef } from 'react';
-import { Animated, View, SafeAreaView, StatusBar, StyleSheet, Text } from 'react-native';
+import { Animated, View, SafeAreaView, StatusBar, StyleSheet, Text, Easing } from 'react-native';
 import { COLORS } from '../constants';
 
 const Splash = () => {
   const progress = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    Animated.timing(
-      progress,
-      { toValue: 1, duration: 3000, useNativeDriver: false }
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(
+          progress,
+          {
+            toValue: 1,
+            duration: 1000,
+            useNativeDriver: false,
+            easing: Easing.exp,
+            delay: 300
+          })
+      ])
     ).start()
+
   }, [])
 
   return (
@@ -19,6 +29,7 @@ const Splash = () => {
         <Animated.View style={[
           styles.loading,
           {
+            // left: '50%'
             width: progress.interpolate({
               inputRange: [0, 1],
               outputRange: ['0%', '100%']
@@ -40,7 +51,8 @@ const styles = StyleSheet.create({
   },
   loadingContainer: {
     height: '1.5%',
-    width: '80%',
+    width: '85%',
+    overflow: 'hidden',
   },
   loading: {
     borderRadius: 10,

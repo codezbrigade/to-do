@@ -13,6 +13,7 @@ import {
   Heading,
   HomeModal,
   Preview,
+  AppRating,
   SearchBar,
   Section
 } from '../components';
@@ -24,8 +25,9 @@ import {
 
 import { asserts, COLORS, HEADERS, strings, ROUTES, todoKey, TODOLIST, MONTHS } from '../constants';
 
-import { getAllKeys, removeData } from '../utils/asyncStorage';
+import { getAllKeys, getData, removeData } from '../utils/asyncStorage';
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
+import { ratingKey } from '../constants/AsyncStorageKey';
 
 const Home = ({ route }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -38,16 +40,19 @@ const Home = ({ route }) => {
   const [toDos, setToDos] = useState([]);
   const [searchInput, setSearchInput] = useState('');
   const [filteredData, setFilteredData] = useState([]);
+  const [fact, setFact] = useState('');
+  const [isRatingVisible, setISRatingVisible] = useState(false);
 
   const { getItem, setItem } = useAsyncStorage(todoKey);
 
   useEffect(() => {
     let data = [];
+    let lowerCase = searchInput.toLocaleLowerCase();
 
-    if (searchInput) {
+    if (lowerCase) {
       data = toDoList.filter(obj =>
-        obj.title.toLocaleLowerCase().includes(searchInput)
-        || obj.subTitle.toLocaleLowerCase().includes(searchInput)
+        obj.title.toLocaleLowerCase().includes(lowerCase)
+        || obj.subTitle.toLocaleLowerCase().includes(lowerCase)
       )
     } else data = toDos[selectedHeader.id];
 
@@ -71,6 +76,12 @@ const Home = ({ route }) => {
     let upcoming = [];
     let others = [];
     let now = new Date();
+
+    (async () => {         // only shows when rating is 0 and added first todo
+      // await removeData(ratingKey)
+      let key = await getData(ratingKey);
+      if (toDoList.length === 1 && !key) showRatingModal();
+    })()
 
     toDoList.forEach(element => {
       const { isCompleted, time } = element;
@@ -99,11 +110,15 @@ const Home = ({ route }) => {
 
   }, [toDoList])
 
-  let temp = null;
-  if (route.params) temp = route.params;
+  // console.log(route)
   useEffect(() => {
-    if (temp) {
-      setToDoList([...temp])
+    let temp = null;
+    if (route.params) temp = route.params;
+    if (temp.data) {
+      setToDoList([...temp.data])
+    } else {
+      let response = temp.fact;
+      if (response[0]) setFact(response[0]["fact"])
     }
   }, [route])
 
@@ -113,6 +128,10 @@ const Home = ({ route }) => {
     navigation.navigate(ROUTES.new_task_screen);
   }
 
+  const showRatingModal = () => {
+    setTimeout(() => { setISRatingVisible(true) }, 4000)
+  }
+
   return (
     <>
       <BackgroundView>
@@ -120,7 +139,7 @@ const Home = ({ route }) => {
           <View style={styles.subHomeContainer}>
             <Heading />
 
-            <Fact />
+            <Fact fact={fact} />
 
             <Headers selectedHeader={selectedHeader} setSelectedHeader={setSelectedHeader} />
 
@@ -170,6 +189,7 @@ const Home = ({ route }) => {
       <Modal visible={isModalVisible} transparent={true}>
         <HomeModal setIsModalVisible={setIsModalVisible} />
       </Modal>
+      <AppRating isRatingVisible={isRatingVisible} setISRatingVisible={setISRatingVisible} />
     </>
   );
 };

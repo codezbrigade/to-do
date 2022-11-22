@@ -15,7 +15,8 @@ import Details from './screens/Details';
 
 import { SheetProvider } from 'react-native-actions-sheet';
 import './utils/sheets';
-// import { RAPID_API } from './api/rapidApi';
+import { RAPID_API } from './api/rapidApi';
+import { FACT_API } from './api/apiNinja';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -24,15 +25,16 @@ const Stack = createNativeStackNavigator();
 const ROOT = () => {
 
   const [animate, setAnimate] = useState(false);
+  const [fact, setFact] = useState([]);
 
-  useEffect(() => {
-    if (animate) {
-      setTimeout(() => {
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
-        setAnimate(false)
-      }, 3000);
-    }
-  }, [animate])
+  // useEffect(() => {
+  //   if (animate) {
+  //     setTimeout(() => {
+  //       LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
+  //       setAnimate(false)
+  //     }, 3000);
+  //   }
+  // }, [animate])
 
   const [fontsLoaded] = useFonts({
     InterRegular: require('./asserts/fonts/Inter-Regular.otf'),
@@ -51,21 +53,24 @@ const ROOT = () => {
   useEffect(() => {
     const prevent = async () => {
       if (fontsLoaded) {
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
         await SplashScreen.hideAsync();
-        setAnimate(true);
       };
     }
     prevent();
   }, [fontsLoaded]);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     let res = await RAPID_API();
-  //     console.log(res, "rapid api request")
-  //   })()
-  // }, [])
-
+  useEffect(() => {
+    (async () => {
+      setAnimate(true);
+      await FACT_API().then((res) => {
+        console.log(res)
+        setFact(res);
+        setAnimate(false);
+      });
+      // await RAPID_API().then(res => console.log(res, "--- rapi api"))
+    })()
+  }, [])
 
   if (!fontsLoaded) return null;
 
@@ -78,7 +83,7 @@ const ROOT = () => {
           initialRouteName='Home'
           screenOptions={{ headerShown: false }}
         >
-          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Home" component={Home} initialParams={{ fact: fact }} />
           <Stack.Screen name="NewTask" component={NewTask} />
         </Stack.Navigator>
       </SheetProvider>

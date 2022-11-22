@@ -19,7 +19,8 @@ const SearchBar = ({ searchInput, setSearchInput }) => {
 
   const handleChange = (text) => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    setSearchInput(text.toLocaleLowerCase());
+    // let lowerCase = text.toLocaleLowerCase();
+    setSearchInput(text);
   }
 
   const handlePress = () => {
@@ -67,7 +68,8 @@ const SearchBar = ({ searchInput, setSearchInput }) => {
         ]
       }>
         <View style={styles.textInputContainer}>
-          <TextInput onChangeText={handleChange}
+          <TextInput
+            onChangeText={handleChange}
             style={[styles.input]}
             placeholder='search'
             defaultValue={searchInput}

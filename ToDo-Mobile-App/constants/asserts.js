@@ -24,9 +24,15 @@ import closeBtn from '../asserts/images/closeBtn.png';
 import checked from '../asserts/images/checked.png';
 import searchCloseLogo from '../asserts/images/searchCloseLogo.png';
 import water from '../asserts/images/water.png';
+import rateHeadLogo from '../asserts/images/rateHeadLogo.png';
+import ratedStar from '../asserts/images/rated-star.png';
+import unratedStar from '../asserts/images/unrated-star.png';
 
 
 export const asserts = {
+  ratedStar,
+  unratedStar,
+  rateHeadLogo,
   searchCloseLogo,
   water,
   closeBtn,

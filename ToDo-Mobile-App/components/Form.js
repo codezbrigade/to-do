@@ -95,7 +95,7 @@ const Form = ({ route, ...props }) => {
 
       await storeData(todoKey, [...jsonValue, toDo])
       setTodo(defaultToDo);
-      navigation.navigate(ROUTES.home_screen, [...jsonValue, toDo]);
+      navigation.navigate(ROUTES.home_screen, { data: [...jsonValue, toDo] });
 
     } else {
       await Notifications.cancelScheduledNotificationAsync(todo.id);
@@ -119,7 +119,7 @@ const Form = ({ route, ...props }) => {
 
       await storeData(todoKey, jsonValue)
       setTodo(defaultToDo);
-      navigation.navigate(ROUTES.home_screen, jsonValue);
+      navigation.navigate(ROUTES.home_screen, { data: jsonValue });
     }
 
     Vibration.vibrate();

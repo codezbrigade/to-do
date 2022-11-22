@@ -39,4 +39,8 @@ export const strings = {
   Oct: "Oct",
   Nov: "Nov",
   Dec: "Dec",
+  ratingTitle: "Your opinion matters to us !",
+  ratingSubTitle: "Give us a quick review and helps us to improve ?",
+  rate: "Rate",
+  not_now: "Not now"
 }

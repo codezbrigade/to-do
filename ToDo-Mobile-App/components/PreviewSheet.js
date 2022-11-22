@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Dimensions, Image, ScrollView, StyleSheet, Text, ToastAndroid, View } from 'react-native'
+import { Dimensions, Image, LayoutAnimation, ScrollView, StyleSheet, Text, ToastAndroid, View } from 'react-native'
 
 import { useNavigation } from '@react-navigation/native';
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
@@ -57,6 +57,7 @@ const PreviewSheet = (props) => {
       ToastAndroid.BOTTOM
     )
 
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setToDoList(filteredList);
 
     SheetManager.hide('preview', { payload: false });

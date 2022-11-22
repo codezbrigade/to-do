@@ -9,15 +9,16 @@ import {
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 
-const Fact = () => {
-  const [fact, setFacts] = useState('');
+const Fact = ({ fact }) => {
+  // const [fact, setFacts] = useState('');
 
-  useLayoutEffect(() => {
-    (async () => {
-      const response = await FACT_API();
-      setFacts(response[0]["fact"])
-    })()
-  }, [])
+  // useLayoutEffect(() => {
+  //   (async () => {
+  //     const response = await FACT_API();
+  //     console.log(response)
+  //     // setFacts(response[0]["fact"])
+  //   })()
+  // }, [])
 
   return (
     <View style={styles.container}>
