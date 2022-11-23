@@ -8,15 +8,15 @@ import Home from './screens/Home';
 import NewTask from './screens/NewTask';
 import * as SplashScreen from 'expo-splash-screen';
 import { Splash } from './components';
-import { LayoutAnimation } from 'react-native';
-
-// import NotificationComponent from './utils/NotificationComponent';
-import Details from './screens/Details';
+import { LayoutAnimation, Text } from 'react-native';
 
 import { SheetProvider } from 'react-native-actions-sheet';
 import './utils/sheets';
-import { RAPID_API } from './api/rapidApi';
+
 import { FACT_API } from './api/apiNinja';
+
+import { GlobalStoreProvider } from "react-native-global-store";
+import { countKey, ratingKey } from './constants/AsyncStorageKey';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -25,16 +25,7 @@ const Stack = createNativeStackNavigator();
 const ROOT = () => {
 
   const [animate, setAnimate] = useState(false);
-  const [fact, setFact] = useState([]);
-
-  // useEffect(() => {
-  //   if (animate) {
-  //     setTimeout(() => {
-  //       LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
-  //       setAnimate(false)
-  //     }, 3000);
-  //   }
-  // }, [animate])
+  const [facts, setFacts] = useState(null);
 
   const [fontsLoaded] = useFonts({
     InterRegular: require('./asserts/fonts/Inter-Regular.otf'),
@@ -64,11 +55,9 @@ const ROOT = () => {
     (async () => {
       setAnimate(true);
       await FACT_API().then((res) => {
-        console.log(res)
-        setFact(res);
+        setFacts(res);
         setAnimate(false);
       });
-      // await RAPID_API().then(res => console.log(res, "--- rapi api"))
     })()
   }, [])
 
@@ -76,18 +65,35 @@ const ROOT = () => {
 
   if (animate) return (<Splash />)
 
+  const myInitialState = {
+    [countKey]: 0,
+    [ratingKey]: 0
+  };
+
   return (
-    <NavigationContainer>
-      <SheetProvider>
-        <Stack.Navigator
-          initialRouteName='Home'
-          screenOptions={{ headerShown: false }}
-        >
-          <Stack.Screen name="Home" component={Home} initialParams={{ fact: fact }} />
-          <Stack.Screen name="NewTask" component={NewTask} />
-        </Stack.Navigator>
-      </SheetProvider>
-    </NavigationContainer>
+    <>
+      <GlobalStoreProvider
+        initialState={myInitialState}
+        loadingUI={<Splash />}
+        persistedKeys={[countKey, ratingKey]}
+      >
+        <NavigationContainer>
+          <SheetProvider>
+            <Stack.Navigator
+              initialRouteName='Home'
+              screenOptions={{
+                headerShown: false,
+                animation: 'slide_from_right',
+                // headerBackButtonMenuEnabled: true
+              }}
+            >
+              <Stack.Screen name="Home" component={Home} initialParams={{ facts }} />
+              <Stack.Screen name="NewTask" component={NewTask} />
+            </Stack.Navigator>
+          </SheetProvider>
+        </NavigationContainer>
+      </GlobalStoreProvider>
+    </>
   );
 };
 

@@ -9,22 +9,21 @@ import {
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 
-const Fact = ({ fact }) => {
-  // const [fact, setFacts] = useState('');
+const defaultFact = { fact: "The Golden Gate Bridge was first opened in 1937" };
 
-  // useLayoutEffect(() => {
-  //   (async () => {
-  //     const response = await FACT_API();
-  //     console.log(response)
-  //     // setFacts(response[0]["fact"])
-  //   })()
-  // }, [])
+const Fact = ({ facts }) => {
+
+  const filter = () => {
+    let filtered = facts.find((e) => e.fact && e.fact.length < 60)
+    if (!filtered) return defaultFact;
+    return filtered?.fact;
+  }
 
   return (
     <View style={styles.container}>
-      {fact && [
+      {facts.length != 0 && [
         <Image key={'12'} source={asserts.water} style={styles.image} />,
-        <Text key={'13'} style={styles.text}> " {fact} "</Text>
+        <Text key={'13'} style={styles.text}> " {filter()} "</Text>
       ]}
     </View>
   );

@@ -34,6 +34,7 @@
     "react-native": "0.69.6",
     "react-native-actions-sheet": "^0.8.10",
     "react-native-date-picker": "^4.2.5",
+    "react-native-global-store": "^1.0.4",
     "react-native-linear-gradient": "^2.6.2",
     "react-native-lottie-splash-screen": "^1.0.1",
     "react-native-modal-datetime-picker": "^14.0.0",

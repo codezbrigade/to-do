@@ -10,7 +10,7 @@ import {
 
 const AddYourTask = ({ handlePress, selectedHeader }) => {
 
-  let str = selectedHeader === strings.today ? strings.add_your_task : strings.no_task_completed;
+  let str = selectedHeader !== strings.completed ? strings.add_your_task : strings.no_task_completed;
 
   return (
     <View style={styles.container}>
@@ -19,7 +19,7 @@ const AddYourTask = ({ handlePress, selectedHeader }) => {
       </View>
       <View style={{ width: wp(3.6) }}>
         {
-          selectedHeader === strings.today && <TouchableOpacity onPress={handlePress}>
+          selectedHeader !== strings.completed && <TouchableOpacity onPress={handlePress}>
             <Image source={asserts.plus} style={styles.img} />
           </TouchableOpacity>
         }

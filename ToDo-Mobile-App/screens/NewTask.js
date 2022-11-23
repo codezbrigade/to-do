@@ -1,15 +1,7 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 
-import { Image, StatusBar, StyleSheet, Text, View } from 'react-native';
-import { BackgroundView, CircularButton, Form, Heading } from '../components';
-
-import { asserts, COLORS, FONTS } from '../constants';
-
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp
-} from 'react-native-responsive-screen';
+import { StyleSheet,  View } from 'react-native';
+import { BackgroundView, Form, Heading } from '../components';
 
 const NewTask = ({ route }) => {
 

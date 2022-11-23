@@ -11,7 +11,7 @@ import {
 } from 'react-native-responsive-screen';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-import { asserts, COLORS, FONTS, ROUTES, todoKey } from '../constants';
+import { asserts, COLORS, FONTS, ROUTES, strings, todoKey } from '../constants';
 
 import Label from './Label';
 import { CircularButton, RectButton } from './Buttons';
@@ -92,19 +92,19 @@ const PreviewSheet = (props) => {
               </View>
             </View>
             <View style={styles.descriptionContainer}>
-              <Text style={styles.description}>Description</Text>
+              <Text style={styles.description}>{strings.description}</Text>
               <Text style={styles.details}>{todo.subTitle}</Text>
             </View>
             <View style={styles.btnGroup}>
               <RectButton
                 color={'white'}
-                title={'Edit'}
+                title={strings.edit}
                 backgroundColor={'blue'}
                 handlePress={navigate}
               />
               <RectButton
                 color={'white'}
-                title={'Delete'}
+                title={strings.delete}
                 backgroundColor={'red'}
                 handlePress={deleteItem}
               />

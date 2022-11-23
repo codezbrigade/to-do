@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Image, Pressable, Text, TextInput, ToastAndroid, Vibration, View } from 'react-native';
 
-import { CircularButton, RectButton } from './Buttons';
+import { CircularButton } from './Buttons';
 import Category from './Category';
 import DoNotRepeat from './DoNotRepeat';
 
@@ -13,7 +13,6 @@ import { useNavigation } from '@react-navigation/native';
 import { getData, storeData } from '../utils/asyncStorage';
 
 import { strings, asserts, categories, FONTS, todoKey, ROUTES, COLORS } from '../constants';
-import { createAlert } from '../utils/Alert';
 
 import { styles } from './Form.styles';
 
@@ -21,8 +20,6 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
-
-import { RFValue } from 'react-native-responsive-fontsize';
 
 import * as Notifications from 'expo-notifications';
 
@@ -48,11 +45,21 @@ const Form = ({ route, ...props }) => {
   const navigation = useNavigation();
 
   useEffect(() => {
+    let currentTime = new Date();
+    let initialTime = moment(currentTime).format('MMM D YYYY - hh:mm a');
+    setTodo({ ...todo, time: initialTime });
+  }, [])
+
+  useEffect(() => {
+    if (!todo.time) return;
+    let time = todo.time.split(' ');
+    let modified = `${time[1]}-${time[0]}-${time[2]} ${time[4]} ${time[5]}`;
+    setDate(modified);
+  }, [todo])
+
+  useEffect(() => {
     if (route.params) {
       setTodo({ ...todo, ...route.params.item })
-      let time = route.params.item.time.split(' ');
-      let modified = `${time[1]}-${time[0]}-${time[2]} ${time[4]} ${time[5]}`
-      setDate(modified);
     }
   }, [route])
 
@@ -88,7 +95,6 @@ const Form = ({ route, ...props }) => {
         },
         trigger
       })
-      // console.log(identifier, "Notification added")
 
       let toDo = todo;
       toDo.id = identifier;
@@ -99,7 +105,6 @@ const Form = ({ route, ...props }) => {
 
     } else {
       await Notifications.cancelScheduledNotificationAsync(todo.id);
-      // console.log(todo.id, "Notification deleted for editing")
 
       const identifier = await Notifications.scheduleNotificationAsync({
         content: {
@@ -109,7 +114,6 @@ const Form = ({ route, ...props }) => {
         },
         trigger
       })
-      // console.log(identifier, "Notification Edited")
 
       let find = jsonValue.find(e => e.id === todo.id)
       let idx = jsonValue.indexOf(find)
@@ -141,8 +145,6 @@ const Form = ({ route, ...props }) => {
 
   const handleConfirm = (dateTime) => {
     const time = moment(dateTime).format('MMM D YYYY - hh:mm a');
-    const notifi = moment(dateTime).format('D-MMM-YYYY hh:mm a');
-    setDate(notifi);
     setTodo({ ...todo, time })
     hideDatePicker();
   };
@@ -215,16 +217,16 @@ const Form = ({ route, ...props }) => {
         handlePress={pressHandle}
       />
 
-      <CircularButton
+      {/*<CircularButton
         borderWidth={0}
         imageUrl={asserts.close}
         position={'absolute'}
         imgSize={10}
         top={hp(1.57)}
-        backgroundColor={'#767676'}
+        backgroundColor={COLORS.grey_b}
         right={wp(6.9)}
         handlePress={() => navigation.goBack()}
-      />
+        />*/}
 
     </View>
   );

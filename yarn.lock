@@ -9383,6 +9383,11 @@ react-native-date-picker@^4.2.5:
   dependencies:
     prop-types "^15.8.1"
 
+react-native-global-store@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-native-global-store/-/react-native-global-store-1.0.4.tgz#7cee94fc41f7c896c3b655d82f7f481bb8ebf172"
+  integrity sha512-4VLCePE7IyGxTAZseS6Wqr1XwC4wbkSEGaUltxAxZv8onSsAeqJ/fdET5I65jkDp+NS8d4iba7W05OPVDoc4Fw==
+
 react-native-gradle-plugin@^0.0.7:
   version "0.0.7"
   resolved "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.0.7.tgz"

@@ -42,5 +42,10 @@ export const strings = {
   ratingTitle: "Your opinion matters to us !",
   ratingSubTitle: "Give us a quick review and helps us to improve ?",
   rate: "Rate",
-  not_now: "Not now"
+  not_now: "Not now",
+  confimation_text1: "Are your sure?",
+  confimation_text2: "You want to delete your task",
+  delete: "Delete",
+  cancel: "Cancel",
+  edit: "Edit"
 }

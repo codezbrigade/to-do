@@ -33,22 +33,9 @@ const SectionHeader = ({ string, value, setSelectedHeader, idx }) => {
 export default SectionHeader;
 
 const styles = StyleSheet.create({
-  // listHeader: {
-  //   width: wp(39.7),
-  //   height: hp(5),
-  //   backgroundColor: COLORS.white,
-  //   borderRadius: 6,
-  //   alignItems: 'center',
-  //   justifyContent: 'center'
-  // },
-  // text: {
-  //   fontFamily: FONTS.RobotoRegular_400,
-  //   fontSize: 18,
-  //   lineHeight: hp(2.87)
-  // },
   active: {
     marginHorizontal: wp(2),
-    height: hp(5.5),
+    height: hp(4),
     backgroundColor: COLORS.main,
     borderRadius: 50,
     alignItems: 'center',
@@ -63,10 +50,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   activeText: {
-    paddingHorizontal: wp(2.7),
+    paddingHorizontal: wp(4.2),
     fontFamily: FONTS.RobotoMedium_500,
-    fontSize: 20,
-    lineHeight: hp(3),
+    fontSize: 16,
+    lineHeight: hp(2.4),
     color: COLORS.white
   },
   inActiveText: {

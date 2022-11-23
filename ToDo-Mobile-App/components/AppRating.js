@@ -5,25 +5,29 @@ import { asserts, COLORS, FONTS, strings } from '../constants'
 import { AirbnbRating, Rating } from 'react-native-ratings';
 import { RectButton } from './Buttons';
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
-import { ratingKey } from '../constants/AsyncStorageKey';
+import { countKey, ratingKey } from '../constants/AsyncStorageKey';
+import { getData, removeData, storeData } from '../utils/asyncStorage';
+
+import { useGlobalStore } from 'react-native-global-store';
 
 const HEIGHT = Dimensions.get('screen').height;
 const WIDTH = Dimensions.get('screen').width;
 
-const AppRating = ({ isRatingVisible, setISRatingVisible }) => {
+const AppRating = ({ isRatingVisible, setISRatingVisible, showRatingModal }) => {
   const [rating, setRating] = useState(0);
-  const { setItem, getItem } = useAsyncStorage(ratingKey);
+  const [globalState, setGlobalState] = useGlobalStore();
 
-  // useEffect(() => {
-  //   console.log(rating, "hi");
-  // }, [rating])
+  useEffect(() => {
+    let count = globalState[countKey] + 1;
+    if (count % 5 === 0 && !globalState[ratingKey]) {
+      showRatingModal(7000)
+    }
+    setGlobalState({ ...globalState, [countKey]: count });
+  }, [])
 
-  const handlePress = async () => {
-    await setItem(JSON.stringify(rating));
+  const handlePress = () => {
+    setGlobalState({ ...globalState, [ratingKey]: rating })
     setISRatingVisible(false);
-    // let key = await getItem();
-    // key = JSON.parse(key);
-    // console.log(key, "key from storage")
   }
 
   return (
@@ -130,7 +134,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   btnGroup: {
-    flexDirection: 'row',
+    flexDirection: 'row-reverse',
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '70%',

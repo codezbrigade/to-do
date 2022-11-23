@@ -19,6 +19,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(253, 252, 252, 0.95)',
     paddingVertical: hp(2),//16,
     alignItems: 'center',
+    elevation: 5,
     // position: "absolute",
     // top: hp(13), //100
   },

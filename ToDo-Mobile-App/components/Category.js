@@ -9,7 +9,6 @@ const Category = ({ category, handlePress, value }) => {
   const selectCategory = () => {
     if (category.name === strings.customize) {
       handlePress({ name: '', color: 'rgba(0,0,0,0)' });
-      createAlert("Alert!", "Not Implemented :(");
 
     } else if (category.name === value) {
       handlePress({ name: '', color: 'rgba(0,0,0,0)' });
@@ -19,8 +18,8 @@ const Category = ({ category, handlePress, value }) => {
   }
 
   return (
-    <Pressable onPress={selectCategory}>
-      <View style={[styles.categoryContainer]}>
+    <Pressable disabled={category.name === strings.customize} onPress={selectCategory}>
+      <View style={[styles.categoryContainer, { opacity: category.name === strings.customize ? 0.2 : 1 }]}>
         <View style={{
           ...styles.categoryLogoContainer,
           backgroundColor: category.color,

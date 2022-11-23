@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const limit = 10;
+const limit = 50;
 const url = 'https://api.api-ninjas.com/v1/facts?limit=' + limit;
 const apiKey = 'aCT5nHaL8Ilvutg8N9nJfA==ZVQQfmoFYIb6ps6i';
 
@@ -17,6 +17,6 @@ export const FACT_API = async () => {
     // .then(data => data.filter(data.fact.length < 60))
   } catch (error) {
     console.log(error);
-    return [{ "fact": "The Golden Gate Bridge was first opened in 1937" }]
+    return [{ fact: "The Golden Gate Bridge was first opened in 1937" }]
   }
 }

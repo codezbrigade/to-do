@@ -1,7 +1,4 @@
-import home_top from '../asserts/images/home-top.png';
-import home_bottom from '../asserts/images/home-bottom.png';
 import addTask from '../asserts/images/addTask.png';
-import new_task_top from '../asserts/images/newTask-top.png';
 import calenderLogo from '../asserts/images/calender-Logo.png';
 import close from '../asserts/images/close.png';
 import university from '../asserts/images/univesiry.png';
@@ -41,11 +38,8 @@ export const asserts = {
   closeBlack,
   search,
   plus,
-  home_top,
   bgimg,
-  home_bottom,
   addTask,
-  new_task_top,
   calenderLogo,
   close,
   university,

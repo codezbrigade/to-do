@@ -21,7 +21,7 @@ import SearchBar from "./SearchBar";
 import Preview from './Preview';
 import PreviewSheet from './PreviewSheet';
 import Confirmation from './Confirmation';
-import AppRating from './Rating';
+import AppRating from './AppRating';
 
 export {
   AppRating,

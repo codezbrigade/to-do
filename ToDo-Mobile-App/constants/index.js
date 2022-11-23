@@ -1,5 +1,3 @@
-import TODOLIST from './ToDoList.json';
-
 import { strings } from './localize';
 
 import { COLORS } from './COLORS';
@@ -7,7 +5,12 @@ import { FONTS } from './FONTS';
 
 import { asserts } from './asserts';
 import { ROUTES } from './ROUTES';
-import { todoKey } from './AsyncStorageKey';
+import {
+  todoKey,
+  expoPushTokenKey,
+  ratingKey,
+  countKey
+} from './AsyncStorageKey';
 
 const categories = [
   {
@@ -53,7 +56,6 @@ const MONTHS = [
 ];
 
 export {
-  TODOLIST,
   asserts,
   FONTS,
   COLORS,
@@ -61,6 +63,9 @@ export {
   categories,
   categoryLogoMap,
   todoKey,
+  expoPushTokenKey,
+  ratingKey,
+  countKey,
   HEADERS,
   MONTHS,
   ROUTES

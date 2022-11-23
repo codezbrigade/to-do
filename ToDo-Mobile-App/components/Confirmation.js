@@ -1,6 +1,6 @@
 import { Modal, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { COLORS, FONTS } from '../constants'
+import { COLORS, FONTS, strings } from '../constants'
 import { RectButton } from './Buttons'
 
 const Confirmation = ({ confirmDeleteItem, isvisible, setIsVisible }) => {
@@ -8,19 +8,19 @@ const Confirmation = ({ confirmDeleteItem, isvisible, setIsVisible }) => {
     <Modal visible={isvisible} animationType={'fade'} transparent>
       <View style={styles.container}>
         <View style={styles.subContainer}>
-          <Text style={styles.text1}>Are your sure?</Text>
-          <Text style={styles.text2}>You want to delete your task</Text>
+          <Text style={styles.text1}>{strings.confimation_text1}</Text>
+          <Text style={styles.text2}>{strings.confimation_text2}</Text>
           <View style={styles.btnGroup}>
             <RectButton
               // color={}
               borderWidth={1}
-              title={"Cancel"}
+              title={strings.cancel}
               backgroundColor={'white'}
               handlePress={() => setIsVisible(false)}
             />
             <RectButton
               color={'#fff'}
-              title={"Delete"}
+              title={strings.delete}
               backgroundColor={COLORS.delete}
               handlePress={confirmDeleteItem}
             />
