@@ -43,7 +43,7 @@ export const RectButton = ({ handlePress, color, title, ...props }) => {
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: 'rgba(0,0,0,0.2)',
+    borderColor: COLORS.modalBackground,
     borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
@@ -51,10 +51,9 @@ const styles = StyleSheet.create({
   recBtnContainer: {
     borderRadius: 20,
     paddingHorizontal: 16,
-    // paddingVertical: 6,
-    height: 32,
+    paddingVertical: 6,
     justifyContent: 'center',
-    // alignItems: 'center'
+    alignItems: 'center'
   },
   save: {
     fontFamily: FONTS.LatoRegular,

@@ -3,6 +3,7 @@ import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'reac
 import { FONTS, categoryLogoMap, asserts, strings } from '../constants';
 
 import { createAlert } from '../utils/Alert';
+import CreatNewCategory from './CreatNewCategory';
 
 const Category = ({ category, handlePress, value }) => {
 
@@ -17,28 +18,28 @@ const Category = ({ category, handlePress, value }) => {
     }
   }
 
+  if (category.name === strings.customize) return <CreatNewCategory />;
+
   return (
-    <Pressable disabled={category.name === strings.customize} onPress={selectCategory}>
-      <View style={[styles.categoryContainer, { opacity: category.name === strings.customize ? 0.2 : 1 }]}>
-        <View style={{
-          ...styles.categoryLogoContainer,
-          backgroundColor: category.color,
-          opacity: value === category.name ? 0.6 : 1
-        }}>
-          <Image
-            source={categoryLogoMap[category.name]}
-            resizeMode='contain'
-            style={[{ width: 20, height: 20 }]}
-          />
-        </View>
+    <Pressable onPress={selectCategory}>
+      <View style={{
+        ...styles.categoryLogoContainer,
+        backgroundColor: category.color,
+        opacity: value === category.name ? 0.6 : 1
+      }}>
+        <Image
+          source={categoryLogoMap[category.name]}
+          resizeMode='contain'
+          style={[{ width: 15, height: 15 }]}
+        />
         <Text style={styles.text}>{category.name}</Text>
-        {
-          value === category.name ? <Image source={asserts.selected}
-            style={styles.selectedLogo}
-            resizeMode='contain'
-          /> : null
-        }
       </View>
+      {
+        value === category.name ? <Image source={asserts.selected}
+          style={styles.selectedLogo}
+          resizeMode='contain'
+        /> : null
+      }
     </Pressable>
   );
 };
@@ -46,31 +47,30 @@ const Category = ({ category, handlePress, value }) => {
 export default Category;
 
 const styles = StyleSheet.create({
-  categoryContainer: {
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    // marginHorizontal: ,
-    // marginBottom: 2,
-    padding: 2,
-    // borderWidth: 2
-  },
+
   categoryLogoContainer: {
-    height: 64,
-    width: 64,
-    justifyContent: 'center',
+    marginRight: 8,
+    paddingHorizontal: 15,
+    flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: 5
+    borderRadius: 30,
+    marginVertical: 8,
+    flexWrap: 'wrap',
+    paddingVertical: 5,
   },
   text: {
-    // textAlign: 'center',
+    paddingLeft: 15,
     fontFamily: FONTS.LatoRegular,
     fontWeight: '500',
-    paddingVertical: 5
+    fontSize: 12,
+    lineHeight: 18.06
   },
   selectedLogo: {
     width: 15,
     height: 15,
     position: 'absolute',
-    right: 0
+    right: '12%',
+    top: '2%'
   }
 })
+

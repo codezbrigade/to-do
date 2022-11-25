@@ -16,7 +16,8 @@ import './utils/sheets';
 import { FACT_API } from './api/apiNinja';
 
 import { GlobalStoreProvider } from "react-native-global-store";
-import { countKey, ratingKey } from './constants/AsyncStorageKey';
+
+import { appUrl, countKey, ratingKey } from './constants';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -67,7 +68,8 @@ const ROOT = () => {
 
   const myInitialState = {
     [countKey]: 0,
-    [ratingKey]: 0
+    [ratingKey]: 0,
+    appUrl,
   };
 
   return (

@@ -21,7 +21,7 @@ export const strings = {
   home: "Home",
   tomorrow: "Tomorrow",
   upcoming: "Upcoming",
-  add_task: "Add task",
+  add_task: "Create a new task",
   no_task_completed: "No task completed",
   greetings: "Greetings",
   morning: "morning",

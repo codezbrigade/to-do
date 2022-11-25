@@ -50,6 +50,7 @@ const Section = ({ toDoData, setToDoList }) => {
         data={toDoData}
         renderItem={renderVisibleItem}
         keyExtractor={item => item.id}
+        showsVerticalScrollIndicator={false}
       />
 
     </View>
@@ -62,5 +63,7 @@ const styles = StyleSheet.create({
   flatListContainer: {
     flex: 1,
     marginBottom: 5,
+    overflow: 'hidden',
+    borderRadius: 16
   }
 })

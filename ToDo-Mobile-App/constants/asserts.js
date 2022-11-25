@@ -24,10 +24,16 @@ import water from '../asserts/images/water.png';
 import rateHeadLogo from '../asserts/images/rateHeadLogo.png';
 import ratedStar from '../asserts/images/rated-star.png';
 import unratedStar from '../asserts/images/unrated-star.png';
+import goback from '../asserts/images/goback.png';
+import clock from '../asserts/images/clock.png';
+import description from '../asserts/images/description.png';
 
 
 export const asserts = {
   ratedStar,
+  clock,
+  description,
+  goback,
   unratedStar,
   rateHeadLogo,
   searchCloseLogo,

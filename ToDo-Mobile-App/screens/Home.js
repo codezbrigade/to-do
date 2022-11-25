@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import {
   View,
   StyleSheet,
+  LayoutAnimation,
 } from 'react-native';
 
 import {
@@ -24,10 +25,9 @@ import {
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 
-import { asserts, COLORS, strings, ROUTES, todoKey, MONTHS } from '../constants';
+import { asserts, COLORS, strings, ROUTES, todoKey, MONTHS, ratingKey, countKey } from '../constants';
 
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
-import { ratingKey } from '../constants/AsyncStorageKey';
 
 import { useGlobalStore } from 'react-native-global-store';
 
@@ -59,6 +59,7 @@ const Home = ({ route }) => {
       )
     } else data = toDos[selectedHeader.id];
 
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setFilteredData(data);
   }, [searchInput, selectedHeader, toDos])
 
@@ -80,7 +81,7 @@ const Home = ({ route }) => {
     let others = [];
     let now = new Date();
 
-    if (toDoList.length === 1 && !globalState[ratingKey]) showRatingModal(4000);
+    if (toDoList.length === 1 && globalState[countKey] === 1) showRatingModal(4000);
 
     toDoList.forEach(element => {
       const { isCompleted, time } = element;

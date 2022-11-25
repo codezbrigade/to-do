@@ -12,22 +12,24 @@ import {
   countKey
 } from './AsyncStorageKey';
 
+import { appUrl } from './appUrl';
+
 const categories = [
   {
-    name: strings.university,
-    color: COLORS.university
+    name: strings.grocery,
+    color: COLORS.grocery
   },
   {
     name: strings.work,
     color: COLORS.work
   },
   {
-    name: strings.grocery,
-    color: COLORS.grocery
-  },
-  {
     name: strings.home,
     color: COLORS.home
+  },
+  {
+    name: strings.university,
+    color: COLORS.university
   },
   {
     name: strings.customize,
@@ -68,5 +70,6 @@ export {
   countKey,
   HEADERS,
   MONTHS,
-  ROUTES
+  ROUTES,
+  appUrl
 }

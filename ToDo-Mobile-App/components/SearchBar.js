@@ -19,7 +19,6 @@ const SearchBar = ({ searchInput, setSearchInput }) => {
 
   const handleChange = (text) => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    // let lowerCase = text.toLocaleLowerCase();
     setSearchInput(text);
   }
 

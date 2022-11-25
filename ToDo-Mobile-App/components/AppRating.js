@@ -1,12 +1,13 @@
-import { Dimensions, Image, Modal, Pressable, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Dimensions, Image, Linking, Modal, Pressable, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { asserts, COLORS, FONTS, strings } from '../constants'
 
 import { AirbnbRating, Rating } from 'react-native-ratings';
 import { RectButton } from './Buttons';
-import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 import { countKey, ratingKey } from '../constants/AsyncStorageKey';
-import { getData, removeData, storeData } from '../utils/asyncStorage';
+
+// import { useAsyncStorage } from '@react-native-async-storage/async-storage';
+// import { getData, removeData, storeData } from '../utils/asyncStorage';
 
 import { useGlobalStore } from 'react-native-global-store';
 
@@ -26,7 +27,8 @@ const AppRating = ({ isRatingVisible, setISRatingVisible, showRatingModal }) => 
   }, [])
 
   const handlePress = () => {
-    setGlobalState({ ...globalState, [ratingKey]: rating })
+    setGlobalState({ ...globalState, [ratingKey]: rating })   //! insteed we have take response from playstore
+    Linking.openURL(globalState.appUrl)
     setISRatingVisible(false);
   }
 

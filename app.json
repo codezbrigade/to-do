@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "ToDo-Mobile-App",
-    "slug": "ToDo-Mobile-App",
+    "name": "AnyTodo",
+    "description": "Todo List Planner and Tracker",
+    "slug": "AnyTodo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/adaptive-icon.png",

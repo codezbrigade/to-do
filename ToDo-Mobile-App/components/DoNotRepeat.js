@@ -41,7 +41,7 @@ export default DoNotRepeat;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    paddingHorizontal: 37,
+    paddingHorizontal: 30,
     // justifyContent: 'space-evenly',
     alignItems: 'center',
     width: '100%',

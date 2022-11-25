@@ -31,7 +31,7 @@ export default Heading;
 
 const styles = StyleSheet.create({
   headingContainer: {
-    width: '100%',
+    width: '50%',
     marginVertical: hp(1.8),
     // borderWidth: 1
   },
