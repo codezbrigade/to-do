@@ -26,8 +26,19 @@ const AppRating = ({ isRatingVisible, setISRatingVisible, showRatingModal }) => 
     setGlobalState({ ...globalState, [countKey]: count });
   }, [])
 
-  const handlePress = () => {
-    setGlobalState({ ...globalState, [ratingKey]: rating })   //! insteed we have take response from playstore
+  const onCanceling = () => {
+    if (globalState["isFirstTime"]) {
+      setGlobalState({ ...globalState, isFirstTime: false })
+    }
+    setISRatingVisible(false);
+  }
+
+  const onRating = () => {
+    if (globalState["isFirstTime"]) {
+      setGlobalState({ ...globalState, [ratingKey]: rating, isFirstTime: false })
+    } else {
+      setGlobalState({ ...globalState, [ratingKey]: rating })   //! insteed we have take response from playstore
+    }
     Linking.openURL(globalState.appUrl)
     setISRatingVisible(false);
   }
@@ -64,14 +75,14 @@ const AppRating = ({ isRatingVisible, setISRatingVisible, showRatingModal }) => 
               title={strings.rate}
               backgroundColor={COLORS.main}
               paddingHorizontal={24}
-              handlePress={handlePress}
+              handlePress={onRating}
             />
             <RectButton
               title={strings.not_now}
               borderWidth={1}
               borderColor={COLORS.main}
               paddingHorizontal={24}
-              handlePress={() => setISRatingVisible(false)}
+              handlePress={onCanceling}
             />
           </View>
         </View>

@@ -203,7 +203,7 @@ const Form = ({ route, navigation, ...props }) => {
         }
       </View>
 
-      <Text style={styles.taskDetails}>Task details</Text>
+      <Text style={styles.taskDetails}>{strings.task_details}</Text>
 
       <Pressable onPress={showDatePicker}>
         <View style={styles.dateTimeContainer}>
@@ -227,7 +227,7 @@ const Form = ({ route, navigation, ...props }) => {
           resizeMode='contain'
         />
         <View style={styles.descriptionInputSubContainer}>
-          <Animated.Text style={[styles.title, focusedDesc]}>Add description</Animated.Text>
+          <Animated.Text style={[styles.title, focusedDesc]}>{strings.add_description}</Animated.Text>
           <TextInput
             multiline
             // onFocus={onFocusDesc}
@@ -251,7 +251,7 @@ const Form = ({ route, navigation, ...props }) => {
 
       <RectButton
         position={'absolute'}
-        title={'Create task'}
+        title={strings.create_task}
         bottom={'15%'}
         // height={'8%'}
         width={'100%'}

@@ -13,12 +13,13 @@ export const styles = StyleSheet.create({
 
   form: {
     flex: 1,
-    paddingLeft: 48,
-    paddingRight: 31,
+    paddingLeft: "12%",
+    paddingRight: "7%",
   },
   createNewTask: {
     width: '100%',
-    marginVertical: 13,
+    // marginVertical: 13,
+    marginVertical: "4%",
     fontFamily: FONTS.LatoRegular,
     fontWeight: '500',
     fontSize: RFValue(16),
@@ -29,24 +30,21 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   title: {
-    // top: '47%',
-    color: 'red',
     fontFamily: FONTS.LatoRegular,
     fontWeight: '400',
-    fontSize: 16,
-    lineHeight: 19.2,
+    fontSize: RFValue(14),
+    lineHeight: hp(2.42),
   },
   titleInput: {
     borderBottomWidth: 1,
-    borderColor: "rgba(0, 0, 0, 0.2)",
+    borderColor: COLORS.modalBackground,
     fontFamily: FONTS.LatoRegular,
     fontWeight: '400',
-    fontSize: 16,
-    lineHeight: 19.2,
-    color: '#484848'
+    fontSize: RFValue(14),
+    lineHeight: hp(2.42),
+    color: COLORS.inActiveHeader
   },
   textInputContainer: {
-    // paddingHorizontal: wp(9),
     marginVertical: hp(4),
     width: '100%',
     justifyContent: 'flex-start',
@@ -57,7 +55,7 @@ export const styles = StyleSheet.create({
     lineHeight: hp(3.05),
     fontFamily: FONTS.LatoRegular,
     fontWeight: '700',
-    color: 'rgba(0,0,0,87)',
+    color: COLORS.black_1,
     width: '100%'
   },
   categoryListContainer: {
@@ -72,7 +70,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     fontFamily: FONTS.LatoRegular,
     fontWeight: '700',
-    fontSize: 16,
+    fontSize: RFValue(14),
     lineHeight: 24.08,
   },
   dateTimeContainer: {
@@ -90,7 +88,7 @@ export const styles = StyleSheet.create({
     fontWeight: '400',
     fontFamily: FONTS.LatoRegular,
     // width: '80%',
-    color: 'rgba(0,0,0,0.5)'
+    color: COLORS.sub_title
   },
   descriptionInputContainer: {
     flexDirection: 'row',
@@ -108,7 +106,7 @@ export const styles = StyleSheet.create({
     fontWeight: '400',
     fontFamily: FONTS.LatoRegular,
     color: '#303030',
-    borderColor: "rgba(0, 0, 0, 0.2)",
+    borderColor: COLORS.modalBackground,
     borderBottomWidth: 1
   },
 })

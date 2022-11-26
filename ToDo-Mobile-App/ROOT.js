@@ -69,6 +69,7 @@ const ROOT = () => {
   const myInitialState = {
     [countKey]: 0,
     [ratingKey]: 0,
+    isFirstTime: true,
     appUrl,
   };
 
@@ -77,7 +78,7 @@ const ROOT = () => {
       <GlobalStoreProvider
         initialState={myInitialState}
         loadingUI={<Splash />}
-        persistedKeys={[countKey, ratingKey]}
+        persistedKeys={[countKey, ratingKey, "isFirstTime"]}
       >
         <NavigationContainer>
           <SheetProvider>

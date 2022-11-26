@@ -23,6 +23,7 @@ export const COLORS = {
   grey_b: '#767676',
   grey_c: '#979797',
   delete: '#d12f2f',
-  black: '#000'
+  black: '#000',
+  black_1: "rgba(0,0,0,0.87)"
 };
 

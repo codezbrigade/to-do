@@ -25,14 +25,14 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.codezbrigade.todo"
+      "package": "com.codezbrigade.anyTodo"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "d9b72252-e49e-4bbe-b0d9-edda5fa37acb"
+        "projectId": "c3163afc-2a4f-48af-87ce-aced0e00b775"
       }
     },
     "notification": {

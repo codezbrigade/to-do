@@ -81,7 +81,7 @@ const Home = ({ route }) => {
     let others = [];
     let now = new Date();
 
-    if (toDoList.length === 1 && globalState[countKey] === 1) showRatingModal(4000);
+    if (toDoList.length === 1 && globalState["isFirstTime"]) showRatingModal(4000);
 
     toDoList.forEach(element => {
       const { isCompleted, time } = element;
