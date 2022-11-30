@@ -99,13 +99,13 @@ const PreviewSheet = (props) => {
               <RectButton
                 color={'white'}
                 title={strings.edit}
-                backgroundColor={'blue'}
+                backgroundColor={COLORS.main}
                 handlePress={navigate}
               />
               <RectButton
                 color={'white'}
                 title={strings.delete}
-                backgroundColor={'red'}
+                backgroundColor={COLORS.delete}
                 handlePress={deleteItem}
               />
             </View>

@@ -10,8 +10,11 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 
 export const styles = StyleSheet.create({
-
+  screen: {
+    flex: 1
+  },
   form: {
+    // marginTop: 100,
     flex: 1,
     paddingLeft: "12%",
     paddingRight: "7%",
@@ -24,6 +27,7 @@ export const styles = StyleSheet.create({
     fontWeight: '500',
     fontSize: RFValue(16),
     color: COLORS.black,
+    // borderWidth: 2
   },
   titleInputContainer: {
     height: 54,
@@ -42,7 +46,7 @@ export const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: RFValue(14),
     lineHeight: hp(2.42),
-    color: COLORS.inActiveHeader
+    // color: COLORS.inActiveHeader
   },
   textInputContainer: {
     marginVertical: hp(4),
@@ -98,14 +102,13 @@ export const styles = StyleSheet.create({
     height: 50,
     width: '85%',
     justifyContent: 'space-between'
-
   },
   description: {
     fontSize: RFValue(14),
     lineHeight: hp(2.42),
     fontWeight: '400',
     fontFamily: FONTS.LatoRegular,
-    color: '#303030',
+    // color: '#303030',
     borderColor: COLORS.modalBackground,
     borderBottomWidth: 1
   },

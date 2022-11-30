@@ -21,8 +21,11 @@ export default BackgroundView;
 
 const styles = StyleSheet.create({
   container: {
-    height: HEIGHT,
-    width: '100%'
+    // flex: 1,
+    // height: HEIGHT,
+    height: HEIGHT - StatusBar.currentHeight * 2.39,
+    width: '100%',
+    // borderWidth: 1
   },
   image: {
     height: '100%',

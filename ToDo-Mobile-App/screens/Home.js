@@ -4,7 +4,6 @@ import { useNavigation } from '@react-navigation/native';
 import {
   View,
   StyleSheet,
-  LayoutAnimation,
 } from 'react-native';
 
 import {
@@ -59,7 +58,7 @@ const Home = ({ route }) => {
       )
     } else data = toDos[selectedHeader.id];
 
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    // LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setFilteredData(data);
   }, [searchInput, selectedHeader, toDos])
 
@@ -117,7 +116,7 @@ const Home = ({ route }) => {
       setToDoList([...temp.data])
     } else {
       let response = temp.facts;
-      if (response[0]) setFacts(response)
+      setFacts(response)
     }
   }, [route])
 
@@ -130,6 +129,7 @@ const Home = ({ route }) => {
   const showRatingModal = (time) => {
     setTimeout(() => { setISRatingVisible(true) }, time)
   }
+
 
   return (
     <>
@@ -152,7 +152,8 @@ const Home = ({ route }) => {
               {!searchInput &&
                 toDos[selectedHeader.id] ?
                 (
-                  selectedHeader.title !== strings.completed && !toDos[selectedHeader.id].length ?
+                  selectedHeader.title !== strings.completed &&
+                    !toDos[selectedHeader.id].length ?
                     <AddYourTask selectedHeader={selectedHeader.title} handlePress={navigationHandler} />
                     : !toDos[selectedHeader.id].length &&
                     <AddYourTask selectedHeader={selectedHeader.title} />
@@ -172,7 +173,7 @@ const Home = ({ route }) => {
         <View style={styles.buttonContainer}>
           <CircularButton
             position={'absolute'}
-            top={0}
+            top={'1%'}
             right={0}
             backgroundColor={COLORS.main}
             width={70}
@@ -206,13 +207,12 @@ const styles = StyleSheet.create({
   subHomeContainer: {
     height: '99%',
     width: '90%',
-
   },
+
   buttonContainer: {
-    height: hp(24),
+    height: hp(14),
     width: '90%',
     alignSelf: 'center',
-
   },
   todos: {
     flex: 1,

@@ -1,6 +1,8 @@
-import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useLayoutEffect, useRef } from 'react';
+import { Animated, Image, LayoutAnimation, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { COLORS, asserts, FONTS, strings } from '../constants';
+
+import image01 from '../asserts/images/image01.png';
 
 import {
   widthPercentageToDP as wp,
@@ -9,11 +11,37 @@ import {
 
 
 const AddYourTask = ({ handlePress, selectedHeader }) => {
+  const opacity = useRef(new Animated.Value(0)).current;
 
   let str = selectedHeader !== strings.completed ? strings.add_your_task : strings.no_task_completed;
 
+  useLayoutEffect(() => {
+    if (opacity) opacity.setValue(0)
+
+    Animated.timing(opacity, {
+      toValue: 1,
+      useNativeDriver: false
+    }).start()
+
+    // LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+  }, [selectedHeader])
+
+  if (selectedHeader !== strings.completed) {
+    return (
+      <Animated.View style={{ opacity }}>
+        <Pressable
+          onPress={handlePress}
+          style={({ pressed }) => [styles.logoCotainer, pressed && styles.opacity]}
+        >
+          <Image source={image01} style={styles.image01} />
+          <Text style={styles.text1}>{strings.add_your_task}</Text>
+        </Pressable>
+      </Animated.View>
+    )
+  }
+
   return (
-    <View style={styles.container}>
+    <Animated.View style={[styles.container, { opacity }]}>
       <View style={styles.textContainer}>
         <Text style={styles.text}>{str}</Text>
       </View>
@@ -24,7 +52,7 @@ const AddYourTask = ({ handlePress, selectedHeader }) => {
           </TouchableOpacity>
         }
       </View>
-    </View>
+    </Animated.View>
   );
 };
 
@@ -54,5 +82,26 @@ const styles = StyleSheet.create({
   textContainer: {
     width: '65%',
     paddingLeft: '2%'
+  },
+  image01: {
+    height: 190,
+    width: 215,
+    resizeMode: 'contain',
+  },
+  text1: {
+    textAlign: 'center',
+    position: 'absolute',
+    bottom: '3%',
+    fontFamily: FONTS.RobotoRegular_400,
+    fontSize: 12,
+    lineHeight: 14.06,
+    color: COLORS.white,
+    alignSelf: 'center',
+  },
+  logoCotainer: {
+    alignSelf: 'center',
+  },
+  opacity: {
+    opacity: 0.6
   }
 })

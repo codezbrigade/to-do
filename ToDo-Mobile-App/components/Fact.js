@@ -11,7 +11,9 @@ import {
 
 const defaultFact = { fact: "The Golden Gate Bridge was first opened in 1937" };
 
-const Fact = ({ facts }) => {
+const Fact = ({ facts = [] }) => {
+
+  // console.log(facts)
 
   const filter = () => {
     let filtered = facts.find((e) => e.fact && e.fact.length < 60)
@@ -21,7 +23,7 @@ const Fact = ({ facts }) => {
 
   return (
     <View style={styles.container}>
-      {facts.length != 0 && [
+      {facts.length !== 0 && [
         <Image key={'12'} source={asserts.water} style={styles.image} />,
         <Text key={'13'} style={styles.text}> " {filter()} "</Text>
       ]}

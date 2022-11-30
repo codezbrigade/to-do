@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import { Animated, Image, KeyboardAvoidingView, Pressable, Text, TextInput, ToastAndroid, Vibration, View } from 'react-native';
+import { Animated, Image, KeyboardAvoidingView, Pressable, ScrollView, Text, TextInput, ToastAndroid, Vibration, View } from 'react-native';
 
 import { CircularButton, RectButton } from './Buttons';
 import Category from './Category';
@@ -174,7 +174,8 @@ const Form = ({ route, navigation, ...props }) => {
     }),
   }
   return (
-    <KeyboardAvoidingView style={{ ...styles.form, ...props }}>
+
+    <View style={{ ...styles.form, ...props }} >
       <Text style={styles.createNewTask}>{strings.add_task}</Text>
 
       <View style={styles.titleInputContainer}>
@@ -202,7 +203,6 @@ const Form = ({ route, navigation, ...props }) => {
             />)
         }
       </View>
-
       <Text style={styles.taskDetails}>{strings.task_details}</Text>
 
       <Pressable onPress={showDatePicker}>
@@ -239,7 +239,6 @@ const Form = ({ route, navigation, ...props }) => {
           />
         </View>
       </View>
-
       {/*<DoNotRepeat handleToggle={handleToggle} switchBool={todo.do_not_repeat} />*/}
 
       <DateTimePickerModal
@@ -252,7 +251,7 @@ const Form = ({ route, navigation, ...props }) => {
       <RectButton
         position={'absolute'}
         title={strings.create_task}
-        bottom={'15%'}
+        bottom={'8%'}
         // height={'8%'}
         width={'100%'}
         backgroundColor={COLORS.main}
@@ -262,7 +261,7 @@ const Form = ({ route, navigation, ...props }) => {
         handlePress={pressHandle}
       />
 
-    </KeyboardAvoidingView >
+    </View >
   );
 };
 

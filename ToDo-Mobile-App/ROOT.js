@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -8,7 +8,7 @@ import Home from './screens/Home';
 import NewTask from './screens/NewTask';
 import * as SplashScreen from 'expo-splash-screen';
 import { Splash } from './components';
-import { LayoutAnimation, Text } from 'react-native';
+import { LayoutAnimation, Text, View } from 'react-native';
 
 import { SheetProvider } from 'react-native-actions-sheet';
 import './utils/sheets';
@@ -45,22 +45,30 @@ const ROOT = () => {
   useEffect(() => {
     const prevent = async () => {
       if (fontsLoaded) {
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+        // LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
         await SplashScreen.hideAsync();
+        fetchData();
       };
     }
     prevent();
   }, [fontsLoaded]);
 
-  useEffect(() => {
-    (async () => {
-      setAnimate(true);
-      await FACT_API().then((res) => {
-        setFacts(res);
-        setAnimate(false);
-      });
-    })()
-  }, [])
+  const fetchData = async () => {
+    setAnimate(true);
+    await FACT_API().then((res) => {
+      setFacts(res);
+      setAnimate(false);
+    })
+  }
+  // useEffect(() => {
+  //   (async () => {
+  //     setAnimate(true);
+  //     await FACT_API().then((res) => {
+  //       setFacts(res);
+  //       setAnimate(false);
+  //     });
+  //   })()
+  // }, [])
 
   if (!fontsLoaded) return null;
 
@@ -74,29 +82,27 @@ const ROOT = () => {
   };
 
   return (
-    <>
-      <GlobalStoreProvider
-        initialState={myInitialState}
-        loadingUI={<Splash />}
-        persistedKeys={[countKey, ratingKey, "isFirstTime"]}
-      >
-        <NavigationContainer>
-          <SheetProvider>
-            <Stack.Navigator
-              initialRouteName='Home'
-              screenOptions={{
-                headerShown: false,
-                animation: 'slide_from_right',
-                // headerBackButtonMenuEnabled: true
-              }}
-            >
-              <Stack.Screen name="Home" component={Home} initialParams={{ facts }} />
-              <Stack.Screen name="NewTask" component={NewTask} />
-            </Stack.Navigator>
-          </SheetProvider>
-        </NavigationContainer>
-      </GlobalStoreProvider>
-    </>
+    <GlobalStoreProvider
+      initialState={myInitialState}
+      loadingUI={<Splash />}
+      persistedKeys={[countKey, ratingKey, "isFirstTime"]}
+    >
+      <NavigationContainer>
+        <SheetProvider>
+          <Stack.Navigator
+            initialRouteName='Home'
+            screenOptions={{
+              headerShown: false,
+              animation: 'slide_from_right',
+              // headerBackButtonMenuEnabled: true
+            }}
+          >
+            <Stack.Screen name="Home" component={Home} initialParams={{ facts }} />
+            <Stack.Screen name="NewTask" component={NewTask} />
+          </Stack.Navigator>
+        </SheetProvider>
+      </NavigationContainer>
+    </GlobalStoreProvider>
   );
 };
 

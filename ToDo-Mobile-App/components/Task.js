@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
-import { LayoutAnimation, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, LayoutAnimation, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { FONTS, COLORS, todoKey } from '../constants';
 
@@ -25,6 +25,17 @@ const Task = ({ item, setToDoList, setTimeUp }) => {
 
   const { getItem, setItem } = useAsyncStorage(todoKey);
 
+  const opacity = useRef(new Animated.Value(0)).current;
+
+  useLayoutEffect(() => {
+    Animated.timing(opacity, {
+      toValue: 1,
+      useNativeDriver: false
+    }).start()
+
+    // LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+  }, [])
+
   const changeIsCompleted = async () => {
     // setTimeUp(false);
 
@@ -44,7 +55,7 @@ const Task = ({ item, setToDoList, setTimeUp }) => {
   const preview = () => SheetManager.show('preview', { payload: { item, setToDoList } })
 
   return (
-    <View style={[styles.taskContainer]}>
+    <Animated.View style={[styles.taskContainer, { opacity }]}>
       <TouchableOpacity onPress={preview} style={styles.details}>
 
         <Label label={{ label_category, label_color }} />
@@ -66,7 +77,7 @@ const Task = ({ item, setToDoList, setTimeUp }) => {
         />
       </View>
 
-    </View>
+    </Animated.View>
   );
 };
 
@@ -76,7 +87,7 @@ const styles = StyleSheet.create({
   taskContainer: {
     height: hp(8.64),
     width: '100%',
-    marginVertical: hp(1.32),
+    marginVertical: hp(1), //1.32
     // elevation: 4,
     borderRadius: 16,
     overflow: 'hidden',

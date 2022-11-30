@@ -18,7 +18,8 @@ const SearchBar = ({ searchInput, setSearchInput }) => {
   const search = useRef(new Animated.Value(1)).current;
 
   const handleChange = (text) => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    if (text.length === 1)
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setSearchInput(text);
   }
 
@@ -37,12 +38,12 @@ const SearchBar = ({ searchInput, setSearchInput }) => {
     ]).start()
   }
 
-  const textInputAnime = () => ({
-    paddingHorizontal: progress.interpolate({
-      inputRange: [0, 1],
-      outputRange: [0, 54]
-    })
-  })
+  // const textInputAnime = () => ({
+  //   paddingHorizontal: progress.interpolate({
+  //     inputRange: [0, 1],
+  //     outputRange: [0, 54]
+  //   })
+  // })
 
   return (
     <View style={[styles.inputContainer]}>
