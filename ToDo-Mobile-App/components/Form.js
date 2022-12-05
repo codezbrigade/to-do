@@ -92,9 +92,12 @@ const Form = ({ route, navigation, ...props }) => {
     if (!todo.id) {
       const identifier = await Notifications.scheduleNotificationAsync({
         content: {
-          title: todo.title,
-          body: todo.subTitle,
-          data: { data: todo.label_category },
+          title: `${todo.label_category} at ${todo.time.split(' ').slice(4).join(' ')}`,
+          body: todo.title,
+          subtitle: 'IOS subtitle', // the bold text displayed between title and the rest of the content
+          subText: 'Android subText', // the display depends on the platform
+          data: { item: JSON.stringify(todo) },
+          categoryIdentifier: 'interactive',
         },
         trigger
       })
@@ -107,13 +110,17 @@ const Form = ({ route, navigation, ...props }) => {
       navigation.navigate(ROUTES.home_screen, { data: [...jsonValue, toDo] });
 
     } else {
+
       await Notifications.cancelScheduledNotificationAsync(todo.id);
 
       const identifier = await Notifications.scheduleNotificationAsync({
         content: {
-          title: todo.title,
-          body: todo.subTitle,
-          data: { data: todo.label_category },
+          title: `${todo.label_category} at ${todo.time.split(' ').slice(4).join(' ')}`,
+          body: todo.title,
+          subtitle: 'IOS subtitle', // the bold text displayed between title and the rest of the content
+          subText: 'Android subText', // the display depends on the platform
+          categoryIdentifier: 'interactive',
+          data: { item: JSON.stringify(todo) },
         },
         trigger
       })

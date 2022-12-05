@@ -4,6 +4,8 @@ import { useNavigation } from '@react-navigation/native';
 import {
   View,
   StyleSheet,
+  Text,
+  LayoutAnimation,
 } from 'react-native';
 
 import {
@@ -29,6 +31,7 @@ import { asserts, COLORS, strings, ROUTES, todoKey, MONTHS, ratingKey, countKey 
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 import { useGlobalStore } from 'react-native-global-store';
+import Auth from './Auth';
 
 const Home = ({ route }) => {
 
@@ -63,6 +66,8 @@ const Home = ({ route }) => {
   }, [searchInput, selectedHeader, toDos])
 
   useEffect(() => {
+    // LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
+
     (async () => {
       let data = await getItem() || '[]';
       if (!JSON.parse(data).length) {
@@ -130,6 +135,9 @@ const Home = ({ route }) => {
     setTimeout(() => { setISRatingVisible(true) }, time)
   }
 
+  // if (!globalState.authenticatedToken) return <Auth />
+  const logout = () => setGlobalState({ ...globalState, authenticatedToken: null })
+
 
   return (
     <>
@@ -137,7 +145,7 @@ const Home = ({ route }) => {
         <View style={styles.homeContainer}>
           <View style={styles.subHomeContainer}>
             <Heading />
-
+            {globalState.authenticatedToken && <Text onPress={logout}>LOGOUT</Text>}
             <Fact facts={facts} />
 
             <Headers selectedHeader={selectedHeader} setSelectedHeader={setSelectedHeader} />

@@ -78,13 +78,14 @@ export const styles = StyleSheet.create({
     lineHeight: 24.08,
   },
   dateTimeContainer: {
-    width: '70%',
+    // width: '70%',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
   },
   clockLogo: {
     // borderWidth: 1,
     width: 23,
+    marginRight: '10%'
   },
   dateTime: {
     fontSize: RFValue(14),

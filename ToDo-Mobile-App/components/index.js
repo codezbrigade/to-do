@@ -22,8 +22,10 @@ import Preview from './Preview';
 import PreviewSheet from './PreviewSheet';
 import Confirmation from './Confirmation';
 import AppRating from './AppRating';
+import AuthForm from './AuthForm';
 
 export {
+  AuthForm,
   AppRating,
   PreviewSheet,
   Confirmation,

@@ -9,8 +9,8 @@ import {
 
 import { RFValue } from 'react-native-responsive-fontsize';
 
-const Heading = () => (
-  <View style={styles.headingContainer}>
+const Heading = ({ style }) => (
+  <View style={[styles.headingContainer, style]}>
     <Text style={styles.heading}>Any TO_DO</Text>
   </View>
 );

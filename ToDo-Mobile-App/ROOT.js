@@ -1,4 +1,5 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
+import { LayoutAnimation, Text, View } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -6,18 +7,18 @@ import { useFonts } from 'expo-font';
 
 import Home from './screens/Home';
 import NewTask from './screens/NewTask';
+
 import * as SplashScreen from 'expo-splash-screen';
 import { Splash } from './components';
-import { LayoutAnimation, Text, View } from 'react-native';
 
 import { SheetProvider } from 'react-native-actions-sheet';
 import './utils/sheets';
 
-import { FACT_API } from './api/apiNinja';
-
 import { GlobalStoreProvider } from "react-native-global-store";
 
-import { appUrl, countKey, ratingKey } from './constants';
+import { FACT_API } from './api/apiNinja';
+import { appUrl, countKey, ratingKey, ROUTES } from './constants';
+import Auth from './screens/Auth';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -79,13 +80,14 @@ const ROOT = () => {
     [ratingKey]: 0,
     isFirstTime: true,
     appUrl,
+    authenticatedToken: null
   };
 
   return (
     <GlobalStoreProvider
       initialState={myInitialState}
       loadingUI={<Splash />}
-      persistedKeys={[countKey, ratingKey, "isFirstTime"]}
+      persistedKeys={[countKey, ratingKey, "isFirstTime", "authenticatedToken"]}
     >
       <NavigationContainer>
         <SheetProvider>
@@ -97,8 +99,8 @@ const ROOT = () => {
               // headerBackButtonMenuEnabled: true
             }}
           >
-            <Stack.Screen name="Home" component={Home} initialParams={{ facts }} />
-            <Stack.Screen name="NewTask" component={NewTask} />
+            <Stack.Screen name={ROUTES.home_screen} component={Home} initialParams={{ facts }} />
+            <Stack.Screen name={ROUTES.new_task_screen} component={NewTask} />
           </Stack.Navigator>
         </SheetProvider>
       </NavigationContainer>
