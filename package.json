@@ -14,7 +14,13 @@
   },
   "jest": {
     "preset": "jest-expo",
-    "testEnvironment": "node",
+    "testEnvironmentOptions": {
+      "browsers": [
+        "chrome",
+        "firefox",
+        "safari"
+      ]
+    },
     "moduleDirectories": [
       "node_modules"
     ],
@@ -66,8 +72,7 @@
     "eslint": "^8.29.0",
     "eslint-plugin-react": "^7.31.11",
     "husky": "^8.0.0",
-    "jest": "^29.3.1",
-    "jest-environment-node": "^29.3.1"
+    "jest": "^29.3.1"
   },
   "private": true
 }
