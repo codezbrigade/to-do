@@ -7,19 +7,20 @@ pipeline {
         stage('Build') {
             steps {
                 bat 'yarn install'
-                bat 'yarn test'
             }
         }
-        // stage('Testing') {
-        //     steps {
-        //         bat 'yarn lint:fix'
-        //         bat 'yarn test'
-        //     }
-        // }
-        // stage('APK Build') {
-        //     steps {
-        //         bat 'eas build --platform android --profile preview'
-        //     }
-        // }
+        stage('Testing') {
+            steps {
+                bat 'yarn lint:fix'
+                echo 'linting success'
+                bat 'yarn test'
+                echo 'Testing success'
+            }
+        }
+        stage('APK Build') {
+            steps {
+                bat 'eas build --platform android --profile preview'
+            }
+        }
     }
 }
