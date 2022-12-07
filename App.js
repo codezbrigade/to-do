@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-import ROOT from './ToDo-Mobile-App/ROOT';
+import ROOT from './AnyTODO/ROOT';
 
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 
-import { storeData } from './ToDo-Mobile-App/utils/asyncStorage';
-import { expoPushTokenKey } from './ToDo-Mobile-App/constants/AsyncStorageKey';
+import { storeData } from './AnyTODO/utils/asyncStorage';
+import { expoPushTokenKey } from './AnyTODO/constants/AsyncStorageKey';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -32,7 +32,7 @@ Notifications.setNotificationCategoryAsync(
   //   opensAppToForeground: false,
   //   customDismissAction: true
   // }
-)
+);
 
 const SNOOZE_TIME = 60 * 5;
 
@@ -58,13 +58,13 @@ export default function App() {
 
     // This listener is fired whenever a user taps on or interacts with a notification (works when app is foregrounded, backgrounded, or killed)
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-      console.log(response, "response lisener");
+      console.log(response, 'response lisener');
       // console.log(response.notification.request.content.data?.item, "response lisener");
 
       let identifier = response.notification.request.identifier;
       let title = response.notification.request.content.title;
       let body = response.notification.request.content.body;
-      let trigger = { seconds: SNOOZE_TIME }
+      let trigger = { seconds: SNOOZE_TIME };
 
       if (response.actionIdentifier === 'snooze') {
         (async () => {
@@ -77,12 +77,12 @@ export default function App() {
               categoryIdentifier: 'interactive',
             },
             trigger
-          })
-        })()
+          });
+        })();
       } else {
         (async () => {
           await Notifications.dismissNotificationAsync(identifier);
-        })()
+        })();
       }
     });
 
@@ -93,7 +93,7 @@ export default function App() {
   }, []);
   return (
     <ROOT />
-  )
+  );
 }
 
 async function registerForPushNotificationsAsync() {
