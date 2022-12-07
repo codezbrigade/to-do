@@ -6,19 +6,20 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat 'npm install'
-            }
-        }
-        stage('Testing') {
-            steps {
-                bat 'yarn lint:fix'
+                bat 'yarn install'
                 bat 'yarn test'
             }
         }
-        stage('APK Build') {
-            steps {
-                bat 'eas build --platform android --profile preview'
-            }
-        }
+        // stage('Testing') {
+        //     steps {
+        //         bat 'yarn lint:fix'
+        //         bat 'yarn test'
+        //     }
+        // }
+        // stage('APK Build') {
+        //     steps {
+        //         bat 'eas build --platform android --profile preview'
+        //     }
+        // }
     }
 }
