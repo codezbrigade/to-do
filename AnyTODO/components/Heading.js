@@ -1,32 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { COLORS, FONTS } from '../constants';
+import { Text, View } from 'react-native';
 
-import {
-  // widthPercentageToDP as wp,
-  heightPercentageToDP as hp
-} from 'react-native-responsive-screen';
+import { styles } from './Heading.styles';
 
-import { RFValue } from 'react-native-responsive-fontsize';
-
-const Heading = ({ style }) => (
-  <View style={[styles.headingContainer, style]}>
+const Heading = ({ styleProps }) => (
+  <View style={[styles.headingContainer, styleProps]}>
     <Text style={styles.heading}>Any TO_DO</Text>
   </View>
 );
 
 
 export default Heading;
-
-const styles = StyleSheet.create({
-  headingContainer: {
-    marginVertical: hp(1.8),
-  },
-  heading: {
-    fontSize: RFValue(32),
-    fontFamily: FONTS.LeelawadeeUI,
-    lineHeight: hp(6),
-    fontWeight: '700',
-    color: COLORS.main
-  }
-});

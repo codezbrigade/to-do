@@ -58,7 +58,7 @@ const Auth = () => {
 
   return (
     <BackgroundView>
-      <Heading style={styles.heading} />
+      <Heading styleProps={styles.heading} />
       <View style={styles.container}>
         <AuthForm logout={logout} googleLogin={googleLogin} facebookLogin={fbLogin} />
       </View>

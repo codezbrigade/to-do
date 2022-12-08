@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Heading component basics renders correctly 1`] = `
+<View
+  style={
+    [
+      {
+        "marginVertical": 24,
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      {
+        "color": "#2E3192",
+        "fontFamily": "LeelawadeeUI",
+        "fontSize": 63,
+        "fontWeight": "700",
+        "lineHeight": 80,
+      }
+    }
+  >
+    Any TO_DO
+  </Text>
+</View>
+`;

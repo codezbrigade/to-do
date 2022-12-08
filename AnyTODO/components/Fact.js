@@ -25,7 +25,7 @@ const Fact = ({ facts }) => {
     <View style={styles.container}>
       {facts?.length !== 0 && [
         <Image key={'12'} source={asserts.water} style={styles.image} />,
-        <Text key={'13'} style={styles.text}> " {filter()} "</Text>
+        <Text key={'13'} style={styles.text}> &rdquo; {filter()} &rdquo; </Text>
       ]}
     </View>
   );
