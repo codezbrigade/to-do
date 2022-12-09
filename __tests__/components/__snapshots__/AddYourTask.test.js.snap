@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddYourTask component basics Snapshot testing 1`] = `
+<ForwardRef(AnimatedComponentWrapper)
+  style={
+    {
+      "opacity": 0,
+    }
+  }
+>
+  <Pressable
+    dataTest="others"
+    style={[Function]}
+  >
+    <Image
+      source={
+        {
+          "testUri": "../../../AnyTODO/asserts/images/image01.png",
+        }
+      }
+      style={
+        {
+          "height": 190,
+          "resizeMode": "contain",
+          "width": 215,
+        }
+      }
+    />
+    <Text
+      dataTest="others"
+      style={
+        {
+          "alignSelf": "center",
+          "bottom": "3%",
+          "color": "#fff",
+          "fontFamily": "RobotoRegular",
+          "fontSize": 12,
+          "lineHeight": 14.06,
+          "position": "absolute",
+          "textAlign": "center",
+        }
+      }
+    >
+      Add your task
+    </Text>
+  </Pressable>
+</ForwardRef(AnimatedComponentWrapper)>
+`;

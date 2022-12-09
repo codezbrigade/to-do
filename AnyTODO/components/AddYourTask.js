@@ -30,11 +30,12 @@ const AddYourTask = ({ handlePress, selectedHeader }) => {
     return (
       <Animated.View style={{ opacity }}>
         <Pressable
+          dataTest='others'
           onPress={handlePress}
           style={({ pressed }) => [styles.logoCotainer, pressed && styles.opacity]}
         >
           <Image source={image01} style={styles.image01} />
-          <Text style={styles.text1}>{strings.add_your_task}</Text>
+          <Text dataTest='others' style={styles.text1}>{strings.add_your_task}</Text>
         </Pressable>
       </Animated.View>
     );
@@ -43,7 +44,7 @@ const AddYourTask = ({ handlePress, selectedHeader }) => {
   return (
     <Animated.View style={[styles.container, { opacity }]}>
       <View style={styles.textContainer}>
-        <Text style={styles.text}>{str}</Text>
+        <Text dataTest='completed' style={styles.text}>{str}</Text>
       </View>
       <View style={{ width: wp(3.6) }}>
         {

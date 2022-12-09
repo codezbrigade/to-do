@@ -1,11 +1,196 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1670491578558" clover="3.2.0">
-  <project timestamp="1670491578559" name="All files">
-    <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1" elements="3" coveredelements="3" complexity="0" loc="2" ncloc="2" packages="1" files="1" classes="1"/>
-    <file name="Intro.js" path="C:\Users\JEYASEELAN\Desktop\todo\_temp\Intro.js">
-      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <line num="6" count="2" type="stmt"/>
-      <line num="17" count="1" type="stmt"/>
-    </file>
+<coverage generated="1670560600750" clover="3.2.0">
+  <project timestamp="1670560600751" name="All files">
+    <metrics statements="58" coveredstatements="55" conditionals="10" coveredconditionals="5" methods="4" coveredmethods="2" elements="72" coveredelements="62" complexity="0" loc="58" ncloc="58" packages="3" files="41" classes="41"/>
+    <package name="asserts.images">
+      <metrics statements="30" coveredstatements="30" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="addTask.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\addTask.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="background.jpg" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\background.jpg">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="calender-Logo.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\calender-Logo.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="calender.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\calender.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="checked.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\checked.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="clock.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\clock.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="close.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\close.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="closeBlack.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\closeBlack.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="closeBtn.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\closeBtn.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="customize.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\customize.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="delete.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\delete.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="description.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\description.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="down.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\down.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="edit.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\edit.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="goback.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\goback.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="grocery.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\grocery.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="home.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\home.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="image01.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\image01.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="plus.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\plus.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="rateHeadLogo.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\rateHeadLogo.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="rated-star.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\rated-star.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="repeat.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\repeat.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="search.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\search.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="searchCloseLogo.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\searchCloseLogo.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="searchLogo.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\searchLogo.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="selected.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\selected.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="univesiry.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\univesiry.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="unrated-star.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\unrated-star.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="water.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\water.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="work.png" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\asserts\images\work.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="components">
+      <metrics statements="14" coveredstatements="11" conditionals="10" coveredconditionals="5" methods="4" coveredmethods="2"/>
+      <file name="AddYourTask.js" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\components\AddYourTask.js">
+        <metrics statements="11" coveredstatements="8" conditionals="10" coveredconditionals="5" methods="3" coveredmethods="1"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="16" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="19" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="29" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="35" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="62" count="1" type="stmt"/>
+      </file>
+      <file name="Heading.js" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\components\Heading.js">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+      </file>
+      <file name="Heading.styles.js" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\components\Heading.styles.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="11" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="constants">
+      <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="AsyncStorageKey.js" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\constants\AsyncStorageKey.js">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+      </file>
+      <file name="COLORS.js" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\constants\COLORS.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="FONTS.js" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\constants\FONTS.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="ROUTES.js" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\constants\ROUTES.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="appUrl.js" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\constants\appUrl.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="asserts.js" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\constants\asserts.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="32" count="2" type="stmt"/>
+      </file>
+      <file name="index.js" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\constants\index.js">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="40" count="2" type="stmt"/>
+        <line num="48" count="2" type="stmt"/>
+        <line num="54" count="2" type="stmt"/>
+      </file>
+      <file name="localize.js" path="C:\Users\JEYASEELAN\Desktop\todo\AnyTODO\constants\localize.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+    </package>
   </project>
 </coverage>

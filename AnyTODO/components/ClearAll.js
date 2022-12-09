@@ -7,11 +7,11 @@ import {
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 
-import * as asyncStorage from '@react-native-async-storage/async-storage';
+import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 const ClearAll = ({ setToDoList }) => {
 
-  const { setItem, getItem } = asyncStorage.useAsyncStorage(todoKey);
+  const { setItem, getItem } = useAsyncStorage(todoKey);
 
   const handlePress = async () => {
 
