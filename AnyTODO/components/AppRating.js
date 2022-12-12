@@ -1,4 +1,4 @@
-import { Dimensions, Image, Linking, Modal, Pressable, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Image, Linking, Modal, Pressable, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { asserts, COLORS, FONTS, strings } from '../constants';
 
@@ -47,16 +47,10 @@ const AppRating = ({ isRatingVisible, setISRatingVisible, showRatingModal }) => 
       <StatusBar animated={true} barStyle={'dark-content'} backgroundColor={COLORS.modalBackground} />
       <View style={styles.container}>
         <View style={styles.ratingContainer}>
-          <Image source={asserts.rateHeadLogo} style={styles.image} />
-          <Text style={styles.title}>{strings.ratingTitle}</Text>
-          <Text style={styles.subTitle}>{strings.ratingSubTitle}</Text>
+          <Image dataTest='logo' source={asserts.rateHeadLogo} style={styles.image} />
+          <Text dataTest='title' style={styles.title}>{strings.ratingTitle}</Text>
+          <Text dataTest='subtitle' style={styles.subTitle}>{strings.ratingSubTitle}</Text>
           <View style={styles.rating}>
-            {/*<Rating
-              jumpValue={1}
-              onFinishRating={setRating}
-              startingValue={rating}
-              imageSize={22}
-  />*/}
             {[...Array(5)].map((_, idx) => {
               let ratingValue = idx + 1;
               return (
@@ -66,7 +60,7 @@ const AppRating = ({ isRatingVisible, setISRatingVisible, showRatingModal }) => 
               );
             })}
           </View>
-
+          <TextInput dataTest='input' />
           <View style={styles.btnGroup}>
             <RectButton
               color={COLORS.white}

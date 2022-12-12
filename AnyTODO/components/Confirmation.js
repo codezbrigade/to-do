@@ -12,14 +12,13 @@ const Confirmation = ({ confirmDeleteItem, isvisible, setIsVisible }) => {
           <Text style={styles.text2}>{strings.confimation_text2}</Text>
           <View style={styles.btnGroup}>
             <RectButton
-              // color={}
               borderWidth={1}
               title={strings.cancel}
               backgroundColor={'white'}
               handlePress={() => setIsVisible(false)}
             />
             <RectButton
-              color={'#fff'}
+              color={COLORS.white}
               title={strings.delete}
               backgroundColor={COLORS.delete}
               handlePress={confirmDeleteItem}
