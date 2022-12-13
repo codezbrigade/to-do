@@ -11,7 +11,7 @@ const DateTime = ({ time }) => {
   return (
     <View style={styles.container}>
 
-      <Text style={styles.time}>{time.split(' ').slice(3).join(' ').toLocaleLowerCase()}</Text>
+      <Text style={styles.time}>{time.split(' ').slice(4).join(' ').toLocaleLowerCase()}</Text>
     </View>
   );
 };
@@ -22,16 +22,19 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: 'center',
+    justifyContent: 'center',
     borderWidth: 1,
-    borderColor: COLORS.time,
-    borderRadius: 6
+    borderColor: COLORS.sub_title,
+    borderRadius: 5,
+    paddingHorizontal: 5,
+    paddingVertical: 2
   },
   time: {
     fontFamily: FONTS.SignikaLight,
+    fontWeight: '300',
     fontSize: 10,
-    color: COLORS.time,
+    color: COLORS.sub_title,
     lineHeight: hp(1.63),
-    padding: 5
   },
   image: {
     height: 20,

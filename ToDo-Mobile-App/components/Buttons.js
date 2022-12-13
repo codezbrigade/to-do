@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import checked from '../asserts/images/checked.png';
 import { FONTS, strings, COLORS } from '../constants';
@@ -19,7 +19,7 @@ export const CircularButton = ({ handlePress, imageUrl, height, width, borderWid
         height: height || 20,
         borderWidth: borderWidth ? borderWidth : 0,
         position: position || 'relative',
-        backgroundColor: isCompleted && COLORS.main,
+        backgroundColor: isCompleted ? COLORS.main : COLORS.white,
         ...props
       }}>
       {
@@ -33,33 +33,32 @@ export const CircularButton = ({ handlePress, imageUrl, height, width, borderWid
   );
 };
 
-export const RectButton = ({ handlePress, ...props }) => {
+export const RectButton = ({ handlePress, color, title, ...props }) => {
   return (
     <TouchableOpacity onPress={handlePress} style={{ ...styles.recBtnContainer, ...props }}>
-      <Text style={styles.save}>{strings.save}</Text>
+      <Text style={[styles.save, { color }]}>{title}</Text>
     </TouchableOpacity>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: 'rgba(0,0,0,0.2)',
+    borderColor: COLORS.modalBackground,
     borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
   },
   recBtnContainer: {
-    position: 'absolute',
-    borderRadius: 16,
-    height: 40,
-    width: 150,
-    backgroundColor: '#0295D5',
+    borderRadius: 20,
+    paddingHorizontal: 16,
+    paddingVertical: 6,
     justifyContent: 'center',
     alignItems: 'center'
   },
   save: {
     fontFamily: FONTS.LatoRegular,
     fontWeight: '400',
-    fontSize: 18
+    fontSize: 18,
+    color: 'white'
   }
 })

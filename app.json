@@ -1,31 +1,42 @@
 {
   "expo": {
-    "name": "ToDo-Mobile-App",
-    "slug": "ToDo-Mobile-App",
+    "name": "AnyTodo",
+    "description": "Todo List Planner and Tracker",
+    "slug": "AnyTodo",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/ios-icon.png",
+    "icon": "./assets/adaptive-icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FFFFFF"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
+      "icon": "./assets/ios-icon.png",
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/android-icon.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.codezbrigade.anyTodo"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c3163afc-2a4f-48af-87ce-aced0e00b775"
+      }
+    },
+    "notification": {
+      "icon": "./assets/favicon.png"
     }
   }
 }

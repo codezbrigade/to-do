@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
 
 // import SectionHeader from './SectionHeader';
@@ -31,23 +31,28 @@ const Section = ({ toDoData, setToDoList }) => {
 
   return (
     <View style={styles.flatListContainer}>
-      <SwipeListView
+      {/* <SwipeListView
         data={toDoData}
         renderItem={renderVisibleItem}
         renderHiddenItem={renderHiddenItem}
-        leftOpenValue={75}
-        rightOpenValue={-75}
+        leftOpenValue={75} //75
+        rightOpenValue={-75} //-75
         stopLeftSwipe={150}
         stopRightSwipe={-150}
         leftActivationValue={150}
         rightActivationValue={-150}
-        // leftActionValue={0}
-        // rightActionValue={-500}
+        leftActionValue={0}
+        rightActionValue={-500}
         keyExtractor={item => item.id}
-        // ListHeaderComponent={<SectionHeader string={title} imageUrl={imageUrl} />}
-        // stickyHeaderIndices={[0]}
+        showsVerticalScrollIndicator={false}
+  /> */}
+      <FlatList
+        data={toDoData}
+        renderItem={renderVisibleItem}
+        keyExtractor={item => item.id}
         showsVerticalScrollIndicator={false}
       />
+
     </View>
   );
 };
@@ -58,5 +63,7 @@ const styles = StyleSheet.create({
   flatListContainer: {
     flex: 1,
     marginBottom: 5,
+    overflow: 'hidden',
+    borderRadius: 16
   }
 })

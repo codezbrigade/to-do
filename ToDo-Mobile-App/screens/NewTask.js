@@ -1,39 +1,64 @@
-import React from 'react';
 import { useNavigation } from '@react-navigation/native';
+import React from 'react';
 
-import { Image, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, View, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { BackgroundView, CircularButton, Form, Heading } from '../components';
-
-import { asserts, COLORS, FONTS } from '../constants';
-
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp
-} from 'react-native-responsive-screen';
+import { asserts, COLORS } from '../constants';
 
 const NewTask = ({ route }) => {
+  const navigation = useNavigation();
 
   return (
-    <BackgroundView>
-      <View style={styles.subHomeContainer}>
-        <Heading />
-      </View>
+    <ScrollView style={styles.screen}>
+      <KeyboardAvoidingView behavior='height' style={styles.screen}>
+        <BackgroundView>
+          <View style={styles.container}>
+            <View style={styles.headingContainer}>
+              <Heading />
 
-      <Form route={route} />
+              <Pressable
+                style={({ pressed }) => [{ marginRight: "4%", padding: 10, opacity: pressed ? 0.7 : 1 }]}
+                onPress={() => navigation.goBack()}
+              >
+                <Image
+                  source={asserts.goback}
+                  style={{ width: 16 }}
+                  resizeMode='contain'
+                />
+              </Pressable>
 
-    </BackgroundView>
-
+            </View>
+            <Form route={route} navigation={navigation} />
+          </View>
+        </BackgroundView>
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 };
 
 export default NewTask;
 
 const styles = StyleSheet.create({
-  subHomeContainer: {
-    // height: '99%',
+  screen: {
+    flex: 1,
+    // borderWidth: 1
+  },
+  headingContainer: {
     alignSelf: 'center',
     width: '90%',
-    // borderWidth: 1,
+    flexDirection: 'row-reverse',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    // overflow: 'visible',
+    // borderWidth: 1
   },
+  container: {
+    flex: 1,
+    backgroundColor: '#FBFAFB',
+    opacity: 0.85,
+    // justifyContent: 'space-between'
+    // borderWidth: 1
+
+  }
 
 })

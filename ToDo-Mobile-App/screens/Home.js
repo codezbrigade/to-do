@@ -1,17 +1,20 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { View, StyleSheet, Text, Modal, TouchableWithoutFeedback, Keyboard, LayoutAnimation } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+
+import {
+  View,
+  StyleSheet,
+} from 'react-native';
 
 import {
   AddYourTask,
   BackgroundView,
   CircularButton,
-  ClearAll,
-  // Fact,
-  Greetings,
+  Fact,
   Headers,
   Heading,
   HomeModal,
+  AppRating,
   SearchBar,
   Section
 } from '../components';
@@ -21,13 +24,15 @@ import {
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 
-import { asserts, COLORS, HEADERS, strings, ROUTES, todoKey, TODOLIST, MONTHS } from '../constants';
+import { asserts, COLORS, strings, ROUTES, todoKey, MONTHS, ratingKey, countKey } from '../constants';
 
-import { getAllKeys, removeData } from '../utils/asyncStorage';
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
+import { useGlobalStore } from 'react-native-global-store';
+
 const Home = ({ route }) => {
-  const [isModalVisible, setIsModalVisible] = useState(true);
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedHeader, setSelectedHeader] = useState({
     title: strings.today,
     id: 0
@@ -35,39 +40,47 @@ const Home = ({ route }) => {
   const [toDoList, setToDoList] = useState([]);
   const [toDos, setToDos] = useState([]);
   const [searchInput, setSearchInput] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
+  const [facts, setFacts] = useState([]);
+  const [isRatingVisible, setISRatingVisible] = useState(false);
+  const [globalState, setGlobalState] = useGlobalStore();
 
   const { getItem, setItem } = useAsyncStorage(todoKey);
 
-  // useEffect(() => {
-  //   if (!toDos[selectedHeader.id]) return;
-  //   console.log(toDos[selectedHeader.id], "selected")
-  // }, [selectedHeader, toDos])
+  useEffect(() => {
+    let data = [];
+    let lowerCase = searchInput.toLocaleLowerCase();
+
+    if (lowerCase) {
+      data = toDoList.filter(obj =>
+        obj.title.toLocaleLowerCase().includes(lowerCase)
+        || obj.subTitle.toLocaleLowerCase().includes(lowerCase)
+      )
+    } else data = toDos[selectedHeader.id];
+
+    // LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setFilteredData(data);
+  }, [searchInput, selectedHeader, toDos])
 
   useEffect(() => {
     (async () => {
-      // let jsonValue = JSON.stringify(TODOLIST);  //* upload sample data to ASYNC storage
-      // await setItem(jsonValue);
-      // console.log('done')
-
-      // let keys = await getAllKeys(); 
-      // console.log(keys)
-
-      // await removeData(todoKey);
-
       let data = await getItem() || '[]';
-      // console.log(typeof (data));
-      setToDoList(JSON.parse(data))
+      if (!JSON.parse(data).length) {
+        setIsModalVisible(true);
+      }
+      setToDoList(JSON.parse(data));
     })()
   }, [])
 
   useEffect(() => {
-    if (!toDoList.length) return;
     let today = [];
     let completed = [];
     let tomorrow = [];
     let upcoming = [];
     let others = [];
     let now = new Date();
+
+    if (toDoList.length === 1 && globalState["isFirstTime"]) showRatingModal(4000);
 
     toDoList.forEach(element => {
       const { isCompleted, time } = element;
@@ -90,31 +103,31 @@ const Home = ({ route }) => {
       } else completed.push(element)
     });
 
-    let temp = [today, completed, tomorrow, upcoming];
+    let temp = [today, tomorrow, upcoming, completed];
 
     setToDos([...temp]);
 
   }, [toDoList])
 
-  let temp = null;
-  if (route.params) temp = route.params;
   useEffect(() => {
-    if (temp) {
-      setToDoList([...temp])
+    let temp = null;
+    if (route.params) temp = route.params;
+    if (temp.data) {
+      setToDoList([...temp.data])
+    } else {
+      let response = temp.facts;
+      setFacts(response)
     }
   }, [route])
 
   const navigation = useNavigation();
-  const navigationHandler = () => navigation.navigate(ROUTES.new_task_screen);
 
-  const filtered = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+  const navigationHandler = async () => {
+    navigation.navigate(ROUTES.new_task_screen);
+  }
 
-    if (!searchInput) return;
-    return toDoList.filter(obj =>
-      obj.title.toLocaleLowerCase().includes(searchInput)
-      || obj.subTitle.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase())
-    )
+  const showRatingModal = (time) => {
+    setTimeout(() => { setISRatingVisible(true) }, time)
   }
 
 
@@ -123,60 +136,62 @@ const Home = ({ route }) => {
       <BackgroundView>
         <View style={styles.homeContainer}>
           <View style={styles.subHomeContainer}>
-
             <Heading />
 
-            <Greetings />
+            <Fact facts={facts} />
+
+            <Headers selectedHeader={selectedHeader} setSelectedHeader={setSelectedHeader} />
 
             <SearchBar
               searchInput={searchInput}
               setSearchInput={setSearchInput}
             />
-            {!filtered() && <Headers selectedHeader={selectedHeader} setSelectedHeader={setSelectedHeader} />}
 
-            <View style={styles.todos}>
+            <View style={[styles.todos]}>
 
-              {selectedHeader === strings.completed && <ClearAll />}
-
-              { // if completed is empty then only you have to show empty msg.                  --- not implimented
-                !filtered() &&
-                  toDos[selectedHeader.id] ?
-                  selectedHeader.title === strings.today && !toDos[selectedHeader.id].length ?
+              {!searchInput &&
+                toDos[selectedHeader.id] ?
+                (
+                  selectedHeader.title !== strings.completed &&
+                    !toDos[selectedHeader.id].length ?
                     <AddYourTask selectedHeader={selectedHeader.title} handlePress={navigationHandler} />
-                    : selectedHeader.title === strings.completed && !toDos[selectedHeader.id].length ? <AddYourTask selectedHeader={selectedHeader.title} /> : null
-                  : null
+                    : !toDos[selectedHeader.id].length &&
+                    <AddYourTask selectedHeader={selectedHeader.title} />
+                )
+                : null
               }
-
 
               {
-                filtered() ? <Section toDoData={filtered()} setToDoList={setToDoList} /> :
-                  toDos[selectedHeader.id] &&
-                  <Section toDoData={toDos[selectedHeader.id]} setToDoList={setToDoList} />
+                toDos[selectedHeader.id] &&
+                <Section toDoData={filteredData} setToDoList={setToDoList} />
               }
+
             </View>
           </View>
 
         </View>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.buttonContainer}>
-            <CircularButton
-              position={'absolute'}
-              top={0}
-              right={0}
-              backgroundColor={COLORS.main}
-              width={70}
-              height={70}
-              borderWidth={0}
-              imageUrl={asserts.addTask}
-              handlePress={navigationHandler}
-            />
-          </View>
-        </TouchableWithoutFeedback>
+        <View style={styles.buttonContainer}>
+          <CircularButton
+            position={'absolute'}
+            top={'1%'}
+            right={0}
+            backgroundColor={COLORS.main}
+            width={70}
+            height={70}
+            borderWidth={0}
+            imageUrl={asserts.addTask}
+            handlePress={navigationHandler}
+          />
+        </View>
 
       </BackgroundView>
-      <Modal visible={isModalVisible} transparent={true}>
-        <HomeModal setIsModalVisible={setIsModalVisible} />
-      </Modal>
+
+      <HomeModal isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} />
+      <AppRating
+        isRatingVisible={isRatingVisible}
+        setISRatingVisible={setISRatingVisible}
+        showRatingModal={showRatingModal}
+      />
     </>
   );
 };
@@ -192,21 +207,14 @@ const styles = StyleSheet.create({
   subHomeContainer: {
     height: '99%',
     width: '90%',
-    // borderWidth: 1,
   },
+
   buttonContainer: {
-    height: hp(15),
+    height: hp(14),
     width: '90%',
     alignSelf: 'center',
-    position: 'absolute',
-    bottom: 0,
-    // borderWidth: 1
   },
-
-
   todos: {
-    marginTop: 38,
     flex: 1,
-    paddingVertical: hp(2)
   },
 });

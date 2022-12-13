@@ -28,20 +28,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   category: {
-    fontFamily: FONTS.RobotoLight_300,
+    fontFamily: FONTS.RobotoRegular_400,
     fontSize: 12,
-    color: COLORS.white,
     lineHeight: hp(1.98)
   },
   dot: {
     width: 10,
     height: 10,
-    borderRadius: 6,
+    borderRadius: 10,
     marginRight: 8
-  },
-  image: {
-    height: 15,
-    width: 15,
-    marginRight: 4
   }
 })

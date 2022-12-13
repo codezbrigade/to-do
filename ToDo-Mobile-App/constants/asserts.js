@@ -1,7 +1,4 @@
-import home_top from '../asserts/images/home-top.png';
-import home_bottom from '../asserts/images/home-bottom.png';
 import addTask from '../asserts/images/addTask.png';
-import new_task_top from '../asserts/images/newTask-top.png';
 import calenderLogo from '../asserts/images/calender-Logo.png';
 import close from '../asserts/images/close.png';
 import university from '../asserts/images/univesiry.png';
@@ -18,15 +15,37 @@ import edit from '../asserts/images/edit.png';
 import bgimg from '../asserts/images/background.jpg';
 import plus from '../asserts/images/plus.png';
 import search from '../asserts/images/search.png';
+import closeBlack from '../asserts/images/closeBlack.png';
+import searchLogo from '../asserts/images/searchLogo.png';
+import closeBtn from '../asserts/images/closeBtn.png';
+import checked from '../asserts/images/checked.png';
+import searchCloseLogo from '../asserts/images/searchCloseLogo.png';
+import water from '../asserts/images/water.png';
+import rateHeadLogo from '../asserts/images/rateHeadLogo.png';
+import ratedStar from '../asserts/images/rated-star.png';
+import unratedStar from '../asserts/images/unrated-star.png';
+import goback from '../asserts/images/goback.png';
+import clock from '../asserts/images/clock.png';
+import description from '../asserts/images/description.png';
+
 
 export const asserts = {
+  ratedStar,
+  clock,
+  description,
+  goback,
+  unratedStar,
+  rateHeadLogo,
+  searchCloseLogo,
+  water,
+  closeBtn,
+  checked,
+  searchLogo,
+  closeBlack,
   search,
   plus,
-  home_top,
   bgimg,
-  home_bottom,
   addTask,
-  new_task_top,
   calenderLogo,
   close,
   university,

@@ -1,5 +1,3 @@
-import TODOLIST from './ToDoList.json';
-
 import { strings } from './localize';
 
 import { COLORS } from './COLORS';
@@ -7,24 +5,31 @@ import { FONTS } from './FONTS';
 
 import { asserts } from './asserts';
 import { ROUTES } from './ROUTES';
-import { todoKey } from './AsyncStorageKey';
+import {
+  todoKey,
+  expoPushTokenKey,
+  ratingKey,
+  countKey
+} from './AsyncStorageKey';
+
+import { appUrl } from './appUrl';
 
 const categories = [
   {
-    name: strings.university,
-    color: COLORS.university
+    name: strings.grocery,
+    color: COLORS.grocery
   },
   {
     name: strings.work,
     color: COLORS.work
   },
   {
-    name: strings.grocery,
-    color: COLORS.grocery
-  },
-  {
     name: strings.home,
     color: COLORS.home
+  },
+  {
+    name: strings.university,
+    color: COLORS.university
   },
   {
     name: strings.customize,
@@ -41,9 +46,9 @@ const categoryLogoMap = {
 };
 
 const HEADERS = [{ title: strings.today, },
-{ title: strings.completed },
 { title: strings.tomorrow },
-{ title: strings.upcoming }
+{ title: strings.upcoming },
+{ title: strings.completed }
 ]
 
 const MONTHS = [
@@ -53,7 +58,6 @@ const MONTHS = [
 ];
 
 export {
-  TODOLIST,
   asserts,
   FONTS,
   COLORS,
@@ -61,7 +65,11 @@ export {
   categories,
   categoryLogoMap,
   todoKey,
+  expoPushTokenKey,
+  ratingKey,
+  countKey,
   HEADERS,
   MONTHS,
-  ROUTES
+  ROUTES,
+  appUrl
 }

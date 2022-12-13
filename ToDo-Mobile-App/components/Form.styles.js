@@ -9,98 +9,107 @@ import {
 import { RFValue } from 'react-native-responsive-fontsize';
 
 
-
 export const styles = StyleSheet.create({
-
-  form: {
-    height: '80%',
-    width: '100%',
-    marginTop: hp(1.5), //12
-    borderRadius: 16,
-    backgroundColor: 'rgba(253, 252, 252, 0.95)',
-    paddingVertical: hp(2),//16,
-    alignItems: 'center',
-    position: "absolute",
-    top: hp(13), //100
+  screen: {
+    flex: 1
   },
-  title: {
+  form: {
+    // marginTop: 100,
+    flex: 1,
+    paddingLeft: "12%",
+    paddingRight: "7%",
+  },
+  createNewTask: {
     width: '100%',
-    paddingHorizontal: wp(8.9),
+    // marginVertical: 13,
+    marginVertical: "4%",
     fontFamily: FONTS.LatoRegular,
     fontWeight: '500',
     fontSize: RFValue(16),
-    color: COLORS.greetings,
+    color: COLORS.black,
+    // borderWidth: 2
+  },
+  titleInputContainer: {
+    height: 54,
+    width: '100%',
+  },
+  title: {
+    fontFamily: FONTS.LatoRegular,
+    fontWeight: '400',
+    fontSize: RFValue(14),
+    lineHeight: hp(2.42),
+  },
+  titleInput: {
+    borderBottomWidth: 1,
+    borderColor: COLORS.modalBackground,
+    fontFamily: FONTS.LatoRegular,
+    fontWeight: '400',
+    fontSize: RFValue(14),
+    lineHeight: hp(2.42),
+    // color: COLORS.inActiveHeader
   },
   textInputContainer: {
-    paddingHorizontal: wp(9),
     marginVertical: hp(4),
     width: '100%',
     justifyContent: 'flex-start',
   },
-  addTitle: {
-    height: hp(7.4),
-    padding: 10,
-    borderWidth: 1,
-    borderRadius: 6,
-    borderColor: 'rgba(0,0,0,0.1)',
-    fontFamily: FONTS.LatoRegular,
-    fontWeight: '400',
-    fontSize: RFValue(29),
-    lineHeight: 38.4,
-    color: 'rgba(0,0,0,0.7)'
-  },
-  textInput: {
-    height: '42%',
-    fontSize: RFValue(29),
-    fontFamily: FONTS.InterRegular,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(0,0,0,0.2)'
-  },
-  dateInput: {
-    height: hp(7.4),
-    borderBottomWidth: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    borderBottomColor: 'rgba(0,0,0,0.2)'
-  },
-  date: {
-    fontSize: RFValue(14),
-    lineHeight: hp(2.42),
-    fontWeight: '400',
-    fontFamily: FONTS.LatoRegular,
-    width: '80%',
-    // color: 'rgba(0,0,0,0.5)'
-  },
-  descriptionContainer: {
-    justifyContent: "flex-end",
-    height: hp(9.9),
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(0,0,0,0.2)'
-  },
-  subTitleInput: {
-    fontSize: RFValue(14),
-    fontWeight: '400',
-    lineHeight: hp(2.45),
-    fontFamily: FONTS.LatoRegular,
-  },
-  categoryContainer: {
-    justifyContent: 'flex-start',
-    width: '100%',
-    paddingHorizontal: wp(10),
-  },
   categoryTitle: {
+    marginVertical: 23,
     fontSize: RFValue(14),
     lineHeight: hp(3.05),
     fontFamily: FONTS.LatoRegular,
     fontWeight: '700',
-    paddingBottom: hp(3),
-    color: 'rgba(0,0,0,0.87)'
+    color: COLORS.black_1,
+    width: '100%'
   },
-  categoryList: {
+  categoryListContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: "flex-start",
+    alignItems: 'center',
+  },
+  taskDetails: {
+    marginTop: 23,
+    marginBottom: 13,
+    width: '100%',
+    fontFamily: FONTS.LatoRegular,
+    fontWeight: '700',
+    fontSize: RFValue(14),
+    lineHeight: 24.08,
+  },
+  dateTimeContainer: {
+    width: '70%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignSelf: 'center',
-    flexWrap: 'wrap',
-  }
+  },
+  clockLogo: {
+    // borderWidth: 1,
+    width: 23,
+  },
+  dateTime: {
+    fontSize: RFValue(14),
+    lineHeight: hp(2.42),
+    fontWeight: '400',
+    fontFamily: FONTS.LatoRegular,
+    // width: '80%',
+    color: COLORS.sub_title
+  },
+  descriptionInputContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  descriptionInputSubContainer: {
+    height: 50,
+    width: '85%',
+    justifyContent: 'space-between'
+  },
+  description: {
+    fontSize: RFValue(14),
+    lineHeight: hp(2.42),
+    fontWeight: '400',
+    fontFamily: FONTS.LatoRegular,
+    // color: '#303030',
+    borderColor: COLORS.modalBackground,
+    borderBottomWidth: 1
+  },
 })

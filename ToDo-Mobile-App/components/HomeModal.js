@@ -1,13 +1,13 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Image, LayoutAnimation, Pressable, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { Image, LayoutAnimation, Modal, Pressable, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { asserts, COLORS, FONTS, ROUTES } from '../constants';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 
-const HomeModal = ({ setIsModalVisible }) => {
+const HomeModal = ({ isModalVisible, setIsModalVisible }) => {
 
   const navigation = useNavigation();
 
@@ -20,26 +20,28 @@ const HomeModal = ({ setIsModalVisible }) => {
   }
 
   return (
-    <Pressable onPress={pressHandler} style={styles.container}>
-      <StatusBar animated={true} barStyle={'dark-content'} backgroundColor={COLORS.modalBackground} />
+    <Modal visible={isModalVisible} transparent>
+      <Pressable onPress={pressHandler} style={styles.container}>
+        <StatusBar animated={true} barStyle={'dark-content'} backgroundColor={COLORS.modalBackground} />
 
-      <View style={styles.popup}>
-        <View style={styles.top}>
-          <Text style={styles.text}>Organise yourself</Text>
+        <View style={styles.popup}>
+          <View style={styles.top}>
+            <Text style={styles.text}>Organise yourself</Text>
+          </View>
+          <View style={styles.bottom}>
+            <Text style={styles.text}>Click</Text>
+            <Pressable onPress={onPress} style={styles.imgContainer}>
+              <Image
+                resizeMode='contain'
+                style={{ height: 6, width: 6 }}
+                source={asserts.addTask}
+              />
+            </Pressable>
+            <Text style={styles.text}>to add your tasks</Text>
+          </View>
         </View>
-        <View style={styles.bottom}>
-          <Text style={styles.text}>Click</Text>
-          <Pressable onPress={onPress} style={styles.imgContainer}>
-            <Image
-              resizeMode='contain'
-              style={{ height: 6, width: 6 }}
-              source={asserts.addTask}
-            />
-          </Pressable>
-          <Text style={styles.text}>to add your tasks</Text>
-        </View>
-      </View>
-    </Pressable>
+      </Pressable>
+    </Modal>
   );
 };
 
