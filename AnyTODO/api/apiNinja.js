@@ -1,6 +1,4 @@
-// import axios from 'axios';
-const axios = require('axios');
-
+import axios from 'axios';
 
 const limit = 50;
 const url = 'https://api.api-ninjas.com/v1/facts?limit=' + limit;

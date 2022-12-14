@@ -16,9 +16,11 @@ const Fact = ({ facts }) => {
   // console.log(facts)
 
   const filter = () => {
-    let filtered = facts.find((e) => e.fact && e.fact.length < 60);
-    if (!filtered) return defaultFact;
-    return filtered?.fact;
+    if (facts) {
+      let filtered = facts?.find((e) => e.fact && e.fact.length < 60);
+      return filtered?.fact;
+    }
+    return defaultFact.fact;
   };
 
   return (
