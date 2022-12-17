@@ -1,0 +1,53 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/asserts/fonts/InterRegular.otf",
+      "sha1": "4786a0feb4c853189782709a5ac5b5dfb696942b"
+    },
+    {
+      "path": "src/asserts/fonts/Lato-BoldItalic.ttf",
+      "sha1": "bf9e7d4a6185b53a256272869e66762c1e5d503b"
+    },
+    {
+      "path": "src/asserts/fonts/LatoRegular.ttf",
+      "sha1": "f59f9e4f3cbee981a5e6f58a279f9b9613f22599"
+    },
+    {
+      "path": "src/asserts/fonts/LeelawadeeUI.ttf",
+      "sha1": "716527327936963fb1624f8951ede454dd75fe68"
+    },
+    {
+      "path": "src/asserts/fonts/RobotoBlack.ttf",
+      "sha1": "3f8e401d808f6ce84b542266726514ac8be73171"
+    },
+    {
+      "path": "src/asserts/fonts/RobotoBold.ttf",
+      "sha1": "62442a18a9fe9457c1afeabf683d263a691b7798"
+    },
+    {
+      "path": "src/asserts/fonts/RobotoLight.ttf",
+      "sha1": "18788c5d630fa695f9283f6393bfa541b2031508"
+    },
+    {
+      "path": "src/asserts/fonts/RobotoLightItalic.ttf",
+      "sha1": "beb0dd1a6dc2132fd8d9b4fb35a96087bb2ea5bc"
+    },
+    {
+      "path": "src/asserts/fonts/RobotoMedium.ttf",
+      "sha1": "3c6a09fcc6a454924c81af7dff94fc6d399ed79b"
+    },
+    {
+      "path": "src/asserts/fonts/RobotoRegular.ttf",
+      "sha1": "56c5c0d38bde4c1f1549dda43db37b09c608aad3"
+    },
+    {
+      "path": "src/asserts/fonts/RobotoThin.ttf",
+      "sha1": "58c733e22bceeaf9609ce578eca92ac303c6d92f"
+    },
+    {
+      "path": "src/asserts/fonts/SignikaLight.otf",
+      "sha1": "4f4828fa24a63296ff37e3e50aa51b015d47bdea"
+    }
+  ]
+}
