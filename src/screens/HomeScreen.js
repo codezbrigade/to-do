@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useGlobalStore} from 'react-native-global-store';
 import {useAsyncStorage} from '@react-native-async-storage/async-storage';
@@ -47,7 +47,6 @@ const HomeScreen = ({route}) => {
       }
       setToDoList(JSON.parse(data));
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -56,7 +55,6 @@ const HomeScreen = ({route}) => {
     }
     let temp = filterFunction(toDoList);
     setToDos([...temp]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [toDoList]);
 
   useEffect(() => {
@@ -81,7 +79,6 @@ const HomeScreen = ({route}) => {
       data = toDos[selectedHeader.id];
     }
     setFilteredData(data);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchInput, selectedHeader, toDos]);
 
   const navigationHandler = () => {

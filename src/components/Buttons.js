@@ -1,13 +1,9 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 import checked from '../asserts/images/checked.png';
 import {FONTS, COLORS} from '../constants';
-
-// import {
-//   widthPercentageToDP as wp,
-//   heightPercentageToDP as hp
-// } from 'react-native-responsive-screen';
 
 export const CircularButton = ({
   handlePress,

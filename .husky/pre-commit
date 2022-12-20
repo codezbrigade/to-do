@@ -2,7 +2,9 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 echo 'pre-commit git hook'
-echo 'linting started'
+echo '========  linting started  ========'
 yarn lint-fix 
-echo 'testing started'
+echo '========  linting succeed  ========'
+echo '========  testing started  ========'
 yarn test
+echo '========  testing succeed  ========'

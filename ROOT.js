@@ -3,22 +3,15 @@ import {useGlobalStore} from 'react-native-global-store';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SheetProvider} from 'react-native-actions-sheet';
-
-import {FACT_API} from './src/api/apiNinja';
-import {channel, ROUTES} from './src/constants';
+import RNBootSplash from 'react-native-bootsplash';
 
 import Loading from './src/UI/Loading';
 import HomeScreen from './src/screens/HomeScreen';
 import NewTaskScreen from './src/screens/NewTaskScreen';
 
-import PushNotification, {Importance} from 'react-native-push-notification';
-
-PushNotification.createChannel({
-  channelId: channel.local.id,
-  channelName: channel.local.name,
-  vibrate: true,
-  importance: Importance.HIGH,
-});
+import {ROUTES} from './src/constants';
+import {FACT_API} from './src/api/apiNinja';
+import {createLocalChanel} from './src/utils/RNPushNotification.helper';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,9 +21,10 @@ const ROOT = () => {
 
   useEffect(() => {
     (async () => {
+      RNBootSplash.hide({fade: true, duration: 500});
+      createLocalChanel();
       await fetchData();
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchData = async () => {

@@ -44,7 +44,7 @@ const HomeModal = ({isModalVisible, setIsModalVisible}) => {
             <Pressable onPress={onPress} style={styles.imgContainer}>
               <Image
                 resizeMode="contain"
-                style={{height: 6, width: 6}}
+                style={styles.image}
                 source={asserts.addTask}
               />
             </Pressable>
@@ -100,4 +100,5 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginHorizontal: 5,
   },
+  image: {height: 6, width: 6},
 });

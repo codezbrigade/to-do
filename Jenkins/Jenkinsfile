@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    tools { nodejs 'node' }
+
+    stages {
+        stage('Build') {
+            steps {
+                // git branch: 'react-native', url: 'https://github.com/codezbrigade/to-do.git'
+                bat 'yarn install'
+            }
+        }
+        stage('Testing') {
+            steps {
+                bat 'yarn lint-fix'
+                echo 'linting success'
+                bat 'yarn test'
+                echo 'Testing success'
+            }
+        }
+        stage('Start Simulator') {
+            steps {
+                // bat 'eas build --platform android --profile preview'
+                bat 'yarn android'
+            }
+        }
+    }
+}

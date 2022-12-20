@@ -5,7 +5,6 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
-  Text,
   Easing,
 } from 'react-native';
 import {COLORS} from '../constants';

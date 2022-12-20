@@ -21,7 +21,7 @@ export const filterFunction = toDoList => {
         upcoming.push(element);
       } else if (timeArr[1] > now.getDate()) {
         tomorrow.push(element);
-      } else if (timeArr[1] == now.getDate()) {
+      } else if (parseInt(timeArr[1], 10) === now.getDate()) {
         today.push(element);
       } else {
         others.push(element);
@@ -30,6 +30,8 @@ export const filterFunction = toDoList => {
       completed.push(element);
     }
   });
+
+  console.log('TO BE deleted/missed todos =>>>', others);
 
   return [today, tomorrow, upcoming, completed];
 };

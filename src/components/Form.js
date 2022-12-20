@@ -1,5 +1,4 @@
 import React, {useEffect, useRef, useState} from 'react';
-
 import {
   Animated,
   Image,
@@ -7,13 +6,9 @@ import {
   Text,
   TextInput,
   ToastAndroid,
-  // Vibration,
+  Vibration,
   View,
 } from 'react-native';
-
-import {RectButton} from './Buttons';
-import Category from './Category';
-
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 /**
@@ -21,8 +16,10 @@ import moment from 'moment';
  * It will be removed in next major release.
  */
 
-import {getData, storeData} from '../utils/asyncStorage';
+import {RectButton} from './Buttons';
+import Category from './Category';
 
+import {getData, storeData} from '../utils/asyncStorage';
 import {
   strings,
   asserts,
@@ -30,14 +27,13 @@ import {
   todoKey,
   ROUTES,
   COLORS,
-  // MONTHS,
+  MONTHS,
 } from '../constants';
+import {handleNotification} from '../utils/RNPushNotification.helper';
 
 import {styles} from './Form.styles';
 
-// import {handleNotification} from '../utils/NotificationComponent';
-
-const defaultToDo = {
+const INITIAL_STATE = {
   id: '',
   title: '',
   subTitle: '',
@@ -48,9 +44,22 @@ const defaultToDo = {
   isCompleted: false,
 };
 
+const focus = element => {
+  return {
+    top: element.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['54%', '0%'],
+    }),
+    color: element.interpolate({
+      inputRange: [0, 1],
+      outputRange: [COLORS.sub_title, COLORS.black],
+    }),
+  };
+};
+
 const Form = ({route, navigation, ...props}) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const [todo, setTodo] = useState(defaultToDo);
+  const [todo, setTodo] = useState(INITIAL_STATE);
   const [date, setDate] = useState('');
 
   const focusTitle = useRef(new Animated.Value(0)).current;
@@ -62,15 +71,15 @@ const Form = ({route, navigation, ...props}) => {
     setTodo({...todo, time: initialTime});
   }, []);
 
-  // useEffect(() => {
-  //   if (!todo.time) return;
-  //   let time = todo.time.split(' ');
+  useEffect(() => {
+    if (!todo.time) return;
+    let time = todo.time.split(' ');
 
-  //   let modified = `${time[1]}-${MONTHS.indexOf(time[0]) + 1}-${time[2]} ${
-  //     time[4]
-  //   } ${time[5]}`;
-  //   setDate(modified);
-  // }, [todo]);
+    let modified = `${time[1]}-${MONTHS.indexOf(time[0])}-${time[2]} ${
+      time[4]
+    } ${time[5]}`;
+    setDate(modified);
+  }, [todo]);
 
   useEffect(() => {
     if (route.params) {
@@ -103,30 +112,28 @@ const Form = ({route, navigation, ...props}) => {
 
     let jsonValue = (await getData(todoKey)) || [];
 
-    // const trigger = new Date(date);
-
     if (!todo.id) {
       let toDo = todo;
-      toDo.id = Math.random();
-      // handleNotification(toDo, date, true);
+      toDo.id = Math.ceil(Math.random() * 1000000000);
+
+      handleNotification(toDo, date, true);
 
       await storeData(todoKey, [...jsonValue, toDo]);
-      setTodo(defaultToDo);
+      setTodo(INITIAL_STATE);
       navigation.navigate(ROUTES.home_screen, {data: [...jsonValue, toDo]});
     } else {
-      // handleNotification(todo, date, false);
+      handleNotification(todo, date, false);
 
       let find = jsonValue.find(e => e.id === todo.id);
       let idx = jsonValue.indexOf(find);
-
       jsonValue[idx] = todo;
 
       await storeData(todoKey, jsonValue);
-      setTodo(defaultToDo);
+      setTodo(INITIAL_STATE);
       navigation.navigate(ROUTES.home_screen, {data: jsonValue});
     }
 
-    // Vibration.vibrate();
+    Vibration.vibrate();
 
     ToastAndroid.show(
       'Task added successfully',
@@ -144,57 +151,39 @@ const Form = ({route, navigation, ...props}) => {
   };
 
   const handleConfirm = dateTime => {
-    // console.log(new Date(dateTime));
     const time = moment(dateTime).format('MMM D YYYY - hh:mm a');
     setTodo({...todo, time});
     setDate(dateTime);
     hideDatePicker();
   };
 
-  const focusedTitle = {
-    top: focusTitle.interpolate({
-      inputRange: [0, 1],
-      outputRange: ['47%', '0%'],
-    }),
-    color: focusTitle.interpolate({
-      inputRange: [0, 1],
-      outputRange: [COLORS.sub_title, COLORS.black],
-    }),
+  const onFocusTitle = focus(focusTitle);
+  const onFocusDesc = focus(focusDesc);
+
+  const onFocusHandler = element =>
+    Animated.timing(element, {
+      toValue: 1,
+      useNativeDriver: false,
+    }).start();
+
+  const onBulurHandler = element => {
+    Animated.timing(element, {
+      toValue: 0,
+      useNativeDriver: false,
+    }).start();
   };
 
-  const focusedDesc = {
-    top: focusDesc.interpolate({
-      inputRange: [0, 1],
-      outputRange: ['47%', '0%'],
-    }),
-    color: focusDesc.interpolate({
-      inputRange: [0, 1],
-      outputRange: [COLORS.sub_title, COLORS.black],
-    }),
-  };
   return (
     <View style={{...styles.form, ...props}}>
       <Text style={styles.createNewTask}>{strings.add_task}</Text>
 
       <View style={styles.titleInputContainer}>
-        <Animated.Text style={[styles.title, focusedTitle]}>
+        <Animated.Text style={[styles.title, onFocusTitle]}>
           Title
         </Animated.Text>
         <TextInput
-          // onFocus={onFocusTitle}
-          onFocus={() =>
-            Animated.timing(focusTitle, {
-              toValue: 1,
-              useNativeDriver: false,
-            }).start()
-          }
-          onBlur={() =>
-            !todo.title &&
-            Animated.timing(focusTitle, {
-              toValue: 0,
-              useNativeDriver: false,
-            }).start()
-          }
+          onFocus={() => onFocusHandler(focusTitle)}
+          onBlur={() => !todo.title && onBulurHandler(focusTitle)}
           style={styles.titleInput}
           onChangeText={text => handlChange('title', text)}
           defaultValue={todo.title}
@@ -237,25 +226,13 @@ const Form = ({route, navigation, ...props}) => {
           resizeMode="contain"
         />
         <View style={styles.descriptionInputSubContainer}>
-          <Animated.Text style={[styles.title, focusedDesc]}>
+          <Animated.Text style={[styles.title, onFocusDesc]}>
             {strings.add_description}
           </Animated.Text>
           <TextInput
             multiline
-            // onFocus={onFocusDesc}
-            onFocus={() =>
-              Animated.timing(focusDesc, {
-                toValue: 1,
-                useNativeDriver: false,
-              }).start()
-            }
-            onBlur={() =>
-              !todo.subTitle &&
-              Animated.timing(focusDesc, {
-                toValue: 0,
-                useNativeDriver: false,
-              }).start()
-            }
+            onFocus={() => onFocusHandler(focusDesc)}
+            onBlur={() => !todo.title && onBulurHandler(focusDesc)}
             style={styles.description}
             defaultValue={todo.subTitle}
             onChangeText={text => handlChange('subTitle', text)}
@@ -275,7 +252,6 @@ const Form = ({route, navigation, ...props}) => {
         position={'absolute'}
         title={strings.create_task}
         bottom={'8%'}
-        // height={'8%'}
         width={'100%'}
         backgroundColor={COLORS.main}
         color={COLORS.white}

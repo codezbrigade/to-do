@@ -12,9 +12,9 @@ import {asserts, COLORS} from '../constants';
 const HEIGHT = Dimensions.get('screen').height;
 // const WIDTH = Dimensions.get('screen').width;
 
-const BackgroundView = ({children}) => {
+const BackgroundView = ({children, style}) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <StatusBar
         animated={true}
         barStyle="dark-content"
@@ -34,11 +34,8 @@ export default BackgroundView;
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // height: HEIGHT,
     height: HEIGHT - StatusBar.currentHeight * 2.39,
     width: '100%',
-    // borderWidth: 1
   },
   image: {
     height: '100%',

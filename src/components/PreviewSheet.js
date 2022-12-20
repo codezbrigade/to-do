@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {
-  Dimensions,
+  // Dimensions,
   Image,
   LayoutAnimation,
   ScrollView,
@@ -12,10 +12,9 @@ import {
 
 import {useNavigation} from '@react-navigation/native';
 import {useAsyncStorage} from '@react-native-async-storage/async-storage';
-// import * as Notifications from 'expo-notifications';
 
 import {
-  widthPercentageToDP as wp,
+  // widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {RFValue} from 'react-native-responsive-fontsize';
@@ -28,9 +27,7 @@ import DoNotRepeat from './DoNotRepeat';
 import Confirmation from './Confirmation';
 
 import ActionSheet, {SheetManager} from 'react-native-actions-sheet';
-
-// const HEIGHT = Dimensions.get('screen').height;
-// const WIDTH = Dimensions.get('screen').width;
+import PushNotification from 'react-native-push-notification';
 
 const PreviewSheet = props => {
   const {
@@ -57,7 +54,7 @@ const PreviewSheet = props => {
 
     setIsVisible(false);
 
-    // await Notifications.cancelScheduledNotificationAsync(todo.id);
+    PushNotification.cancelLocalNotification(todo.id);
 
     let filteredList = jsonValue.filter(obj => obj.id !== todo.id);
 
@@ -82,12 +79,7 @@ const PreviewSheet = props => {
 
   return (
     todo && (
-      <ActionSheet
-        id={props.sheetId}
-        containerStyle={{
-          borderTopLeftRadius: 25,
-          borderTopRightRadius: 25,
-        }}>
+      <ActionSheet id={props.sheetId} containerStyle={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.previewContainer}>
             <View style={styles.innerContainer}>
@@ -103,17 +95,12 @@ const PreviewSheet = props => {
                   <Text style={styles.date}>{todo.time}</Text>
                   <Image
                     source={asserts.calenderLogo}
-                    style={{
-                      height: 20,
-                      width: 20,
-                      marginTop: '5%',
-                      marginLeft: '3%',
-                    }}
+                    style={styles.image}
                     resizeMode="contain"
                   />
                 </View>
               </View>
-              <View style={styles.descriptionContainer}>
+              <View>
                 <Text style={styles.description}>{strings.description}</Text>
                 <Text style={styles.details}>{todo.subTitle}</Text>
               </View>
@@ -160,20 +147,24 @@ const PreviewSheet = props => {
 export default PreviewSheet;
 
 const styles = StyleSheet.create({
+  container: {
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+  },
+  image: {
+    height: 20,
+    width: 20,
+    marginTop: '5%',
+    marginLeft: '3%',
+  },
   previewContainer: {
-    // height: HEIGHT * 0.7,
     width: '100%',
-    // marginTop: hp(1.5), //12
     borderRadius: 16,
     paddingVertical: hp(2), //16,
     alignItems: 'center',
-    // borderWidth: 2
   },
   innerContainer: {
-    // height: '85%',
-    // minHeight: '50%',
     width: '85%',
-    // borderWidth: 1
   },
   title_time: {
     width: '100%',
@@ -197,9 +188,6 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.RobotoRegular_400,
     paddingVertical: '5%',
   },
-  descriptionContainer: {
-    // borderWidth: 1
-  },
   description: {
     paddingVertical: '4%',
     fontSize: 18,
@@ -214,8 +202,6 @@ const styles = StyleSheet.create({
     color: COLORS.inActiveHeader,
   },
   btnGroup: {
-    // borderWidth: 2,
-    // flex: 1,
     marginTop: 26,
     marginBottom: 66,
     flexDirection: 'row',

@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from 'react';
-import {Image, StyleSheet, Text, Pressable, View, Animated} from 'react-native';
+import {StyleSheet, Text, Pressable, Animated} from 'react-native';
 
 import {COLORS, FONTS} from '../constants';
 

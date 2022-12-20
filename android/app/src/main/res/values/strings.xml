@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AnyTODO</string>
+    <!-- <string name="default_notification_channel_id">channel00987</string> -->
 </resources>

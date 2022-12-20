@@ -8,7 +8,7 @@ const CreatNewCategory = ({pressHandle}) => {
       <View style={styles.container}>
         <Image
           source={asserts.customize}
-          style={{width: 12}}
+          style={styles.image}
           resizeMode="contain"
         />
       </View>
@@ -28,5 +28,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderColor: COLORS.grey_c,
+  },
+  image: {
+    width: 12,
   },
 });

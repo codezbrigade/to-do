@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import {FONTS, categoryLogoMap, asserts, strings} from '../constants';
