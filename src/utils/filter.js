@@ -31,7 +31,7 @@ export const filterFunction = toDoList => {
     }
   });
 
-  console.log('TO BE deleted/missed todos =>>>', others);
+  // console.log('TO BE deleted/missed todos =>>>', others);
 
   return [today, tomorrow, upcoming, completed];
 };

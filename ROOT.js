@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useGlobalStore} from 'react-native-global-store';
-import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SheetProvider} from 'react-native-actions-sheet';
-import RNBootSplash from 'react-native-bootsplash';
 
 import Loading from './src/UI/Loading';
 import HomeScreen from './src/screens/HomeScreen';
@@ -11,7 +9,9 @@ import NewTaskScreen from './src/screens/NewTaskScreen';
 
 import {ROUTES} from './src/constants';
 import {FACT_API} from './src/api/apiNinja';
-import {createLocalChanel} from './src/utils/RNPushNotification.helper';
+import PushNotification from 'react-native-push-notification';
+
+PushNotification.removeAllDeliveredNotifications();
 
 const Stack = createNativeStackNavigator();
 
@@ -21,8 +21,6 @@ const ROOT = () => {
 
   useEffect(() => {
     (async () => {
-      RNBootSplash.hide({fade: true, duration: 500});
-      createLocalChanel();
       await fetchData();
     })();
   }, []);
@@ -45,19 +43,14 @@ const ROOT = () => {
   }
 
   return (
-    <NavigationContainer>
-      <SheetProvider>
-        <Stack.Navigator
-          initialRouteName={ROUTES.home_screen}
-          screenOptions={screenOptions}>
-          <Stack.Screen name={ROUTES.home_screen} component={HomeScreen} />
-          <Stack.Screen
-            name={ROUTES.new_task_screen}
-            component={NewTaskScreen}
-          />
-        </Stack.Navigator>
-      </SheetProvider>
-    </NavigationContainer>
+    <SheetProvider>
+      <Stack.Navigator
+        initialRouteName={ROUTES.home_screen}
+        screenOptions={screenOptions}>
+        <Stack.Screen name={ROUTES.home_screen} component={HomeScreen} />
+        <Stack.Screen name={ROUTES.new_task_screen} component={NewTaskScreen} />
+      </Stack.Navigator>
+    </SheetProvider>
   );
 };
 

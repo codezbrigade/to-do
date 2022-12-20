@@ -9,7 +9,7 @@ import {
 
 import {asserts, COLORS} from '../constants';
 
-const HEIGHT = Dimensions.get('screen').height;
+const HEIGHT = Dimensions.get('window').height;
 // const WIDTH = Dimensions.get('screen').width;
 
 const BackgroundView = ({children, style}) => {
@@ -34,7 +34,7 @@ export default BackgroundView;
 
 const styles = StyleSheet.create({
   container: {
-    height: HEIGHT - StatusBar.currentHeight * 2.39,
+    height: HEIGHT,
     width: '100%',
   },
   image: {

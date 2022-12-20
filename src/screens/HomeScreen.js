@@ -93,7 +93,7 @@ const HomeScreen = ({route}) => {
 
   return (
     <>
-      <BackgroundView>
+      <BackgroundView style={styles.backgroundView}>
         <View style={styles.homeContainer}>
           <View style={styles.subHomeContainer}>
             <Heading />
@@ -174,4 +174,5 @@ const styles = StyleSheet.create({
   todos: {
     flex: 1,
   },
+  backgroundView: {flex: 1},
 });
