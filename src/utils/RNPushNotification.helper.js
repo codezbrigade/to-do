@@ -1,5 +1,5 @@
 import PushNotification, {Importance} from 'react-native-push-notification';
-import {asserts, channel} from '../constants';
+import {channel} from '../constants';
 
 export const createLocalChanel = () => {
   PushNotification.createChannel({

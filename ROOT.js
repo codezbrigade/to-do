@@ -9,9 +9,6 @@ import NewTaskScreen from './src/screens/NewTaskScreen';
 
 import {ROUTES} from './src/constants';
 import {FACT_API} from './src/api/apiNinja';
-import PushNotification from 'react-native-push-notification';
-
-PushNotification.removeAllDeliveredNotifications();
 
 const Stack = createNativeStackNavigator();
 

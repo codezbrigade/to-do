@@ -6,6 +6,12 @@ import App from './App';
 import {name as appName} from './app.json';
 import PushNotification from 'react-native-push-notification';
 import {notificationObject} from './src/utils/RNPushNotification.helper';
+import messaging from '@react-native-firebase/messaging';
+
+// Register background handler
+messaging().setBackgroundMessageHandler(async remoteMessage => {
+  console.log('Message handled in the background!', remoteMessage);
+});
 
 PushNotification.configure({
   onAction: notification => {
