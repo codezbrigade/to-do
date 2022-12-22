@@ -5,7 +5,10 @@ import {AppRegistry, Platform} from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
 import PushNotification from 'react-native-push-notification';
-import {notificationObject} from './src/utils/RNPushNotification.helper';
+import {
+  localNotification,
+  snoozeActionHandler,
+} from './src/utils/RNPushNotification.helper';
 import messaging from '@react-native-firebase/messaging';
 
 // Register background handler
@@ -20,7 +23,7 @@ PushNotification.configure({
       PushNotification.invokeApp(notification);
     } else {
       PushNotification.removeAllDeliveredNotifications();
-      notificationObject(
+      snoozeActionHandler(
         notification.id,
         notification.channelId,
         notification.title,
@@ -37,6 +40,12 @@ PushNotification.configure({
   },
   onNotification: function (notification) {
     console.log('NOTIFICATION:', notification);
+    localNotification(
+      notification?.title,
+      notification?.message,
+      notification?.largeIconUrl,
+      notification?.id,
+    );
   },
 
   onRegistrationError: function (err) {

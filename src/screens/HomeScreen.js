@@ -22,6 +22,8 @@ import HomeModal from '../components/HomeModal';
 import AppRating from '../components/AppRating';
 import {filterFunction} from '../utils/filter';
 
+import {localNotification} from '../utils/RNPushNotification.helper';
+
 const HomeScreen = ({route}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedHeader, setSelectedHeader] = useState({
@@ -136,7 +138,8 @@ const HomeScreen = ({route}) => {
             height={70}
             borderWidth={0}
             imageUrl={asserts.addTask}
-            handlePress={navigationHandler}
+            // handlePress={navigationHandler}
+            handlePress={localNotification}
           />
         </View>
       </BackgroundView>
