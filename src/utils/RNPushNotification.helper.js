@@ -1,10 +1,16 @@
 import PushNotification, {Importance} from 'react-native-push-notification';
 import {channel} from '../constants';
 
-export const createLocalChanel = () => {
+export const createChanel = () => {
   PushNotification.createChannel({
     channelId: channel.local.id,
     channelName: channel.local.name,
+    vibrate: true,
+    importance: Importance.HIGH,
+  });
+  PushNotification.createChannel({
+    channelId: channel.remote.id,
+    channelName: channel.remote.name,
     vibrate: true,
     importance: Importance.HIGH,
   });
@@ -38,22 +44,18 @@ const notificationScheduler = (item, fireDate, isNew) => {
     color: label_color,
     actions: ['Done', 'Snooze'],
     date: fireDate,
-    data: Date.now(),
-    // largeIconUrl: 'https://img.freepik.com/free-icon/todo-list_318-10185.jpg',
     allowWhileIdle: true,
     invokeApp: false,
   });
 };
 
-export const notificationObject = (
+export const snoozeActionHandler = (
   id,
   channelId,
   title,
   bigText,
   message,
   color,
-  allowWhileIdle,
-  invokeApp,
 ) =>
   PushNotification.localNotificationSchedule({
     id,
@@ -68,3 +70,15 @@ export const notificationObject = (
     allowWhileIdle: true,
     invokeApp: false,
   });
+
+export const localNotification = (title, message, largeIconUrl, id) => {
+  PushNotification.localNotification({
+    id,
+    channelId: channel.remote.id,
+    title,
+    message,
+    largeIconUrl,
+    allowWhileIdle: true,
+    invokeApp: false,
+  });
+};

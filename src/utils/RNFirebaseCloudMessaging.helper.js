@@ -1,6 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import messaging from '@react-native-firebase/messaging';
-// import {Alert} from 'react-native';
 
 export async function requestUserPermission() {
   const authStatus = await messaging().requestPermission();
@@ -29,20 +28,16 @@ export const notificationListener = () => {
     );
   });
 
-  // Check whether an initial notification is available
-  messaging()
-    .getInitialNotification()
-    .then(remoteMessage => {
-      if (remoteMessage) {
-        console.log(
-          'Notification caused app to open from quit state:',
-          remoteMessage.notification,
-        );
-      }
-    });
+  //Foreground state messages
+  messaging().onMessage(async remoteMessage => {
+    console.log(
+      'A new FCM message arrived jeya!',
+      JSON.stringify(remoteMessage?.notification.android.imageUrl),
+    );
+  });
 
   // Check whether an initial notification is available
-  messaging()
+  const unsubscribe = messaging()
     .getInitialNotification()
     .then(remoteMessage => {
       if (remoteMessage) {
@@ -54,8 +49,5 @@ export const notificationListener = () => {
       }
     });
 
-  //Foreground state messages
-  messaging().onMessage(async remoteMessage => {
-    console.log('A new FCM message arrived!', JSON.stringify(remoteMessage));
-  });
+  return unsubscribe;
 };

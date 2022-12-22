@@ -11,13 +11,11 @@ import Loading from './src/UI/Loading';
 
 import {NavigationContainer} from '@react-navigation/native';
 import RNBootSplash from 'react-native-bootsplash';
-import {createLocalChanel} from './src/utils/RNPushNotification.helper';
+import {createChanel} from './src/utils/RNPushNotification.helper';
 import {
   requestUserPermission,
   notificationListener,
 } from './src/utils/RNFirebaseCloudMessaging.helper';
-
-RNBootSplash.hide({fade: true, duration: 500});
 
 const myInitialGlobalState = {
   [countKey]: 0,
@@ -28,9 +26,11 @@ const myInitialGlobalState = {
 
 const App = () => {
   useEffect(() => {
-    createLocalChanel();
-    requestUserPermission();
-    notificationListener();
+    createChanel();
+    requestUserPermission(); // fcm token
+    notificationListener(); // fcm listener
+
+    RNBootSplash.hide({fade: true, duration: 500}); //!splash screen hide ==> hides after all process has don
   }, []);
 
   return (
