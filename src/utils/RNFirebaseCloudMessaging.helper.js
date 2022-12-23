@@ -37,7 +37,7 @@ export const notificationListener = () => {
   });
 
   // Check whether an initial notification is available
-  const unsubscribe = messaging()
+  messaging()
     .getInitialNotification()
     .then(remoteMessage => {
       if (remoteMessage) {
@@ -48,6 +48,4 @@ export const notificationListener = () => {
         //  setInitialRoute(remoteMessage.data.type); // e.g. "Settings"
       }
     });
-
-  return unsubscribe;
 };

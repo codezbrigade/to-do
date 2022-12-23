@@ -17,13 +17,13 @@ const ROOT = () => {
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
+    setAnimate(true);
     (async () => {
       await fetchData();
     })();
   }, []);
 
   const fetchData = async () => {
-    setAnimate(true);
     await FACT_API().then(res => {
       setGlobalState({...globalState, facts: res});
       setAnimate(false);

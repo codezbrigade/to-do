@@ -78,6 +78,7 @@ export const localNotification = (title, message, largeIconUrl, id) => {
     title,
     message,
     largeIconUrl,
+    bigPictureUrl: largeIconUrl,
     allowWhileIdle: true,
     invokeApp: false,
   });

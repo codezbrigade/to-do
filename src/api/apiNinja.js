@@ -16,7 +16,7 @@ export const FACT_API = async () => {
       })
       .then(res => res.data);
   } catch (error) {
-    console.log(error);
-    return [{fact: 'The Golden Gate Bridge was first opened in 1937'}];
+    console.log(error, 'error occured on fetching data');
+    // return [{fact: 'The Golden Gate Bridge was first opened in 1937'}];
   }
 };

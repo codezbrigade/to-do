@@ -40,12 +40,13 @@ PushNotification.configure({
   },
   onNotification: function (notification) {
     console.log('NOTIFICATION:', notification);
-    localNotification(
-      notification?.title,
-      notification?.message,
-      notification?.largeIconUrl,
-      notification?.id,
-    );
+    if (!notification.action)
+      localNotification(
+        notification?.title,
+        notification?.message,
+        notification?.largeIconUrl,
+        notification?.id,
+      );
   },
 
   onRegistrationError: function (err) {
@@ -57,4 +58,4 @@ PushNotification.configure({
   requestPermissions: Platform.OS === 'ios',
 });
 
-AppRegistry.registerComponent(appName, FCM_TOKEN => App);
+AppRegistry.registerComponent(appName, () => App);

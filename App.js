@@ -26,9 +26,9 @@ const myInitialGlobalState = {
 
 const App = () => {
   useEffect(() => {
-    createChanel();
     requestUserPermission(); // fcm token
     notificationListener(); // fcm listener
+    createChanel();
 
     RNBootSplash.hide({fade: true, duration: 500}); //!splash screen hide ==> hides after all process has don
   }, []);
