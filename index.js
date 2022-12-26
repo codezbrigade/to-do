@@ -11,6 +11,11 @@ import {
 } from './src/utils/RNPushNotification.helper';
 import messaging from '@react-native-firebase/messaging';
 
+import {Amplify} from 'aws-amplify';
+import awsconfig from './src/aws-exports';
+
+Amplify.configure(awsconfig);
+
 // Register background handler
 messaging().setBackgroundMessageHandler(async remoteMessage => {
   console.log('Message handled in the background!', remoteMessage);

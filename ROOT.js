@@ -10,6 +10,8 @@ import NewTaskScreen from './src/screens/NewTaskScreen';
 import {ROUTES} from './src/constants';
 import {FACT_API} from './src/api/apiNinja';
 
+import {withAuthenticator} from 'aws-amplify-react-native';
+
 const Stack = createNativeStackNavigator();
 
 const ROOT = () => {
@@ -51,4 +53,4 @@ const ROOT = () => {
   );
 };
 
-export default ROOT;
+export default withAuthenticator(ROOT);
