@@ -27,8 +27,10 @@ import unratedStar from '../asserts/images/unrated-star.png';
 import goback from '../asserts/images/goback.png';
 import clock from '../asserts/images/clock.png';
 import description from '../asserts/images/description.png';
+import logout from '../asserts/images/logout.png';
 
 export const asserts = {
+  logout,
   ratedStar,
   clock,
   description,

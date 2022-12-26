@@ -21,6 +21,7 @@ import {CircularButton} from '../components/Buttons';
 import HomeModal from '../components/HomeModal';
 import AppRating from '../components/AppRating';
 import {filterFunction} from '../utils/filter';
+import Logout from '../components/Logout';
 
 const HomeScreen = ({route}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -149,6 +150,7 @@ const HomeScreen = ({route}) => {
         setISRatingVisible={setISRatingVisible}
         showRatingModal={showRatingModal}
       />
+      <Logout />
     </>
   );
 };
